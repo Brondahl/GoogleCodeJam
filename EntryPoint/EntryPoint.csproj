@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AE728E0E-2299-4042-87D9-26F69BFE6CF0}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>GoogleCodeJam</RootNamespace>
+    <AssemblyName>GoogleCodeJam</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StandAloneFiles\CubicUFO.cs" />
+    <Compile Include="StandAloneFiles\GoGopher.cs" />
+    <Compile Include="StandAloneFiles\SavingTheUniverseAgain.cs" />
+    <Compile Include="StandAloneFiles\TroubleSort.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\2017\BitFlipping\BitFlipping.csproj">
+      <Project>{cfc3386f-bbeb-43ef-999c-9de1b9dda7b9}</Project>
+      <Name>BitFlipping</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\2017\CakeSplitting\CakeSplitting.csproj">
+      <Project>{fbc88556-49b9-4856-bc0c-517e9cefc0d6}</Project>
+      <Name>CakeSplitting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\2017\CoreTraining\CoreTraining.csproj">
+      <Project>{a016bbd8-677e-4db0-856d-16f45c2a4c2a}</Project>
+      <Name>CoreTraining</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\2017\CruiseControl\CruiseControl.csproj">
+      <Project>{9bb5ec06-da7c-4af3-8316-09dd54356943}</Project>
+      <Name>CruiseControl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\2017\PancakeStack\PancakeStack.csproj">
+      <Project>{546e106c-18ea-485d-8e48-83670290b4eb}</Project>
+      <Name>PancakeStack</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\2017\PonyExpress\PonyExpress.csproj">
+      <Project>{897f2fc4-8aef-4566-88ab-1d5943bfe478}</Project>
+      <Name>PonyExpress</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\2017\RainbowUnicorns\RainbowUnicorns.csproj">
+      <Project>{a5bea3b7-a3ae-4483-b78d-70c7c792606f}</Project>
+      <Name>RainbowUnicorns</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\2017\Ratatouille\Ratatouille.csproj">
+      <Project>{275514f3-decf-4146-8a78-333ba337db45}</Project>
+      <Name>Ratatouille</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\2017\TidyNumbers\TidyNumbers.csproj">
+      <Project>{814bd3af-a657-4517-8b6d-4998d82a62f5}</Project>
+      <Name>TidyNumbers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\2017\ToiletStalls\ToiletStalls.csproj">
+      <Project>{022f4853-5e0b-449c-b3c3-262f157a0d52}</Project>
+      <Name>ToiletStalls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\2018\CubicUFO\CubicUFO.csproj">
+      <Project>{4544729a-8fb8-480e-adb2-ec7d1f0eff17}</Project>
+      <Name>CubicUFO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\2018\GoGopher\GoGopher.csproj">
+      <Project>{ddd7da2b-275a-445d-9c2a-67c0e9e59f54}</Project>
+      <Name>GoGopher</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\2018\SavingTheUniverseAgain\SavingTheUniverseAgain.csproj">
+      <Project>{f7412cd9-0f72-4830-888e-8af071ad31de}</Project>
+      <Name>SavingTheUniverseAgain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\2018\TroubleSort\TroubleSort.csproj">
+      <Project>{5279ad2a-8a29-4185-a2b6-4144978d7203}</Project>
+      <Name>TroubleSort</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

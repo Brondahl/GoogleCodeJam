@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SavingTheUniverseAgain", "2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TroubleSort", "2018\TroubleSort\TroubleSort.csproj", "{5279AD2A-8A29-4185-A2B6-4144978D7203}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgyBaking", "2018\EdgyBaking\EdgyBaking.csproj", "{D4D2DCCD-A31E-4EBD-A38F-19A392F88E0F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -109,6 +111,10 @@ Global
 		{5279AD2A-8A29-4185-A2B6-4144978D7203}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5279AD2A-8A29-4185-A2B6-4144978D7203}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5279AD2A-8A29-4185-A2B6-4144978D7203}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4D2DCCD-A31E-4EBD-A38F-19A392F88E0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4D2DCCD-A31E-4EBD-A38F-19A392F88E0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4D2DCCD-A31E-4EBD-A38F-19A392F88E0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4D2DCCD-A31E-4EBD-A38F-19A392F88E0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -128,6 +134,7 @@ Global
 		{DDD7DA2B-275A-445D-9C2A-67C0E9E59F54} = {2A07EC31-114E-4FA6-817E-8FBAD8D84868}
 		{F7412CD9-0F72-4830-888E-8AF071AD31DE} = {2A07EC31-114E-4FA6-817E-8FBAD8D84868}
 		{5279AD2A-8A29-4185-A2B6-4144978D7203} = {2A07EC31-114E-4FA6-817E-8FBAD8D84868}
+		{D4D2DCCD-A31E-4EBD-A38F-19A392F88E0F} = {2A07EC31-114E-4FA6-817E-8FBAD8D84868}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4C85A7E6-82EF-4F14-9CD0-65A4B35B12C8}

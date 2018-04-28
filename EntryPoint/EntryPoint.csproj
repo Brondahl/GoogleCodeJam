@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StandAloneFiles\EdgyBaking.cs" />
     <Compile Include="StandAloneFiles\CubicUFO.cs" />
     <Compile Include="StandAloneFiles\GoGopher.cs" />
     <Compile Include="StandAloneFiles\SavingTheUniverseAgain.cs" />
@@ -97,6 +98,10 @@
     <ProjectReference Include="..\2018\CubicUFO\CubicUFO.csproj">
       <Project>{4544729a-8fb8-480e-adb2-ec7d1f0eff17}</Project>
       <Name>CubicUFO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\2018\EdgyBaking\EdgyBaking.csproj">
+      <Project>{d4d2dccd-a31e-4ebd-a38f-19a392f88e0f}</Project>
+      <Name>EdgyBaking</Name>
     </ProjectReference>
     <ProjectReference Include="..\2018\GoGopher\GoGopher.csproj">
       <Project>{ddd7da2b-275a-445d-9c2a-67c0e9e59f54}</Project>

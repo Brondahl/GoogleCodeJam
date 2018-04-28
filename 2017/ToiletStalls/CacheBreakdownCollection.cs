@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace ToiletStalls
+﻿namespace ToiletStalls
 {
+  using System;
+  using System.Collections.Generic;
+
   class CacheBreakdownCollection
   {
     internal Dictionary<Tuple<long, long>, long> Tuples

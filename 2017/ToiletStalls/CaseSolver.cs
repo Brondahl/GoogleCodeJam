@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace ToiletStalls
+﻿namespace ToiletStalls
 {
+  using System;
+  using System.Collections.Generic;
+  using System.Linq;
+
   class CaseSolver
   {
     private readonly InputCase input;

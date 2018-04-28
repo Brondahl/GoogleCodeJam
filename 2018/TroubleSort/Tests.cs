@@ -1,11 +1,8 @@
-﻿using System;
-using System.Linq;
-using FluentAssertions;
-using FluentAssertions.Equivalency;
-using NUnit.Framework;
-
-namespace TroubleSort
+﻿namespace TroubleSort
 {
+  using FluentAssertions;
+  using NUnit.Framework;
+
   [TestFixture]
   public class Tests
   {

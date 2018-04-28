@@ -1,8 +1,8 @@
-﻿using FluentAssertions;
-using NUnit.Framework;
-
-namespace BitFlipping
+﻿namespace BitFlipping
 {
+  using FluentAssertions;
+  using NUnit.Framework;
+
   [TestFixture]
   class Tests
   {

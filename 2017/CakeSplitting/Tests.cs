@@ -1,10 +1,10 @@
-﻿using System;
-using System.Linq;
-using FluentAssertions;
-using NUnit.Framework;
-
-namespace CakeSplitting
+﻿namespace CakeSplitting
 {
+  using System;
+  using System.Linq;
+  using FluentAssertions;
+  using NUnit.Framework;
+
   [TestFixture]
   class Tests
   {

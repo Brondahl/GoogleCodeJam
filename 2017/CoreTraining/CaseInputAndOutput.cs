@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace CoreTraining
+﻿namespace CoreTraining
 {
+  using System;
+  using System.Collections.Generic;
+  using System.Linq;
+
   class CaseInput
   {
     private CaseInput()

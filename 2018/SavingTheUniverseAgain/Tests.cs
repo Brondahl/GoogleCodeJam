@@ -1,8 +1,8 @@
-﻿using FluentAssertions;
-using NUnit.Framework;
-
-namespace SavingTheUniverseAgain
+﻿namespace SavingTheUniverseAgain
 {
+  using FluentAssertions;
+  using NUnit.Framework;
+
   [TestFixture]
   public class Tests
   {

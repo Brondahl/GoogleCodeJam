@@ -1,10 +1,11 @@
-﻿using System;
-using FluentAssertions;
-using NUnit.Framework;
-using static System.Math;
+﻿using static System.Math;
 
 namespace CubicUFO
 {
+  using System;
+  using FluentAssertions;
+  using NUnit.Framework;
+
   [TestFixture]
   public class Tests
   {

@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace EdgyBaking
+﻿namespace EdgyBaking
 {
-using Common;
+  using System;
+  using System.Collections.Generic;
+  using System.Linq;
+  using Common;
+
   /*
    * TODO:
    *   - Namespace

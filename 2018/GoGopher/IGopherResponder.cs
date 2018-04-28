@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace GoGopher
+﻿namespace GoGopher
 {
+  using System;
+  using System.Collections.Generic;
+  using System.Linq;
+
   public interface IGopherResponder
   {
     Tuple<int, int> SubmitGopherInstructionAndGetResponse(Tuple<int, int> target);

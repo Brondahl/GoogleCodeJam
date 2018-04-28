@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Common;
-
-namespace BitFlipping
+﻿namespace BitFlipping
 {
+  using System.Collections.Generic;
+  using System.Linq;
+  using Common;
+
   public class CaseSolver
   {
     private static string subFolderName = @"BitFlipping";

@@ -1,8 +1,9 @@
-﻿using System.Linq;
-using static System.Math;
+﻿using static System.Math;
 
 namespace EdgyBaking
 {
+  using System.Linq;
+
   class CaseInput
   {
     internal CaseInput(string[] lines)

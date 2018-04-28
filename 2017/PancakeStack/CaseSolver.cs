@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Security;
-using System.Text.RegularExpressions;
-using Common;
-
-namespace PancakeStack
+﻿namespace PancakeStack
 {
+  using System;
+  using System.Collections.Generic;
+  using System.Linq;
+  using Common;
+
   /*
    * TODO:
    *   - Namespace

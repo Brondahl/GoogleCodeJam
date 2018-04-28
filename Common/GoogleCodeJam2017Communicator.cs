@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-
-namespace Common
+﻿namespace Common
 {
+  using System.Collections.Generic;
+  using System.IO;
+  using System.Linq;
+
   public class GoogleCodeJam2017Communicator : IGoogleCodeJamCommunicator
   {
     private readonly string folderPath = @"C:\Users\Brondahl\My Files\Programming\C#\Puzzles_And_Toys\GoogleCodeJam\GoogleCodeJam2017\";

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace TroubleSort
+﻿namespace TroubleSort
 {
+  using System;
+  using System.Collections.Generic;
+  using System.Linq;
+
   class CaseInput
   {
     internal CaseInput(string[] lines)

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Linq;
-using FluentAssertions;
-using NUnit.Framework;
-
-namespace RainbowUnicorns
+﻿namespace RainbowUnicorns
 {
+  using NUnit.Framework;
+
   [TestFixture]
   class Tests
   {

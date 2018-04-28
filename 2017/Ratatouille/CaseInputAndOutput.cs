@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Ratatouille
+﻿namespace Ratatouille
 {
+  using System.Collections.Generic;
+  using System.Linq;
+
   class CaseInput
   {
     internal static string[][] SubDivideInput(IEnumerator<string> lines)

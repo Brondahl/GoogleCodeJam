@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Common;
-
-namespace TidyNumbers
+﻿namespace TidyNumbers
 {
-    public class EntryPoint
+  using System;
+  using System.Collections.Generic;
+  using System.Linq;
+  using Common;
+
+  public class EntryPoint
     {
       public static void RunFromFile()
       {

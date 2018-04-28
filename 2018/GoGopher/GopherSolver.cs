@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace GoGopher
+﻿namespace GoGopher
 {
+  using System;
+
   public class GopherSolver
   {
     private readonly IGopherResponder responder;

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace PonyExpress
+﻿namespace PonyExpress
 {
+  using System;
+  using System.Collections.Generic;
+  using System.Linq;
+
   class CaseInput
   {
     internal CaseInput(IEnumerable<string> linesIn)

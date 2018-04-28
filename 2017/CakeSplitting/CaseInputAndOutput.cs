@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace CakeSplitting
+﻿namespace CakeSplitting
 {
+  using System;
+  using System.Collections.Generic;
+  using System.Linq;
+
   class CaseInput
   {
     internal static string[][] SubDivideInput(IEnumerator<string> lines)

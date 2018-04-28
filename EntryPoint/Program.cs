@@ -1,8 +1,7 @@
-﻿using System.Linq;
-
-namespace GoogleCodeJam
+﻿namespace GoogleCodeJam
 {
-  using Common;
+  using System.Linq;
+
   class Program
   {
     static void Main(string[] args)

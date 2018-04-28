@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using FluentAssertions;
-using FluentAssertions.Equivalency;
-using Microsoft.Win32;
-using NUnit.Framework;
-
-namespace EdgyBaking
+﻿namespace EdgyBaking
 {
+  using System;
+  using System.Collections.Generic;
+  using System.Linq;
+  using FluentAssertions;
+  using NUnit.Framework;
+
   [TestFixture]
   public class Tests
   {

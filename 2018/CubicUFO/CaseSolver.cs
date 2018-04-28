@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Common;
-using static System.Math;
+﻿using static System.Math;
 
 namespace CubicUFO
 {
+  using System;
+  using System.Collections.Generic;
+  using System.Linq;
+  using Common;
+
   /*
    * TODO:
    *   - Namespace

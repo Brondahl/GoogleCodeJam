@@ -1,7 +1,7 @@
-﻿using System.Linq;
-
-namespace BitFlipping
+﻿namespace BitFlipping
 {
+  using System.Linq;
+
   class CaseInput
   {
     internal CaseInput(string line)

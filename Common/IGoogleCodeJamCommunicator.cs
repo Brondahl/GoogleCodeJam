@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace Common
+﻿namespace Common
 {
+  using System.Collections.Generic;
+
   public interface IGoogleCodeJamCommunicator
   {
      IEnumerable<string> ReadStringInput(out int numberOfCases);

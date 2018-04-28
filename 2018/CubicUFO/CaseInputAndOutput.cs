@@ -1,8 +1,9 @@
-﻿using System;
-using static System.Math;
+﻿using static System.Math;
 
 namespace CubicUFO
 {
+  using System;
+
   class CaseInput
   {
     internal CaseInput(string line)

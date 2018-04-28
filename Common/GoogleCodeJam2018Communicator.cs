@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Common
+﻿namespace Common
 {
+  using System;
+  using System.Collections.Generic;
+  using System.Linq;
+
   public class GoogleCodeJam2018Communicator : IGoogleCodeJamCommunicator
   {
     public IEnumerable<string> ReadStringInput(out int numberOfCases)

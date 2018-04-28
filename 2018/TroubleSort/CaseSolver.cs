@@ -15,11 +15,11 @@ namespace TroubleSort
   public class CaseSolver
   {
     private static int numberOfCases;
-    private static CommonBase Common = new Common2018();
+    private static IGoogleCodeJamCommunicator InOut = new GoogleCodeJam2018Communicator();
     public static void Run()
     {
-      var lines = Common.ReadStringInput(out numberOfCases).ToList();
-      var cases = Common.CaseLineSplitter(lines, 2).ToArray();
+      var lines = InOut.ReadStringInput(out numberOfCases).ToList();
+      var cases = new CaseSplitter().GetCaseLines(lines, 2).ToArray();
       var results = new List<string>();
 
       for (int ii = 0; ii < numberOfCases; ii++)
@@ -33,7 +33,7 @@ namespace TroubleSort
         results.Add($"Case #{ii + 1}: {resultText}");
       }
 
-      Common.WriteOutput(results);
+      InOut.WriteOutput(results);
     }
 
 

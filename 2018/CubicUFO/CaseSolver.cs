@@ -17,10 +17,10 @@ namespace CubicUFO
   public class CaseSolver
   {
     private static int numberOfCases;
-    private static CommonBase Common = new Common2018();
+    private static IGoogleCodeJamCommunicator InOut = new GoogleCodeJam2018Communicator();
     public static void Run()
     {
-      var lines = Common.ReadStringInput(out numberOfCases).ToList();
+      var lines = InOut.ReadStringInput(out numberOfCases).ToList();
       var cases = lines.ToArray();
       var results = new List<string>();
 
@@ -35,7 +35,7 @@ namespace CubicUFO
         results.Add($"Case #{ii + 1}: {resultText}");
       }
 
-      Common.WriteOutput(results);
+      InOut.WriteOutput(results);
     }
 
 

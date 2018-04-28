@@ -18,11 +18,12 @@ namespace PonyExpress
   {
     private static string subFolderName = @"PonyExpress";
     private static int numberOfCases;
-    private static CommonBase Common = new Common2017(subFolderName);
+    private static IGoogleCodeJamCommunicator InOut = new GoogleCodeJam2017Communicator(subFolderName);
+
     public static void Run()
     {
-      var lines = Common.ReadStringInput(out numberOfCases).ToList();
-      var cases = Common.CaseLineSplitter(lines, (lineCount, args) => { return lineCount < 2*args[0] + args[1]; }).ToArray();
+      var lines = InOut.ReadStringInput(out numberOfCases).ToList();
+      var cases = new CaseSplitter().GetCaseLines(lines, args =>  2*args[0] + args[1]).ToArray();
       var results = new List<string>();
 
       for (int ii = 0; ii < numberOfCases; ii++)
@@ -36,7 +37,7 @@ namespace PonyExpress
         results.Add(string.Format("Case #{0}: {1}", ii + 1, resultText));
       }
 
-      Common.WriteOutput(results);
+      InOut.WriteOutput(results);
     }
 
 

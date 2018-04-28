@@ -6,41 +6,30 @@ using NUnit.Framework;
 namespace Common
 {
   [TestFixture]
-  class Tests
+  class CaseSplitterTests
   {
-    private static CommonBase Common2017 = new Common2017(null, null);
+    private static CaseSplitter splitter = new CaseSplitter();
 
     [Test]
-    public static void CaseLineForNFromFirstValTest()
+    public static void CaseLinesFromSingleLines()
     {
       var inputFile =
-        @"3
-3 3
-G??
-?C?
-??J
-3 4
-CODE
-????
-?JAM
-2 2
-CA
-KE".Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList().Skip(1);
+        @"7
+1
+3
+5
+t
+g
+2
+y
+";
+      var inputLines = inputFile.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList().Skip(1);
 
-      var output = Common2017.CaseLines_TakingNFromFirstVal(inputFile);
+      var output = splitter.GetSingleLineCases(inputLines);
 
-      output.Count().Should().Be(3);
-
-      output.First().Count().Should().Be(4);
-      output.Skip(1).First().Count().Should().Be(4);
-      output.Skip(2).First().Count().Should().Be(3);
-
-      output.First().Skip(1).First().Should().Be("G??");
-
-      output.Skip(1).First().Skip(1).First().Should().Be("CODE");
-
-      output.Skip(2).First().Skip(1).First().Should().Be("CA");
+      output.Should().BeEquivalentTo("1", "3", "5", "t", "g", "2", "y");
     }
+
 
     [Test]
     public static void CaseLinesFromConstantNumberOfLines()
@@ -55,12 +44,12 @@ G??
 CODE
 ????
 ?JAM
-2 2
+foo
 CA
 KE
 ZZ".Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList().Skip(1);
 
-      var output = Common2017.CaseLineSplitter(inputFile, 4);
+      var output = splitter.GetCaseLines(inputFile, 4);
 
       output.Count().Should().Be(3);
 
@@ -72,9 +61,44 @@ ZZ".Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).
 
       output.Skip(1).First().Skip(1).First().Should().Be("CODE");
 
+      output.Skip(2).First().First().Should().Be("foo");
       output.Skip(2).First().Skip(1).First().Should().Be("CA");
     }
 
+
+    [Test]
+    public static void CaseLineForNFromFirstValTest()
+    {
+      var inputFile = @"
+3
+3 3
+G??
+?C?
+??J
+3 4
+CODE
+????
+?JAM
+2 2
+CA
+KE
+";
+      var inputLines = inputFile.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList().Skip(1);
+
+      var output = splitter.GetCaseLines_TakingNFromFirstValPlusOne(inputLines);
+
+      output.Count().Should().Be(3);
+
+      output.First().Count().Should().Be(4);
+      output.Skip(1).First().Count().Should().Be(4);
+      output.Skip(2).First().Count().Should().Be(3);
+
+      output.First().Skip(1).First().Should().Be("G??");
+
+      output.Skip(1).First().Skip(1).First().Should().Be("CODE");
+
+      output.Skip(2).First().Skip(1).First().Should().Be("CA");
+    }
     [Test]
     public static void CaseLineForNFromFirstValPlusOneTest()
     {
@@ -95,7 +119,7 @@ baz
 CA
 KE".Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList().Skip(1);
 
-      var output = Common2017.CaseLines_TakingNFromFirstValPlusOne(inputFile);
+      var output = splitter.GetCaseLines_TakingNFromFirstValPlusTwo(inputFile);
 
       output.Count().Should().Be(3);
 
@@ -122,40 +146,34 @@ KE".Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).
       var inputFile =
 @"3
 3 3
-foo
 ?C?
 ??J
 3 4
-bar
 CODE
 ????
 ?JAM
 4 2
-baz
 CA".Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList().Skip(1);
 
-      var output = Common2017.CaseLines_TakingNFromSecondVal(inputFile);
+      var output = splitter.GetCaseLines_TakingNFromSecondVal(inputFile);
 
       output.Count().Should().Be(3);
 
-      output.First().Count().Should().Be(4);
-      output.Skip(1).First().Count().Should().Be(5);
-      output.Skip(2).First().Count().Should().Be(3);
+      output.First().Count().Should().Be(3);
+      output.Skip(1).First().Count().Should().Be(4);
+      output.Skip(2).First().Count().Should().Be(2);
 
       output.First().First().Should().Be("3 3");
-      output.First().Skip(1).First().Should().Be("foo");
-      output.First().Skip(2).First().Should().Be("?C?");
-      output.First().Skip(3).First().Should().Be("??J");
+      output.First().Skip(1).First().Should().Be("?C?");
+      output.First().Skip(2).First().Should().Be("??J");
 
       output.Skip(1).First().First().Should().Be("3 4");
-      output.Skip(1).First().Skip(1).First().Should().Be("bar");
-      output.Skip(1).First().Skip(2).First().Should().Be("CODE");
-      output.Skip(1).First().Skip(3).First().Should().Be("????");
-      output.Skip(1).First().Skip(4).First().Should().Be("?JAM");
+      output.Skip(1).First().Skip(1).First().Should().Be("CODE");
+      output.Skip(1).First().Skip(2).First().Should().Be("????");
+      output.Skip(1).First().Skip(3).First().Should().Be("?JAM");
 
       output.Skip(2).First().First().Should().Be("4 2");
-      output.Skip(2).First().Skip(1).First().Should().Be("baz");
-      output.Skip(2).First().Skip(2).First().Should().Be("CA");
+      output.Skip(2).First().Skip(1).First().Should().Be("CA");
     }
 
     [Test]
@@ -186,7 +204,7 @@ CODE
 baz
 CA".Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList().Skip(1);
 
-      var output = Common2017.CaseLineSplitter(inputFile, (lineCount, args) => { return lineCount < args[2] + args[1]; });
+      var output = splitter.GetCaseLines(inputFile, args => args[2] + args[1] + 1);
 
       output.Count().Should().Be(3);
 

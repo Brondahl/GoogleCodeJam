@@ -20,10 +20,11 @@ namespace RainbowUnicorns
   {
     private static string subFolderName = @"RainbowUnicorns";
     private static int numberOfCases;
-    private static CommonBase Common = new Common2017(subFolderName);
+    private static IGoogleCodeJamCommunicator InOut = new GoogleCodeJam2017Communicator(subFolderName);
+
     public static void Run()
     {
-      var lines = Common.ReadStringInput(out numberOfCases).ToList();
+      var lines = InOut.ReadStringInput(out numberOfCases).ToList();
       var results = new List<string>();
 
       for (int ii = 0; ii < numberOfCases; ii++)
@@ -37,7 +38,7 @@ namespace RainbowUnicorns
         results.Add(string.Format("Case #{0}: {1}", ii + 1, resultText));
       }
 
-      Common.WriteOutput(results);
+      InOut.WriteOutput(results);
     }
 
 

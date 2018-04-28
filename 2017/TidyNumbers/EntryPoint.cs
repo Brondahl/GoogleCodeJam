@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading.Tasks;
 using Common;
 
 namespace TidyNumbers
@@ -133,23 +129,26 @@ namespace TidyNumbers
           solver.Solve(ii);
         }
       }
-      #endregion
+    #endregion
 
+      private static string subFolderName = @"TidyNumbers";
       private int numberOfCases;
-      private CommonBase Common = new Common2017(@"TidyNumbers", "Small.in");
+      private static IGoogleCodeJamCommunicator InOut = new GoogleCodeJam2017Communicator(subFolderName, "Small.in");
+
       public void Run()
       {
-      var cases = Common.ReadLongInput(out numberOfCases);
+        var lines = InOut.ReadStringInput(out numberOfCases);
+        var cases = new CaseSplitter().GetSingleLineCases(lines).ToArray();
         var solver = new CaseSolver();
         var results = new List<string>();
 
         for (int ii = 0; ii < numberOfCases; ii++)
         {
-          var answer = solver.Solve(cases[ii]);
+          var answer = solver.Solve(long.Parse(cases[ii]));
           results.Add(string.Format("Case #{0}: {1}", ii+1, answer));
         }
 
-        Common.WriteOutput(results);
+        InOut.WriteOutput(results);
       }
     }
 }

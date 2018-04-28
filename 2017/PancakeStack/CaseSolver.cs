@@ -21,12 +21,12 @@ namespace PancakeStack
   {
     private static string subFolderName = @"PancakeStack";
     private static int numberOfCases;
-    private static CommonBase Common = new Common2017(subFolderName);
+    private static IGoogleCodeJamCommunicator InOut = new GoogleCodeJam2017Communicator(subFolderName);
 
     public static void Run()
     {
-      var lines = Common.ReadStringInput(out numberOfCases).ToList();
-      var cases = Common.CaseLines_TakingNFromFirstVal(lines).ToArray();
+      var lines = InOut.ReadStringInput(out numberOfCases).ToList();
+      var cases = new CaseSplitter().GetCaseLines_TakingNFromFirstVal(lines).ToArray();
       var results = new List<string>();
 
       for (int ii = 0; ii < numberOfCases; ii++)
@@ -40,7 +40,7 @@ namespace PancakeStack
         results.Add(string.Format("Case #{0}: {1}", ii + 1, resultText));
       }
 
-      Common.WriteOutput(results);
+      InOut.WriteOutput(results);
     }
 
 

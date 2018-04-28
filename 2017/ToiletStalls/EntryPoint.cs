@@ -61,11 +61,13 @@ namespace ToiletStalls
 
     #endregion
 
+    private static string subFolderName = @"ToiletStalls";
     private int numberOfCases;
-    private CommonBase Common = new Common2017(@"ToiletStalls");
+    private static IGoogleCodeJamCommunicator InOut = new GoogleCodeJam2017Communicator(subFolderName);
+
     public void Run()
     {
-      var cases = Common.ReadStringInput(out numberOfCases);
+      var cases = InOut.ReadStringInput(out numberOfCases).ToList();
       var results = new List<string>();
 
       for (int ii = 0; ii < numberOfCases; ii++)
@@ -79,7 +81,7 @@ namespace ToiletStalls
         results.Add(string.Format("Case #{0}: {1}", ii + 1, resultText));
       }
 
-      Common.WriteOutput(results);
+      InOut.WriteOutput(results);
     }
 
   }

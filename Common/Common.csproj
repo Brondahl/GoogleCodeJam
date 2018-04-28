@@ -50,11 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common2017.cs" />
-    <Compile Include="Common2018.cs" />
-    <Compile Include="CommonBase.cs" />
+    <Compile Include="CaseSplitter.cs" />
+    <Compile Include="GoogleCodeJam2017Communicator.cs" />
+    <Compile Include="GoogleCodeJam2018Communicator.cs" />
+    <Compile Include="IGoogleCodeJamCommunicator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tests.cs" />
+    <Compile Include="CaseSplitterTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

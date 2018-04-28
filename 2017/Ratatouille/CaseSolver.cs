@@ -18,10 +18,11 @@ namespace Ratatouille
   {
     private static string subFolderName = @"Ratatouille";
     private static int numberOfCases;
-    private static CommonBase Common = new Common2017(subFolderName);
+    private static IGoogleCodeJamCommunicator InOut = new GoogleCodeJam2017Communicator(subFolderName);
+
     public static void Run()
     {
-      var lines = Common.ReadStringInput(out numberOfCases).ToList();
+      var lines = InOut.ReadStringInput(out numberOfCases).ToList();
       var cases = CaseInput.SubDivideInput(lines.GetEnumerator());
       var results = new List<string>();
 
@@ -36,7 +37,7 @@ namespace Ratatouille
         results.Add(string.Format("Case #{0}: {1}", ii + 1, resultText));
       }
 
-      Common.WriteOutput(results);
+      InOut.WriteOutput(results);
     }
 
 

@@ -57,7 +57,7 @@
 
         if (continueTestArgs == null)
         {
-          continueTestArgs = parseArgsLineAsLongs ? line.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToArray() : null;
+          continueTestArgs = parseArgsLineAsLongs ? line.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToArray() : new long[0];
           numberOfLinesToPutInCurrentCase = totalNumberOfLinesInACase(continueTestArgs);
         }
 

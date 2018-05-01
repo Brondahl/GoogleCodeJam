@@ -11,6 +11,13 @@
     private readonly string inputFilePath;
     private readonly string outputFilePath;
 
+    public GoogleCodeJam2017Communicator(bool indicator, string fullFolderOverride, string fileName = null)
+    {
+      inputFileName = fileName ?? @"Data.in";
+      inputFilePath = Path.Combine(fullFolderOverride, inputFileName);
+      outputFilePath = Path.Combine(fullFolderOverride, "Data.out");
+    }
+
     public GoogleCodeJam2017Communicator(string subFolderName, string fileName = null)
     {
       inputFileName = fileName ?? @"Data.in";

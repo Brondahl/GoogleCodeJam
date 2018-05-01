@@ -8,28 +8,44 @@
 
   public class CaseSolver
   {
-    private static int numberOfCases;
-    private static IGoogleCodeJamCommunicator InOut = new GoogleCodeJam2018Communicator();
-    public static void Run()
+    public static void GenerateAndSolveNewTestData()
     {
-      var lines = InOut.ReadStringInput(out numberOfCases).ToList();
-      var cases = new CaseSplitter().GetCaseLines_TakingNFromFirstValPlusOne(lines).ToArray();
+      GenerateTestData.GenerateData();
+      CaseSolver.Run(true);
+    }
+
+    private static int numberOfCases;
+    private static IGoogleCodeJamCommunicator testFileInOut = new GoogleCodeJam2017Communicator(true, @"C:\Users\Brondahl\My Files\Programming\C#\Puzzles_And_Toys\GoogleCodeJam\2018\MysteriousRoadSigns\TestData", "data.txt");
+    private static IGoogleCodeJamCommunicator liveInOut = new GoogleCodeJam2018Communicator();
+    public static void Run(bool testingMode = false)
+    {
+      var activeIO = testingMode ? testFileInOut : liveInOut;
+      var lines = activeIO.ReadStringInput(out numberOfCases);
+      var cases = new CaseSplitter().GetCaseLines_TakingNFromFirstValPlusOne(lines);
       var results = new List<string>();
       var caseNumber = 0;
+      var stopWatch = new Stopwatch();
 
       foreach (var caseLines in cases)
       {
         caseNumber++; //1-indexed.
+        stopWatch.Reset();
+        stopWatch.Start();
+
         var parsedCase = new CaseInput(caseLines);
         var solver = new CaseSolver(parsedCase);
         var result = solver.Solve();
-
         var resultText = result.ToString();
 
+        stopWatch.Stop();
         results.Add($"Case #{caseNumber}: {resultText}");
+        if (testingMode)
+        {
+          Console.WriteLine(stopWatch.ElapsedMilliseconds / 1000.0);
+      }
       }
 
-      InOut.WriteOutput(results);
+      activeIO.WriteOutput(results);
     }
 
     private CaseInput input;

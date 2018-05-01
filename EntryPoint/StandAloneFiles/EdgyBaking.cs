@@ -271,14 +271,6 @@
 //namespace EdgyBaking
 //{
 //  using Common;
-//  /*
-//   * TODO:
-//   *   - Namespace
-//   *   - Copy in/out files.
-//   *   - References to Common and testing Frameworks
-//   *   - CodeJam Reference to here.
-//   *   - Program redirect to here.
-//   */
 //  public class CaseSolver
 //  {
 //    private static int numberOfCases;

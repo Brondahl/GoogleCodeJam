@@ -4,13 +4,6 @@
   using System.Linq;
   using Common;
 
-  /*
-   * TODO:
-   *   - Namespace
-   *   - References to Common and testing Frameworks
-   *   - CodeJam Reference to here.
-   *   - Program redirect to here.
-   */
   public class CaseSolver
   {
     private static string subFolderName = @"Problem1";

@@ -48,6 +48,7 @@
     <Compile Include="StandAloneFiles\EdgyBaking.cs" />
     <Compile Include="StandAloneFiles\CubicUFO.cs" />
     <Compile Include="StandAloneFiles\GoGopher.cs" />
+    <Compile Include="StandAloneFiles\RoundingError.cs" />
     <Compile Include="StandAloneFiles\SavingTheUniverseAgain.cs" />
     <Compile Include="StandAloneFiles\TroubleSort.cs" />
   </ItemGroup>
@@ -55,69 +56,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\2017\BitFlipping\BitFlipping.csproj">
-      <Project>{cfc3386f-bbeb-43ef-999c-9de1b9dda7b9}</Project>
-      <Name>BitFlipping</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\2017\CakeSplitting\CakeSplitting.csproj">
-      <Project>{fbc88556-49b9-4856-bc0c-517e9cefc0d6}</Project>
-      <Name>CakeSplitting</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\2017\CoreTraining\CoreTraining.csproj">
-      <Project>{a016bbd8-677e-4db0-856d-16f45c2a4c2a}</Project>
-      <Name>CoreTraining</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\2017\CruiseControl\CruiseControl.csproj">
-      <Project>{9bb5ec06-da7c-4af3-8316-09dd54356943}</Project>
-      <Name>CruiseControl</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\2017\PancakeStack\PancakeStack.csproj">
-      <Project>{546e106c-18ea-485d-8e48-83670290b4eb}</Project>
-      <Name>PancakeStack</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\2017\PonyExpress\PonyExpress.csproj">
-      <Project>{897f2fc4-8aef-4566-88ab-1d5943bfe478}</Project>
-      <Name>PonyExpress</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\2017\RainbowUnicorns\RainbowUnicorns.csproj">
-      <Project>{a5bea3b7-a3ae-4483-b78d-70c7c792606f}</Project>
-      <Name>RainbowUnicorns</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\2017\Ratatouille\Ratatouille.csproj">
-      <Project>{275514f3-decf-4146-8a78-333ba337db45}</Project>
-      <Name>Ratatouille</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\2017\TidyNumbers\TidyNumbers.csproj">
-      <Project>{814bd3af-a657-4517-8b6d-4998d82a62f5}</Project>
-      <Name>TidyNumbers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\2017\ToiletStalls\ToiletStalls.csproj">
-      <Project>{022f4853-5e0b-449c-b3c3-262f157a0d52}</Project>
-      <Name>ToiletStalls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\2018\CubicUFO\CubicUFO.csproj">
-      <Project>{4544729a-8fb8-480e-adb2-ec7d1f0eff17}</Project>
-      <Name>CubicUFO</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\2018\EdgyBaking\EdgyBaking.csproj">
-      <Project>{d4d2dccd-a31e-4ebd-a38f-19a392f88e0f}</Project>
-      <Name>EdgyBaking</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\2018\GoGopher\GoGopher.csproj">
-      <Project>{ddd7da2b-275a-445d-9c2a-67c0e9e59f54}</Project>
-      <Name>GoGopher</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\2018\SavingTheUniverseAgain\SavingTheUniverseAgain.csproj">
-      <Project>{f7412cd9-0f72-4830-888e-8af071ad31de}</Project>
-      <Name>SavingTheUniverseAgain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\2018\TroubleSort\TroubleSort.csproj">
-      <Project>{5279ad2a-8a29-4185-a2b6-4144978d7203}</Project>
-      <Name>TroubleSort</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{be560075-329b-44d9-85a8-88c0291db0cc}</Project>
-      <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

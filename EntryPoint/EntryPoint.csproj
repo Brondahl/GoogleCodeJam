@@ -50,6 +50,7 @@
     <Compile Include="StandAloneFiles\GoGopher.cs" />
     <Compile Include="StandAloneFiles\MysteriousRoadSigns.cs" />
     <Compile Include="StandAloneFiles\LollipopShop.cs" />
+    <Compile Include="StandAloneFiles\AntStack.cs" />
     <Compile Include="StandAloneFiles\RoundingError.cs" />
     <Compile Include="StandAloneFiles\SavingTheUniverseAgain.cs" />
     <Compile Include="StandAloneFiles\TroubleSort.cs" />

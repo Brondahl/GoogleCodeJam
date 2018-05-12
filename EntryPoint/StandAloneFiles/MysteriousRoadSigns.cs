@@ -1,4 +1,17 @@
-﻿//namespace MysteriousRoadSigns
+//namespace GoogleCodeJam
+//{
+//  using MysteriousRoadSigns;
+
+//  class Program
+//  {
+//    static void Main(string[] args)
+//    {
+//      CaseSolver.Run();
+//    }
+//  }
+//}
+
+//namespace MysteriousRoadSigns
 //{
 //  using System;
 //  using System.Collections.Generic;
@@ -78,33 +91,50 @@
 //  using System;
 //  using System.Collections.Generic;
 //  using System.Diagnostics;
+//  using System.IO;
 //  using System.Linq;
 //  using Common;
 
 //  public class CaseSolver
 //  {
-//    private static int numberOfCases;
-//    private static IGoogleCodeJamCommunicator InOut = new GoogleCodeJam2018Communicator();
-//    public static void Run()
+//    public static void GenerateAndSolveNewTestData()
 //    {
-//      var lines = InOut.ReadStringInput(out numberOfCases).ToList();
-//      var cases = new CaseSplitter().GetCaseLines_TakingNFromFirstValPlusOne(lines).ToArray();
+//      GenerateTestData.GenerateData();
+//      CaseSolver.Run(true);
+//    }
+
+//    private static int numberOfCases;
+//    private static IGoogleCodeJamCommunicator testFileInOut = new GoogleCodeJam2017Communicator(true, @"C:\Users\Brondahl\My Files\Programming\C#\Puzzles_And_Toys\GoogleCodeJam\2018\MysteriousRoadSigns\TestData", "data.txt");
+//    private static IGoogleCodeJamCommunicator liveInOut = new GoogleCodeJam2018Communicator();
+//    public static void Run(bool testingMode = false)
+//    {
+//      var activeIO = testingMode ? testFileInOut : liveInOut;
+//      var lines = activeIO.ReadStringInput(out numberOfCases);
+//      var cases = new CaseSplitter().GetCaseLines_TakingNFromFirstValPlusOne(lines);
 //      var results = new List<string>();
 //      var caseNumber = 0;
+//      var stopWatch = new Stopwatch();
 
 //      foreach (var caseLines in cases)
 //      {
 //        caseNumber++; //1-indexed.
+//        stopWatch.Reset();
+//        stopWatch.Start();
+
 //        var parsedCase = new CaseInput(caseLines);
 //        var solver = new CaseSolver(parsedCase);
 //        var result = solver.Solve();
-
 //        var resultText = result.ToString();
 
+//        stopWatch.Stop();
 //        results.Add($"Case #{caseNumber}: {resultText}");
+//        if (testingMode)
+//        {
+//          Console.WriteLine(stopWatch.ElapsedMilliseconds / 1000.0);
+//      }
 //      }
 
-//      InOut.WriteOutput(results);
+//      activeIO.WriteOutput(results);
 //    }
 
 //    private CaseInput input;
@@ -116,6 +146,7 @@
 
 //    internal CaseOutput Solve()
 //    {
+//      var earliestSetStillActive = 0;
 //      var setLengthStartingAtI = new int[input.S];
 //      var rulesForSetStartingAtI = new SetRuleOptions[input.S];
 //      var setWithStartPointIIsActive = new bool[input.S];
@@ -126,7 +157,7 @@
 //        rulesForSetStartingAtI[i] = new SetRuleOptions(sign_I);
 //        setWithStartPointIIsActive[i] = true;
 
-//        for (int j = 0; j < i; j++)
+//        for (int j = earliestSetStillActive; j < i; j++)
 //        {
 //          if (setWithStartPointIIsActive[j])
 //          {
@@ -136,6 +167,10 @@
 //            if (newRules.IsBroken)
 //            {
 //              setWithStartPointIIsActive[j] = false;
+//              if (j == earliestSetStillActive)
+//              {
+//                earliestSetStillActive++;
+//              }
 //            }
 //            else
 //            {
@@ -154,10 +189,10 @@
 
 //    class SetRuleOptions
 //    {
-//      public SetRule Rule1 = new SetRule();
-//      public SetRule Rule2 = new SetRule();
-//      public bool Considers2Rules = true;
-//      public bool IsBroken = false;
+//      public readonly SetRule Rule1 = new SetRule();
+//      public readonly SetRule Rule2 = new SetRule();
+//      public readonly bool Considers2Rules = true;
+//      public readonly bool IsBroken = false;
 
 //      public override string ToString()
 //      {
@@ -168,13 +203,29 @@
 
 //      public SetRuleOptions(Sign initialSign)
 //      {
-//        Rule1 = new SetRule { Left = initialSign.M };
-//        Rule2 = new SetRule { Right = initialSign.N };
+//        Rule1 = new SetRule (initialSign.M, null);
+//        Rule2 = new SetRule (null, initialSign.N);
+//      }
+
+//      private SetRuleOptions(SetRule rule)
+//      {
+//        Considers2Rules = false;
+//        Rule1 = rule;
+//      }
+
+//      private SetRuleOptions(SetRule rule1, SetRule rule2)
+//      {
+//        Considers2Rules = true;
+//        Rule1 = rule1;
+//        Rule2 = rule2;
 //      }
 
 //      private SetRuleOptions()
 //      {
+//        IsBroken = true;
 //      }
+
+//      private static SetRuleOptions BrokenRule => new SetRuleOptions();
 
 //      public SetRuleOptions AttemptIncludeSign(Sign sign)
 //      {
@@ -194,18 +245,16 @@
 //            }
 //            if (rule1Support)
 //            {
-//              return new SetRuleOptions { Considers2Rules = false, Rule1 = Rule1 };
+//              return new SetRuleOptions (Rule1);
 //            }
 //            if (rule2Support)
 //            {
-//              return new SetRuleOptions { Considers2Rules = false, Rule1 = Rule2 };
+//              return new SetRuleOptions (Rule2);
 //            }
-//            return new SetRuleOptions
-//            {
-//              Considers2Rules = true,
-//              Rule1 = new SetRule { Left = Rule1.Left, Right = sign.N },
-//              Rule2 = new SetRule { Left = sign.M, Right = Rule2.Right },
-//            };
+//            return new SetRuleOptions(
+//              new SetRule (Rule1.Left, sign.N),
+//              new SetRule (sign.M, Rule2.Right)
+//            );
 //          }
 //          else
 //          {
@@ -216,16 +265,15 @@
 
 //            if (rule1Compat)
 //            {
-//              return new SetRuleOptions { Considers2Rules = false, Rule1 = Rule1 };
+//              return new SetRuleOptions(Rule1);
 //            }
 
 //            if (rule2Compat)
 //            {
-//              return new SetRuleOptions { Considers2Rules = false, Rule1 = Rule2 };
+//              return new SetRuleOptions(Rule2);
 //            }
 //            return BrokenRule;
 //          }
-
 //        }
 //        else
 //        {
@@ -241,59 +289,76 @@
 //          }
 //          else
 //          {
-//            return new SetRuleOptions { Considers2Rules = false, Rule1 = Rule1.ExpandToSupport(sign) };
+//            return new SetRuleOptions(Rule1.ExpandToSupport(sign));
 //          }
 //        }
 //      }
-
-//      private static SetRuleOptions BrokenRule => new SetRuleOptions { IsBroken = true };
 //    }
 
 //    public class SetRule
 //    {
-//      public int? Left;
-//      public int? Right;
+//      public readonly int? Left;
+//      public readonly int? Right;
 //      public bool IsFixed => Left.HasValue && Right.HasValue;
+
+//      public SetRule(int? left, int? right)
+//      {
+//        Left = left;
+//        Right = right;
+//      }
+
+//      public SetRule() : this(null, null) {}
 
 //      public override string ToString()
 //      {
-//        return $"Rule = { (Left.HasValue ? Left.ToString() : "?")},{ (Right.HasValue ? Right.ToString() : "?")}";
+        
+//        return $"Rule = {StringOrQuestionMark(Left)},{StringOrQuestionMark(Right)}";
+//      }
+
+//      private string StringOrQuestionMark(int? val)
+//      {
+//        return val.HasValue ? val.ToString() : "?";
 //      }
 
 //      public bool ActivelySupports(Sign sign)
 //      {
-//        var supportedOnLeft = Left.HasValue && sign.M == Left;
-//        var supportedOnRight = Right.HasValue && sign.N == Right;
+//        var supportedOnLeft = Left.HasValue && Left == sign.M;
+//        var supportedOnRight = Right.HasValue && Right == sign.N;
 
 //        return supportedOnLeft || supportedOnRight;
 //      }
 
 //      public bool IsCompatibleWith(Sign sign)
 //      {
-//        var compatibleOnLeft = Left == null || sign.M == Left;
-//        var compatibleOnRight = Right == null || sign.N == Right;
+//        var compatibleOnLeft = Left == null || Left == sign.M;
+//        var compatibleOnRight = Right == null || Right == sign.N;
 
 //        return compatibleOnLeft || compatibleOnRight;
 //      }
 
 //      public SetRule ExpandToSupport(Sign sign)
 //      {
+//        if(Left == null && Right == null)
+//        {
+//          throw new InvalidOperationException("This should never have happened! - This method shouldn't get called in that scenario.");
+//        }
+
+//        if (!IsCompatibleWith(sign))
+//        {
+//          throw new InvalidOperationException("This should never have happened! - This method shouldn't get called in that scenario.");
+//        }
+
 //        if (ActivelySupports(sign))
 //        {
 //          return this;
 //        }
 
-//        var compatibleOnLeft = Left == null || sign.M == Left;
-//        var compatibleOnRight = Right == null || sign.N == Right;
+//        //The only possibility remaining, is that exactly one of Left and Right is null, and we're setting that value accordingly.
+//        var setLeft = (Left == null);
 
-//        if (compatibleOnLeft && Left == null)
-//        {
-//          return new SetRule { Left = sign.M, Right = Right };
-//        }
-//        else
-//        {
-//          return new SetRule { Left = Left, Right = sign.N };
-//        }
+//        var resultingLeft = setLeft ? sign.M : Left;
+//        var resultingRight = setLeft ? Right : sign.N;
+//        return new SetRule (resultingLeft, resultingRight);
 //      }
 
 //    }
@@ -394,6 +459,13 @@
 //    private readonly string inputFilePath;
 //    private readonly string outputFilePath;
 
+//    public GoogleCodeJam2017Communicator(bool indicator, string fullFolderOverride, string fileName = null)
+//    {
+//      inputFileName = fileName ?? @"Data.in";
+//      inputFilePath = Path.Combine(fullFolderOverride, inputFileName);
+//      outputFilePath = Path.Combine(fullFolderOverride, "Data.out");
+//    }
+
 //    public GoogleCodeJam2017Communicator(string subFolderName, string fileName = null)
 //    {
 //      inputFileName = fileName ?? @"Data.in";
@@ -403,9 +475,9 @@
 
 //    public IEnumerable<string> ReadStringInput(out int numberOfCases)
 //    {
-//      var lines = File.ReadAllLines(inputFilePath);
+//      var lines = File.ReadLines(inputFilePath);
 //      numberOfCases = int.Parse(lines.First());
-//      return lines.Skip(1).ToArray();
+//      return lines.Skip(1);
 //    }
 
 //    public void WriteOutput(IEnumerable<string> lines)
@@ -457,19 +529,7 @@
 
 //  public interface IGoogleCodeJamCommunicator
 //  {
-//    IEnumerable<string> ReadStringInput(out int numberOfCases);
-//    void WriteOutput(IEnumerable<string> lines);
-//  }
-//}
-//namespace GoogleCodeJam
-//{
-//  using System.Linq;
-
-//  class Program
-//  {
-//    static void Main(string[] args)
-//    {
-//      MysteriousRoadSigns.CaseSolver.Run();
-//    }
+//     IEnumerable<string> ReadStringInput(out int numberOfCases);
+//     void WriteOutput(IEnumerable<string> lines);
 //  }
 //}

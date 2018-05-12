@@ -50,10 +50,10 @@
       int a = 3;
       int b = 4;
 
-      var xaRule = new CaseSolver.SetRule { Left = x, Right = a };
-      var x_blank_Rule = new CaseSolver.SetRule { Left = x, Right = null };
-      var blank_a_Rule = new CaseSolver.SetRule { Left = null, Right = a };
-      var blank_blank_Rule = new CaseSolver.SetRule { Left = null, Right = null };
+      var xaRule = new CaseSolver.SetRule(x, a);
+      var x_blank_Rule = new CaseSolver.SetRule(x, null);
+      var blank_a_Rule = new CaseSolver.SetRule(null, a);
+      var blank_blank_Rule = new CaseSolver.SetRule();
 
       var xaSign = new Sign(1, x, a);
       var xbSign = new Sign(1, x, b);

@@ -11,8 +11,8 @@ namespace AWholeNewWord
     private static IGoogleCodeJamCommunicator InOut = new GoogleCodeJam2018Communicator();
     public static void Run()
     {
-      var lines = InOut.ReadStringInput(out numberOfCases).ToList();
-      var cases = new CaseSplitter().GetCaseLines_TakingNFromFirstValPlusOne(lines).ToArray();
+      var lines = InOut.ReadStringInput(out numberOfCases);
+      var cases = new CaseSplitter().GetCaseLines_TakingNFromFirstValPlusOne(lines);
       var results = new List<string>();
       var caseNumber = 0;
 

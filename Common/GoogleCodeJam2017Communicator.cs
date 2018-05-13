@@ -27,9 +27,9 @@
 
     public IEnumerable<string> ReadStringInput(out int numberOfCases)
     {
-      var lines = File.ReadAllLines(inputFilePath);
+      var lines = File.ReadLines(inputFilePath);
       numberOfCases = int.Parse(lines.First());
-      return lines.Skip(1).ToArray();
+      return lines.Skip(1);
     }
 
     public void WriteOutput(IEnumerable<string> lines)

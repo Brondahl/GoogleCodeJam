@@ -43,6 +43,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgyBaking", "2018\EdgyBaki
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoundingError", "2018\RoundingError\RoundingError.csproj", "{F248B195-3550-45F4-A411-178D8AF4CFBF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MysteriousRoadSigns", "2018\MysteriousRoadSigns\MysteriousRoadSigns.csproj", "{463B8E66-EF4C-466F-B432-38CA09F6B8A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -121,6 +123,10 @@ Global
 		{F248B195-3550-45F4-A411-178D8AF4CFBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F248B195-3550-45F4-A411-178D8AF4CFBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F248B195-3550-45F4-A411-178D8AF4CFBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{463B8E66-EF4C-466F-B432-38CA09F6B8A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{463B8E66-EF4C-466F-B432-38CA09F6B8A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{463B8E66-EF4C-466F-B432-38CA09F6B8A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{463B8E66-EF4C-466F-B432-38CA09F6B8A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -142,6 +148,7 @@ Global
 		{5279AD2A-8A29-4185-A2B6-4144978D7203} = {2A07EC31-114E-4FA6-817E-8FBAD8D84868}
 		{D4D2DCCD-A31E-4EBD-A38F-19A392F88E0F} = {2A07EC31-114E-4FA6-817E-8FBAD8D84868}
 		{F248B195-3550-45F4-A411-178D8AF4CFBF} = {2A07EC31-114E-4FA6-817E-8FBAD8D84868}
+		{463B8E66-EF4C-466F-B432-38CA09F6B8A0} = {2A07EC31-114E-4FA6-817E-8FBAD8D84868}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4C85A7E6-82EF-4F14-9CD0-65A4B35B12C8}

@@ -48,6 +48,7 @@
     <Compile Include="StandAloneFiles\EdgyBaking.cs" />
     <Compile Include="StandAloneFiles\CubicUFO.cs" />
     <Compile Include="StandAloneFiles\GoGopher.cs" />
+    <Compile Include="StandAloneFiles\MysteriousRoadSigns.cs" />
     <Compile Include="StandAloneFiles\RoundingError.cs" />
     <Compile Include="StandAloneFiles\SavingTheUniverseAgain.cs" />
     <Compile Include="StandAloneFiles\TroubleSort.cs" />
@@ -56,6 +57,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\2018\MysteriousRoadSigns\MysteriousRoadSigns.csproj">
+      <Project>{463b8e66-ef4c-466f-b432-38ca09f6b8a0}</Project>
+      <Name>MysteriousRoadSigns</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

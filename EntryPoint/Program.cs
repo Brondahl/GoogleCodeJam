@@ -1,17 +1,12 @@
-﻿//namespace GoogleCodeJam
-//{
-//  using System;
-//  using System.Collections.Generic;
-//  using System.IO;
-//  using System.Linq;
-//  using AWholeNewWord;
+﻿namespace GoogleCodeJam
+{
+  using AWholeNewWord;
 
-//  class Program
-//  {
-//    static void Main(string[] args)
-//    {
-//      CaseSolver.Run();
-//    }
-
-//  }
-//}
+  class Program
+  {
+    static void Main(string[] args)
+    {
+      CaseSolver.Run();
+    }
+  }
+}

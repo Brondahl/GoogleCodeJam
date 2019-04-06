@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="StandAloneFiles_2019\YouCanGoYourOwnWay.cs" />
+    <Compile Include="StandAloneFiles_2019\ForegoneSolution.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StandAloneFiles\AWholeNewWord.cs" />

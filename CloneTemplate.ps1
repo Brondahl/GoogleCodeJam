@@ -1,9 +1,11 @@
-$targetProjectName = ""
+$newProjectName = ""
+$year = "2019"
 
-while($targetProjectName -eq "") {
+while($newProjectName -eq "") {
+    Write-Host "Cloning template to create project in $year folder"
     Write-Host "You must provide a non-empty Project Name!"
-    $targetProjectName = Read-Host -Prompt "Name of new Project?"
-    $targetDir = ".\2018\$targetProjectName"
+    $newProjectName = Read-Host -Prompt "Name of new Project?"
+    $targetDir = ".\$year\$newProjectName"
 }
 
 $sourceDir = ".\TemplateProject"
@@ -13,7 +15,7 @@ robocopy $sourceDir $targetDir /E /XD dirs obj bin /NJH /NJS /NP /NS /NDL
 
 Write-Host
     
-Get-ChildItem $targetDir -Filter * | Foreach-Object {
+Get-ChildItem $targetDir -Depth 9 -File | Foreach-Object {
     $filePath = $_.FullName
         
     "Replacing Contents of:  $filePath"
@@ -34,8 +36,8 @@ $programEntryPointFile = ".\EntryPoint\Program.cs"
 
 "namespace GoogleCodeJam"              | Set-Content $programEntryPointFile
 "{"                                    | Add-Content $programEntryPointFile
-"  using $targetProjectName;"          | Add-Content $programEntryPointFile
-""                                     | Add-Content $programEntryPointFile
+"  using $newProjectName;"             | Add-Content $programEntryPointFile
+"  // See README.txt in sln root!!"    | Add-Content $programEntryPointFile
 "  class Program"                      | Add-Content $programEntryPointFile
 "  {"                                  | Add-Content $programEntryPointFile
 "    static void Main(string[] args)"  | Add-Content $programEntryPointFile

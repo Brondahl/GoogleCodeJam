@@ -62,9 +62,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\2018\AWholeNewWord\AWholeNewWord.csproj">
-      <Project>{1e960c82-ca2c-459c-a417-3908e64c59f6}</Project>
-      <Name>AWholeNewWord</Name>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\2019\Cryptopangrams\Cryptopangrams.csproj">
+      <Project>{5c63ca39-9360-4113-9568-8f6fb43e2dcd}</Project>
+      <Name>Cryptopangrams</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

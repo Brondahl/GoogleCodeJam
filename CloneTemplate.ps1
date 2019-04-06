@@ -6,7 +6,7 @@ while($targetProjectName -eq "") {
     $targetDir = ".\2018\$targetProjectName"
 }
 
-$sourceDir = ".\2018\TemplateProject"
+$sourceDir = ".\TemplateProject"
 
 #Clone the TemplateFolder
 robocopy $sourceDir $targetDir /E /XD dirs obj bin /NJH /NJS /NP /NS /NDL

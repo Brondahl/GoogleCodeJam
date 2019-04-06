@@ -51,7 +51,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntStack", "2018\AntStack\A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AWholeNewWord", "2018\AWholeNewWord\AWholeNewWord.csproj", "{1E960C82-CA2C-459C-A417-3908E64C59F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateProject", "2018\TemplateProject\TemplateProject.csproj", "{642B3FF0-A3B3-4702-A07E-274DB38FD955}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateProject", "TemplateProject\TemplateProject.csproj", "{642B3FF0-A3B3-4702-A07E-274DB38FD955}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

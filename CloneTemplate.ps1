@@ -1,9 +1,9 @@
 $newProjectName = ""
 $year = "2019"
 
-while($newProjectName -eq "") {
+while(($newProjectName -eq "") -Or ((Test-Path $targetDir -PathType Container))) {
     Write-Host "Cloning template to create project in $year folder"
-    Write-Host "You must provide a non-empty Project Name!"
+    Write-Host "You must provide a non-empty Project Name, which does not already exist!"
     $newProjectName = Read-Host -Prompt "Name of new Project?"
     $targetDir = ".\$year\$newProjectName"
 }

@@ -7,7 +7,6 @@ while(($targetProjectName -eq "") -Or (!(Test-Path $targetDir -PathType Containe
     $targetDir = ".\$year\$targetProjectName"
 }
 
-$targetDir = ".\$year\$targetProjectName"
 $commonCodeDir = ".\Common"
 $programEntryPointFile = ".\EntryPoint\Program.cs"
 $destinationFile = ".\EntryPoint\StandAloneFiles_$year\$targetProjectName.cs"

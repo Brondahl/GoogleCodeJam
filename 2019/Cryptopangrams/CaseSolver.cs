@@ -123,14 +123,14 @@ namespace Cryptopangrams
       return new CaseOutput(decryption);
     }
 
-    private Tuple<long,long> DecomposeSemiPrime(long semiPrime)
+    private Tuple<long, long> DecomposeSemiPrime(long semiPrime)
     {
       if (semiPrime % 2 == 0)
       {
         return Tuple.Create(2L, semiPrime / 2);
       }
 
-      for (long candidateDivisor = 3; candidateDivisor < Math.Sqrt(semiPrime); candidateDivisor = candidateDivisor + 2)
+      for (long candidateDivisor = 3; candidateDivisor <= Math.Sqrt(semiPrime); candidateDivisor = candidateDivisor + 2)
       {
         if (semiPrime % candidateDivisor == 0)
         {

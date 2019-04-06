@@ -49,7 +49,7 @@ CA
 KE
 ZZ".Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList().Skip(1);
 
-      var output = splitter.GetCaseLines(inputFile, 4).ToList();
+      var output = splitter.GetConstantMultiLineCases(inputFile, 4).ToList();
 
       output.Should().HaveCount(3);
 

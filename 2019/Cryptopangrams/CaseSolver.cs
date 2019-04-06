@@ -1,5 +1,6 @@
 namespace Cryptopangrams
 {
+  using System;
   using System.Collections.Generic;
   using System.Linq;
   using Common;
@@ -20,6 +21,7 @@ namespace Cryptopangrams
         caseNumber++; //1-indexed.
         var parsedCase = new CaseInput(caseLines);
         var solver = new CaseSolver(parsedCase);
+
         var result = solver.Solve();
 
         var resultText = result.ToString();
@@ -39,59 +41,103 @@ namespace Cryptopangrams
 
     internal CaseOutput Solve()
     {
-      if (input.N == 0) { return new CaseOutput(-1); }
-      if (input.N == 1) { return new CaseOutput(-1); }
+      long lowestCompositeNumber = long.MaxValue;
+      int locatedIndex = 0;
+      long[] underlyingPrimes = new long[input.Numbers.Length + 1];
 
-      if (input.N == 2)
+      for (int i = 0; i < input.Numbers.Length; i++)
       {
-        var onlyEven = input.EvenV[0];
-        var onlyOdd = input.OddV[0];
-        if (onlyOdd < onlyEven)
+        if (input.Numbers[i] < lowestCompositeNumber)
         {
-          return new CaseOutput(0);
+          lowestCompositeNumber = input.Numbers[i];
+          locatedIndex = i;
+        }
+      }
+
+      Tuple<long, long> primes = null;
+      try
+      {
+        primes = DecomposeSemiPrime(lowestCompositeNumber);
+        var prime1 = primes.Item1;
+        var prime2 = primes.Item2;
+
+        long previousPrime, nextPrime;
+        if (locatedIndex == 0)
+        {
+          if (input.Numbers[locatedIndex + 1] % prime1 == 0)
+          {
+            nextPrime = prime1;
+            previousPrime = prime2;
+          }
+          else
+          {
+            previousPrime = prime1;
+            nextPrime = prime2;
+          }
         }
         else
         {
-          return new CaseOutput(-1);
+          if (input.Numbers[locatedIndex - 1] % prime1 == 0)
+          {
+            previousPrime = prime1;
+            nextPrime = prime2;
+          }
+          else
+          {
+            nextPrime = prime1;
+            previousPrime = prime2;
+          }
         }
-      }
 
-      for (int i = 0; i < input.LongestSubList-1; i++)
+        underlyingPrimes[locatedIndex] = previousPrime;
+        underlyingPrimes[locatedIndex + 1] = nextPrime;
+      }
+      catch (Exception e)
       {
-        var evenV_i = input.EvenV[i];
-        var oddV_i = input.OddV[i];
-        var evenV_i_plus_one = input.EvenV[i+1];
-
-        // Even comes first, so Odd_i should be >= Even_i.
-        // If Odd_i is < Even_i we have a bug, starting at Odd_i
-        // Assume EvenV[i] is valid.
-        if (oddV_i < evenV_i)
-        {
-          return new CaseOutput(2 * i);
-        }
-
-        //Check Even_i+1 >= Odd_i
-        // If Even_i+1 is < Odd_i we have a bug, starting at Even_i+1
-        if (evenV_i_plus_one < oddV_i)
-        {
-          return new CaseOutput((2 * i) + 1);
-        }
+        System.Threading.Thread.Sleep(25000);
       }
 
-      if (input.IsEven)
+
+      for (int index = locatedIndex; index < input.Numbers.Length - 1; index++)
       {
-        //We checked up to Odd[Penultimate] v Even[Last]. Just one more check of Odd[last]
-        if (input.OddV[input.LongestSubList-1] < input.EvenV[input.LongestSubList-1])
-        {
-          return new CaseOutput(input.N-2);
-        }
+        var nextSemiPrime = input.Numbers[index + 1];
+        var identifiedPrimeFactor = underlyingPrimes[index + 1];
+        underlyingPrimes[index + 2] = nextSemiPrime / identifiedPrimeFactor;
       }
-      else
+
+      for (int index = locatedIndex; index > 0; index--)
       {
-        //We checked up to Odd[Penultimate] v Even[Last]. Nothing left to check.
+        var prevSemiPrime = input.Numbers[index - 1];
+        var identifiedPrimeFactor = underlyingPrimes[index];
+        underlyingPrimes[index - 1] = prevSemiPrime / identifiedPrimeFactor;
       }
-      return new CaseOutput(-1);
+
+      var translationLookup = underlyingPrimes.Distinct().OrderBy(x => x).Select((x, index) => new {x, index}).ToDictionary(
+        xWithIndex => xWithIndex.x,
+        xWithIndex => "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[xWithIndex.index]
+      );
+
+      var decryption = new string(underlyingPrimes.Select(prime => translationLookup[prime]).ToArray());
+
+
+      return new CaseOutput(decryption);
     }
 
+    private Tuple<long,long> DecomposeSemiPrime(long semiPrime)
+    {
+      if (semiPrime % 2 == 0)
+      {
+        return Tuple.Create(2L, semiPrime / 2);
+      }
+
+      for (long candidateDivisor = 3; candidateDivisor < Math.Sqrt(semiPrime); candidateDivisor = candidateDivisor + 2)
+      {
+        if (semiPrime % candidateDivisor == 0)
+        {
+          return Tuple.Create(candidateDivisor, semiPrime / candidateDivisor);
+        }
+      }
+      throw new Exception("Impossible!");
+    }
   }
 }

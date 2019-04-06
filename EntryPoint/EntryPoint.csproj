@@ -47,16 +47,16 @@
     <Compile Include="StandAloneFiles_2019\ForegoneSolution.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StandAloneFiles\AWholeNewWord.cs" />
-    <Compile Include="StandAloneFiles\EdgyBaking.cs" />
-    <Compile Include="StandAloneFiles\CubicUFO.cs" />
-    <Compile Include="StandAloneFiles\GoGopher.cs" />
-    <Compile Include="StandAloneFiles\MysteriousRoadSigns.cs" />
-    <Compile Include="StandAloneFiles\LollipopShop.cs" />
-    <Compile Include="StandAloneFiles\AntStack.cs" />
-    <Compile Include="StandAloneFiles\RoundingError.cs" />
-    <Compile Include="StandAloneFiles\SavingTheUniverseAgain.cs" />
-    <Compile Include="StandAloneFiles\TroubleSort.cs" />
+    <Compile Include="StandAloneFiles_2018\AWholeNewWord.cs" />
+    <Compile Include="StandAloneFiles_2018\EdgyBaking.cs" />
+    <Compile Include="StandAloneFiles_2018\CubicUFO.cs" />
+    <Compile Include="StandAloneFiles_2018\GoGopher.cs" />
+    <Compile Include="StandAloneFiles_2018\MysteriousRoadSigns.cs" />
+    <Compile Include="StandAloneFiles_2018\LollipopShop.cs" />
+    <Compile Include="StandAloneFiles_2018\AntStack.cs" />
+    <Compile Include="StandAloneFiles_2018\RoundingError.cs" />
+    <Compile Include="StandAloneFiles_2018\SavingTheUniverseAgain.cs" />
+    <Compile Include="StandAloneFiles_2018\TroubleSort.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

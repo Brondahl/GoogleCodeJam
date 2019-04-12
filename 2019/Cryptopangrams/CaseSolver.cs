@@ -54,17 +54,51 @@ namespace Cryptopangrams
         }
       }
 
-      Tuple<long, long> primes = null;
-      try
-      {
-        primes = DecomposeSemiPrime(lowestCompositeNumber);
-        var prime1 = primes.Item1;
-        var prime2 = primes.Item2;
+      lowestCompositeNumber = input.Numbers.First();
+      locatedIndex = 0;
 
-        long previousPrime, nextPrime;
+      Tuple<long, long> primes = null;
+      primes = DecomposeSemiPrime(lowestCompositeNumber);
+      var prime1 = primes.Item1;
+      var prime2 = primes.Item2;
+
+
+      long previousPrime, nextPrime;
+      if (prime1 == prime2)
+      {
+        nextPrime = previousPrime = prime1;
+      }
+      else
+      {
+
+        long semiPrimeToCompare;
+        int offsetRequired = 0;
         if (locatedIndex == 0)
         {
-          if (input.Numbers[locatedIndex + 1] % prime1 == 0)
+          semiPrimeToCompare = input.Numbers[locatedIndex + 1];
+
+          int offset = 1;
+          while (semiPrimeToCompare == input.Numbers[locatedIndex + offset])
+          {
+            offset++;
+          }
+          semiPrimeToCompare = input.Numbers[locatedIndex + offset];
+        }
+        else
+        {
+          semiPrimeToCompare = input.Numbers[locatedIndex - 1];
+
+          int offset = 1;
+          while (semiPrimeToCompare == input.Numbers[locatedIndex - offset])
+          {
+            offset++;
+          }
+          semiPrimeToCompare = input.Numbers[locatedIndex - offset];
+        }
+
+        if (locatedIndex == 0)
+        {
+          if (semiPrimeToCompare % prime1 == 0)
           {
             nextPrime = prime1;
             previousPrime = prime2;
@@ -77,7 +111,7 @@ namespace Cryptopangrams
         }
         else
         {
-          if (input.Numbers[locatedIndex - 1] % prime1 == 0)
+          if (semiPrimeToCompare % prime1 == 0)
           {
             previousPrime = prime1;
             nextPrime = prime2;
@@ -89,20 +123,23 @@ namespace Cryptopangrams
           }
         }
 
-        underlyingPrimes[locatedIndex] = previousPrime;
-        underlyingPrimes[locatedIndex + 1] = nextPrime;
-      }
-      catch (Exception e)
-      {
-        System.Threading.Thread.Sleep(25000);
+        if (offsetRequired % 2 == 0)
+        {
+          var hold = nextPrime;
+          nextPrime = previousPrime;
+          previousPrime = hold;
+        }
       }
 
+      underlyingPrimes[locatedIndex] = previousPrime;
+      underlyingPrimes[locatedIndex + 1] = nextPrime;
 
       for (int index = locatedIndex; index < input.Numbers.Length - 1; index++)
       {
         var nextSemiPrime = input.Numbers[index + 1];
         var identifiedPrimeFactor = underlyingPrimes[index + 1];
         underlyingPrimes[index + 2] = nextSemiPrime / identifiedPrimeFactor;
+        if (nextSemiPrime != underlyingPrimes[index + 2] * identifiedPrimeFactor) { throw new Exception(); }
       }
 
       for (int index = locatedIndex; index > 0; index--)
@@ -110,15 +147,27 @@ namespace Cryptopangrams
         var prevSemiPrime = input.Numbers[index - 1];
         var identifiedPrimeFactor = underlyingPrimes[index];
         underlyingPrimes[index - 1] = prevSemiPrime / identifiedPrimeFactor;
+        if (prevSemiPrime != underlyingPrimes[index - 1] * identifiedPrimeFactor) { throw new Exception(); }
       }
 
-      var translationLookup = underlyingPrimes.Distinct().OrderBy(x => x).Select((x, index) => new {x, index}).ToDictionary(
-        xWithIndex => xWithIndex.x,
-        xWithIndex => "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[xWithIndex.index]
-      );
+      Dictionary<long, char> translationLookup = new Dictionary<long, char>();
+      int index1 = 0;
+      foreach (var x1 in underlyingPrimes.Distinct().OrderBy(x => x))
+      {
+        var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        if (index1 < 0 || index1 >= alphabet.Length)
+        {
+          Thrower.TriggerTimeLimit();
+        }
+        var letter = Thrower.TriggerResponseIfErrors(Thrower.ResponseType.Time, () => alphabet[index1]);
+        if (translationLookup.ContainsKey(x1)) { Thrower.TriggerTimeLimit(); }
+        translationLookup.Add(x1, letter);
+        index1++;
+      }
 
-      var decryption = new string(underlyingPrimes.Select(prime => translationLookup[prime]).ToArray());
+      var array = underlyingPrimes.Select(prime => translationLookup[prime]).ToArray();
 
+      string decryption = new string(array);
 
       return new CaseOutput(decryption);
     }
@@ -127,6 +176,8 @@ namespace Cryptopangrams
     {
       if (semiPrime % 2 == 0)
       {
+        var otherFactor = semiPrime / 2;
+        if (semiPrime != 2 * otherFactor) { throw new Exception(); }
         return Tuple.Create(2L, semiPrime / 2);
       }
 
@@ -134,7 +185,9 @@ namespace Cryptopangrams
       {
         if (semiPrime % candidateDivisor == 0)
         {
-          return Tuple.Create(candidateDivisor, semiPrime / candidateDivisor);
+          var otherFactor = semiPrime / candidateDivisor;
+          if (semiPrime != candidateDivisor * otherFactor) { throw new Exception(); }
+          return Tuple.Create(candidateDivisor, otherFactor);
         }
       }
       throw new Exception("Impossible!");

@@ -56,6 +56,7 @@
     <Compile Include="IGoogleCodeJamCommunicator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CaseSplitterTests.cs" />
+    <Compile Include="Thrower.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

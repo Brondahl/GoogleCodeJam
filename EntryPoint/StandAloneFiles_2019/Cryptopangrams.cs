@@ -1,361 +1,431 @@
-namespace GoogleCodeJam
-{
-  using Cryptopangrams;
-  // See README.txt in sln root!!
-  class Program
-  {
-    static void Main(string[] args)
-    {
-      CaseSolver.Run();
-    }
-  }
-}
+//namespace GoogleCodeJam
+//{
+//  using Cryptopangrams;
+//  // See README.txt in sln root!!
+//  class Program
+//  {
+//    static void Main(string[] args)
+//    {
+//      CaseSolver.Run();
+//    }
+//  }
+//}
 
-namespace Cryptopangrams
-{
-  using System;
-  using System.Collections.Generic;
-  using System.Linq;
+//namespace Cryptopangrams
+//{
+//  using System;
+//  using System.Collections.Generic;
+//  using System.Linq;
 
-  class CaseInput
-  {
-    internal CaseInput(List<string> lines)
-    {
-      N = lines[0].Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).First();
-      Numbers = lines[1].Split(new []{' '}, StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToArray();
-    }
+//  class CaseInput
+//  {
+//    internal CaseInput(List<string> lines)
+//    {
+//      N = lines[0].Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).First();
+//      Numbers = lines[1].Split(new []{' '}, StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToArray();
+//    }
 
-    internal int N;
-    internal long[] Numbers;
-  }
+//    internal int N;
+//    internal long[] Numbers;
+//  }
 
-  class CaseOutput
-  {
-    public readonly string Decryption;
+//  class CaseOutput
+//  {
+//    public readonly string Decryption;
 
-    internal CaseOutput(string decryption)
-    {
-      Decryption = decryption;
-    }
+//    internal CaseOutput(string decryption)
+//    {
+//      Decryption = decryption;
+//    }
 
-    public override string ToString()
-    {
-      return Decryption;
-    }
-  }
+//    public override string ToString()
+//    {
+//      return Decryption;
+//    }
+//  }
 
-}
-namespace Cryptopangrams
-{
-  using System;
-  using System.Collections.Generic;
-  using System.Linq;
-  using Common;
+//}
+//namespace Cryptopangrams
+//{
+//  using System;
+//  using System.Collections.Generic;
+//  using System.Linq;
+//  using Common;
 
-  public class CaseSolver
-  {
-    private static int numberOfCases;
-    private static IGoogleCodeJamCommunicator InOut = new GoogleCodeJam2018Communicator();
-    public static void Run()
-    {
-      var lines = InOut.ReadStringInput(out numberOfCases);
-      var cases = new CaseSplitter().GetConstantMultiLineCases(lines, 2);
-      var results = new List<string>();
-      var caseNumber = 0;
+//  public class CaseSolver
+//  {
+//    private static int numberOfCases;
+//    private static IGoogleCodeJamCommunicator InOut = new GoogleCodeJam2018Communicator();
+//    public static void Run()
+//    {
+//      var lines = InOut.ReadStringInput(out numberOfCases);
+//      var cases = new CaseSplitter().GetConstantMultiLineCases(lines, 2);
+//      var results = new List<string>();
+//      var caseNumber = 0;
 
-      foreach (var caseLines in cases)
-      {
-        caseNumber++; //1-indexed.
-        var parsedCase = new CaseInput(caseLines);
-        var solver = new CaseSolver(parsedCase);
-        CaseOutput result = null;
-        try
-        {
-          result = solver.Solve();
-        }
-        catch (Exception e)
-        {
-          System.Threading.Thread.Sleep(25000);
-        }
+//      foreach (var caseLines in cases)
+//      {
+//        caseNumber++; //1-indexed.
+//        var parsedCase = new CaseInput(caseLines);
+//        var solver = new CaseSolver(parsedCase);
 
-        var resultText = result.ToString();
+//        var result = solver.Solve();
 
-        results.Add($"Case #{caseNumber}: {resultText}");
-      }
+//        var resultText = result.ToString();
 
-      InOut.WriteOutput(results);
-    }
+//        results.Add($"Case #{caseNumber}: {resultText}");
+//      }
 
-    private CaseInput input;
+//      InOut.WriteOutput(results);
+//    }
 
-    internal CaseSolver(CaseInput inputCase)
-    {
-      input = inputCase;
-    }
+//    private CaseInput input;
 
-    internal CaseOutput Solve()
-    {
-      long lowestCompositeNumber = long.MaxValue;
-      int locatedIndex = 0;
-      long[] underlyingPrimes = new long[input.Numbers.Length + 1];
+//    internal CaseSolver(CaseInput inputCase)
+//    {
+//      input = inputCase;
+//    }
 
-      for (int i = 0; i < input.Numbers.Length; i++)
-      {
-        if (input.Numbers[i] < lowestCompositeNumber)
-        {
-          lowestCompositeNumber = input.Numbers[i];
-          locatedIndex = i;
-        }
-      }
+//    internal CaseOutput Solve()
+//    {
+//      long lowestCompositeNumber = long.MaxValue;
+//      int locatedIndex = 0;
+//      long[] underlyingPrimes = new long[input.Numbers.Length + 1];
 
-      var primes = DecomposeSemiPrime(lowestCompositeNumber);
-      var prime1 = primes.Item1;
-      var prime2 = primes.Item2;
+//      for (int i = 0; i < input.Numbers.Length; i++)
+//      {
+//        if (input.Numbers[i] < lowestCompositeNumber)
+//        {
+//          lowestCompositeNumber = input.Numbers[i];
+//          locatedIndex = i;
+//        }
+//      }
 
-      long previousPrime, nextPrime;
-      if (locatedIndex == 0)
-      {
-        if (input.Numbers[locatedIndex + 1] % prime1 == 0)
-        {
-          nextPrime = prime1;
-          previousPrime = prime2;
-        }
-        else
-        {
-          previousPrime = prime1;
-          nextPrime = prime2;
-        }
-      }
-      else
-      {
-        if (input.Numbers[locatedIndex - 1] % prime1 == 0)
-        {
-          previousPrime = prime1;
-          nextPrime = prime2;
-        }
-        else
-        {
-          nextPrime = prime1;
-          previousPrime = prime2;
-        }
-      }
+//      Tuple<long, long> primes = null;
+//        primes = DecomposeSemiPrime(lowestCompositeNumber);
+//        var prime1 = primes.Item1;
+//        var prime2 = primes.Item2;
 
-      underlyingPrimes[locatedIndex] = previousPrime;
-      underlyingPrimes[locatedIndex + 1] = nextPrime;
+//        long previousPrime, nextPrime;
+//        if (locatedIndex == 0)
+//        {
+//          if (input.Numbers[locatedIndex + 1] % prime1 == 0)
+//          {
+//            nextPrime = prime1;
+//            previousPrime = prime2;
+//          }
+//          else
+//          {
+//            previousPrime = prime1;
+//            nextPrime = prime2;
+//          }
+//        }
+//        else
+//        {
+//          if (input.Numbers[locatedIndex - 1] % prime1 == 0)
+//          {
+//            previousPrime = prime1;
+//            nextPrime = prime2;
+//          }
+//          else
+//          {
+//            nextPrime = prime1;
+//            previousPrime = prime2;
+//          }
+//        }
 
-      for (int index = locatedIndex; index < input.Numbers.Length - 1; index++)
-      {
-        var nextSemiPrime = input.Numbers[index + 1];
-        var identifiedPrimeFactor = underlyingPrimes[index + 1];
-        underlyingPrimes[index + 2] = nextSemiPrime / identifiedPrimeFactor;
-      }
+//        underlyingPrimes[locatedIndex] = previousPrime;
+//        underlyingPrimes[locatedIndex + 1] = nextPrime;
 
-      for (int index = locatedIndex; index > 0; index--)
-      {
-        var prevSemiPrime = input.Numbers[index - 1];
-        var identifiedPrimeFactor = underlyingPrimes[index];
-        underlyingPrimes[index - 1] = prevSemiPrime / identifiedPrimeFactor;
-      }
+//        for (int index = locatedIndex; index < input.Numbers.Length - 1; index++)
+//        {
+//          var nextSemiPrime = input.Numbers[index + 1];
+//          var identifiedPrimeFactor = underlyingPrimes[index + 1];
+//          underlyingPrimes[index + 2] = nextSemiPrime / identifiedPrimeFactor;
+//          if (nextSemiPrime != underlyingPrimes[index + 2] * identifiedPrimeFactor) { throw new Exception(); }
+//        }
 
-      var translationLookup = underlyingPrimes.Distinct().OrderBy(x => x).Select((x, index) => new {x, index}).ToDictionary(
-        xWithIndex => xWithIndex.x,
-        xWithIndex => "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[xWithIndex.index]
-      );
+//        for (int index = locatedIndex; index > 0; index--)
+//        {
+//          var prevSemiPrime = input.Numbers[index - 1];
+//          var identifiedPrimeFactor = underlyingPrimes[index];
+//          underlyingPrimes[index - 1] = prevSemiPrime / identifiedPrimeFactor;
+//          if (prevSemiPrime != underlyingPrimes[index - 1] * identifiedPrimeFactor) { throw new Exception(); }
+//        }
 
-      var decryption = new string(underlyingPrimes.Select(prime => translationLookup[prime]).ToArray());
+//      Dictionary<long, char> translationLookup = new Dictionary<long, char>();
+//      int index1 = 0;
+//      foreach (var x1 in underlyingPrimes.Distinct().OrderBy(x => x))
+//      {
+//        var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+//        if (index1 < 0 || index1 >= alphabet.Length)
+//        {
+//          Thrower.TriggerTimeLimit();
+//        }
+//        var letter = Thrower.TriggerResponseIfErrors(Thrower.ResponseType.Time, () => alphabet[index1]);
+//        if (translationLookup.ContainsKey(x1)) { Thrower.TriggerTimeLimit(); }
+//        translationLookup.Add(x1, letter);
+//        index1++;
+//      }
 
+//      var array = underlyingPrimes.Select(prime => translationLookup[prime]).ToArray();
 
-      return new CaseOutput(decryption);
-    }
+//      string decryption = new string(array);
 
-    private Tuple<long,long> DecomposeSemiPrime(long semiPrime)
-    {
-      if (semiPrime % 2 == 0)
-      {
-        return Tuple.Create(2L, semiPrime / 2);
-      }
+//      return new CaseOutput(decryption);
+//    }
 
-      for (long candidateDivisor = 3; candidateDivisor < Math.Sqrt(semiPrime); candidateDivisor = candidateDivisor + 2)
-      {
-        if (semiPrime % candidateDivisor == 0)
-        {
-          return Tuple.Create(candidateDivisor, semiPrime / candidateDivisor);
-        }
-      }
-      throw new Exception("Impossible!");
-    }
-  }
-}
-namespace Common
-{
-  using System;
-  using System.Collections.Generic;
-  using System.Linq;
+//    private Tuple<long, long> DecomposeSemiPrime(long semiPrime)
+//    {
+//      if (semiPrime % 2 == 0)
+//      {
+//        var otherFactor = semiPrime / 2;
+//        if (semiPrime != 2 * otherFactor) { throw new Exception(); }
+//        return Tuple.Create(2L, semiPrime / 2);
+//      }
 
-  public class CaseSplitter
-  {
-    /// <summary>
-    /// These assume that the first line of each case will be a sequence of longs,
-    /// from which you can deduce the number of other lines in the case.
-    /// In general the first line gets parsed, and those values are the passed to a function that calculates how many more lines to include in the Case.
-    /// </summary>
-    public IEnumerable<List<string>> GetCaseLines_TakingNFromFirstVal(IEnumerable<string> lines)
-    {
-      return GetCaseLines(lines, firstLineArray => firstLineArray.First());
-    }
+//      for (long candidateDivisor = 3; candidateDivisor <= Math.Sqrt(semiPrime); candidateDivisor = candidateDivisor + 2)
+//      {
+//        if (semiPrime % candidateDivisor == 0)
+//        {
+//          var otherFactor = semiPrime / candidateDivisor;
+//          if (semiPrime != candidateDivisor * otherFactor) { throw new Exception(); }
+//          return Tuple.Create(candidateDivisor, otherFactor);
+//        }
+//      }
+//      throw new Exception("Impossible!");
+//    }
+//  }
+//}
+//namespace Common
+//{
+//  using System;
+//  using System.Collections.Generic;
+//  using System.Linq;
 
-    /// <summary> See summary comment above </summary>
-    public IEnumerable<List<string>> GetCaseLines_TakingNFromFirstValPlusOne(IEnumerable<string> lines)
-    {
-      return GetCaseLines(lines, firstLineArray => firstLineArray.First() + 1);
-    }
+//  public class CaseSplitter
+//  {
+//    /// <summary>
+//    /// These assume that the first line of each case will be a sequence of longs,
+//    /// from which you can deduce the number of other lines in the case.
+//    /// In general the first line gets parsed, and those values are the passed to a function that calculates how many more lines to include in the Case.
+//    /// </summary>
+//    public IEnumerable<List<string>> GetCaseLines_TakingNFromFirstVal(IEnumerable<string> lines)
+//    {
+//      return GetCaseLines(lines, firstLineArray => firstLineArray.First());
+//    }
 
-    /// <summary> See summary comment above </summary>
-    public IEnumerable<List<string>> GetCaseLines_TakingNFromFirstValPlusTwo(IEnumerable<string> lines)
-    {
-      return GetCaseLines(lines, firstLineArray => firstLineArray.First() + 2);
-    }
+//    /// <summary> See summary comment above </summary>
+//    public IEnumerable<List<string>> GetCaseLines_TakingNFromFirstValPlusOne(IEnumerable<string> lines)
+//    {
+//      return GetCaseLines(lines, firstLineArray => firstLineArray.First() + 1);
+//    }
 
-    /// <summary> See summary comment above </summary>
-    public IEnumerable<List<string>> GetCaseLines_TakingNFromSecondVal(IEnumerable<string> lines)
-    {
-      return GetCaseLines(lines, firstLineArray => firstLineArray.Skip(1).First());
-    }
+//    /// <summary> See summary comment above </summary>
+//    public IEnumerable<List<string>> GetCaseLines_TakingNFromFirstValPlusTwo(IEnumerable<string> lines)
+//    {
+//      return GetCaseLines(lines, firstLineArray => firstLineArray.First() + 2);
+//    }
 
-    /// <summary> See summary comment above </summary>
-    public IEnumerable<string> GetSingleLineCases(IEnumerable<string> lines)
-    {
-      return GetConstantMultiLineCases(lines, 1).Select(caseLines => caseLines.Single());
-    }
+//    /// <summary> See summary comment above </summary>
+//    public IEnumerable<List<string>> GetCaseLines_TakingNFromSecondVal(IEnumerable<string> lines)
+//    {
+//      return GetCaseLines(lines, firstLineArray => firstLineArray.Skip(1).First());
+//    }
 
-    /// <summary> See summary comment above </summary>
-    public IEnumerable<List<string>> GetConstantMultiLineCases(IEnumerable<string> lines, long numberOfLinesInACase)
-    {
-      return GetCaseLines(lines, args => numberOfLinesInACase, false);
-    }
+//    /// <summary> See summary comment above </summary>
+//    public IEnumerable<string> GetSingleLineCases(IEnumerable<string> lines)
+//    {
+//      return GetConstantMultiLineCases(lines, 1).Select(caseLines => caseLines.Single());
+//    }
 
-    /// <summary> See summary comment above </summary>
-    public IEnumerable<List<string>> GetCaseLines(IEnumerable<string> lines, Func<long[], long> totalNumberOfLinesInACase, bool parseArgsLineAsLongs = true)
-    {
-      var caseSet = new List<string>();
-      long[] continueTestArgs = null;
-      var currentLineCount = 0;
-      long numberOfLinesToPutInCurrentCase = 0;
+//    /// <summary> See summary comment above </summary>
+//    public IEnumerable<List<string>> GetConstantMultiLineCases(IEnumerable<string> lines, long numberOfLinesInACase)
+//    {
+//      return GetCaseLines(lines, args => numberOfLinesInACase, false);
+//    }
 
-      foreach (var line in lines)
-      {
-        caseSet.Add(line);
-        currentLineCount++;
+//    /// <summary> See summary comment above </summary>
+//    public IEnumerable<List<string>> GetCaseLines(IEnumerable<string> lines, Func<long[], long> totalNumberOfLinesInACase, bool parseArgsLineAsLongs = true)
+//    {
+//      var caseSet = new List<string>();
+//      long[] continueTestArgs = null;
+//      var currentLineCount = 0;
+//      long numberOfLinesToPutInCurrentCase = 0;
 
-        if (continueTestArgs == null)
-        {
-          continueTestArgs = parseArgsLineAsLongs ? line.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToArray() : new long[0];
-          numberOfLinesToPutInCurrentCase = totalNumberOfLinesInACase(continueTestArgs);
-        }
+//      foreach (var line in lines)
+//      {
+//        caseSet.Add(line);
+//        currentLineCount++;
 
-        if (currentLineCount < numberOfLinesToPutInCurrentCase)
-        {
-          continue;
-        }
+//        if (continueTestArgs == null)
+//        {
+//          continueTestArgs = parseArgsLineAsLongs ? line.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToArray() : new long[0];
+//          numberOfLinesToPutInCurrentCase = totalNumberOfLinesInACase(continueTestArgs);
+//        }
 
-        // We've reached the end of the CaseSet.
-        // Return this caseSet.
-        yield return caseSet.ToList();
+//        if (currentLineCount < numberOfLinesToPutInCurrentCase)
+//        {
+//          continue;
+//        }
 
-        // And reset our counters
-        caseSet = new List<string>();
-        continueTestArgs = null;
-        currentLineCount = 0;
-        numberOfLinesToPutInCurrentCase = 0;
-      }
+//        // We've reached the end of the CaseSet.
+//        // Return this caseSet.
+//        yield return caseSet.ToList();
 
-    }
-  }
-}
-namespace Common
-{
-  using System.Collections.Generic;
-  using System.IO;
-  using System.Linq;
+//        // And reset our counters
+//        caseSet = new List<string>();
+//        continueTestArgs = null;
+//        currentLineCount = 0;
+//        numberOfLinesToPutInCurrentCase = 0;
+//      }
 
-  public class GoogleCodeJam2017Communicator : IGoogleCodeJamCommunicator
-  {
-    private readonly string folderPath = @"C:\Users\Brondahl\My Files\Programming\C#\Puzzles_And_Toys\GoogleCodeJam\GoogleCodeJam2017\";
-    private readonly string inputFileName;
-    private readonly string inputFilePath;
-    private readonly string outputFilePath;
+//    }
+//  }
+//}
+//namespace Common
+//{
+//  using System.Collections.Generic;
+//  using System.IO;
+//  using System.Linq;
 
-    public GoogleCodeJam2017Communicator(bool indicator, string fullFolderOverride, string fileName = null)
-    {
-      inputFileName = fileName ?? @"Data.in";
-      inputFilePath = Path.Combine(fullFolderOverride, inputFileName);
-      outputFilePath = Path.Combine(fullFolderOverride, "Data.out");
-    }
+//  public class GoogleCodeJam2017Communicator : IGoogleCodeJamCommunicator
+//  {
+//    private readonly string folderPath = @"C:\Users\Brondahl\My Files\Programming\C#\Puzzles_And_Toys\GoogleCodeJam\GoogleCodeJam2017\";
+//    private readonly string inputFileName;
+//    private readonly string inputFilePath;
+//    private readonly string outputFilePath;
 
-    public GoogleCodeJam2017Communicator(string subFolderName, string fileName = null)
-    {
-      inputFileName = fileName ?? @"Data.in";
-      inputFilePath = Path.Combine(folderPath, subFolderName, inputFileName);
-      outputFilePath = Path.Combine(folderPath, subFolderName, "Data.out");
-    }
+//    public GoogleCodeJam2017Communicator(bool indicator, string fullFolderOverride, string fileName = null)
+//    {
+//      inputFileName = fileName ?? @"Data.in";
+//      inputFilePath = Path.Combine(fullFolderOverride, inputFileName);
+//      outputFilePath = Path.Combine(fullFolderOverride, "Data.out");
+//    }
 
-    public IEnumerable<string> ReadStringInput(out int numberOfCases)
-    {
-      var lines = File.ReadLines(inputFilePath);
-      numberOfCases = int.Parse(lines.First());
-      return lines.Skip(1);
-    }
+//    public GoogleCodeJam2017Communicator(string subFolderName, string fileName = null)
+//    {
+//      inputFileName = fileName ?? @"Data.in";
+//      inputFilePath = Path.Combine(folderPath, subFolderName, inputFileName);
+//      outputFilePath = Path.Combine(folderPath, subFolderName, "Data.out");
+//    }
 
-    public void WriteOutput(IEnumerable<string> lines)
-    {
-      File.WriteAllLines(outputFilePath, lines.ToArray());
-    }
-  }
-}
-namespace Common
-{
-  using System;
-  using System.Collections.Generic;
-  using System.Linq;
+//    public IEnumerable<string> ReadStringInput(out int numberOfCases)
+//    {
+//      var lines = File.ReadLines(inputFilePath);
+//      numberOfCases = int.Parse(lines.First());
+//      return lines.Skip(1);
+//    }
 
-  public class GoogleCodeJam2018Communicator : IGoogleCodeJamCommunicator
-  {
-    public IEnumerable<string> ReadStringInput(out int numberOfCases)
-    {
-      var lines = ReadStringInputAsIterator();
+//    public void WriteOutput(IEnumerable<string> lines)
+//    {
+//      File.WriteAllLines(outputFilePath, lines.ToArray());
+//    }
+//  }
+//}
+//namespace Common
+//{
+//  using System;
+//  using System.Collections.Generic;
+//  using System.Linq;
 
-      var firstLine = lines.Take(1).Single();
-      numberOfCases = int.Parse(firstLine);
+//  public class GoogleCodeJam2018Communicator : IGoogleCodeJamCommunicator
+//  {
+//    public IEnumerable<string> ReadStringInput(out int numberOfCases)
+//    {
+//      var lines = ReadStringInputAsIterator();
 
-      return lines;
-    }
+//      var firstLine = lines.Take(1).Single();
+//      numberOfCases = int.Parse(firstLine);
 
-    private IEnumerable<string> ReadStringInputAsIterator()
-    {
-      while (true)
-      {
-        var line = Console.ReadLine();
-        if (string.IsNullOrEmpty(line)) { break; }
-        yield return (line);
-      }
-    }
+//      return lines;
+//    }
 
-    public void WriteOutput(IEnumerable<string> lines)
-    {
-      foreach (var line in lines)
-      {
-        Console.WriteLine(line);
-      }
-    }
-  }
-}
-namespace Common
-{
-  using System.Collections.Generic;
+//    private IEnumerable<string> ReadStringInputAsIterator()
+//    {
+//      while (true)
+//      {
+//        var line = Console.ReadLine();
+//        if (string.IsNullOrEmpty(line)) { break; }
+//        yield return (line);
+//      }
+//    }
 
-  public interface IGoogleCodeJamCommunicator
-  {
-     IEnumerable<string> ReadStringInput(out int numberOfCases);
-     void WriteOutput(IEnumerable<string> lines);
-  }
-}
+//    public void WriteOutput(IEnumerable<string> lines)
+//    {
+//      foreach (var line in lines)
+//      {
+//        Console.WriteLine(line);
+//      }
+//    }
+//  }
+//}
+//namespace Common
+//{
+//  using System.Collections.Generic;
+
+//  public interface IGoogleCodeJamCommunicator
+//  {
+//     IEnumerable<string> ReadStringInput(out int numberOfCases);
+//     void WriteOutput(IEnumerable<string> lines);
+//  }
+//}
+//namespace Common
+//{
+//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
+
+//  public static class Thrower
+//  {
+//    public enum ResponseType
+//    {
+//      Memory,
+//      Time
+//    }
+
+//    public static void TriggerMemLimit()
+//    {
+//      var size = 620;
+//      var newTooBigArray = new long[size, size, size];
+//      //Consumes about 1.9GB RAM
+//    }
+
+//    public static void TriggerTimeLimit()
+//    {
+//      System.Threading.Thread.Sleep(120000);
+//    }
+
+//    public static void TriggerResponseIfErrors(ResponseType response, Action doStuff)
+//    {
+//      Func<int> doStuffWithDummyReturn = () =>
+//      {
+//        doStuff();
+//        return 0;
+//      };
+//      TriggerResponseIfErrors(response, doStuffWithDummyReturn );
+//    }
+
+//    public static T TriggerResponseIfErrors<T>(ResponseType response, Func<T> doStuff)
+//    {
+//      try
+//      {
+//        return doStuff();
+//      }
+//      catch
+//      {
+//        if (response == ResponseType.Memory)
+//        {
+//          TriggerMemLimit();
+//        }
+//        else
+//        {
+//          TriggerTimeLimit();
+//        }
+//        throw;
+//      }
+//    }
+//  }
+//}

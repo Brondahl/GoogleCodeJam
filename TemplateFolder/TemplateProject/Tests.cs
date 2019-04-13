@@ -1,12 +1,71 @@
 ﻿namespace TemplateProject
 {
+  using System;
+  using System.Collections.Generic;
   using System.Linq;
+  using Common;
   using FluentAssertions;
   using NUnit.Framework;
+
+  public class TestIOStub : IGoogleCodeJamCommunicator
+  {
+    private readonly string input;
+    public List<string> Output;
+    public TestIOStub(string input)
+    {
+      this.input = input;
+    }
+    public IEnumerable<string> ReadStringInput(out int numberOfCases)
+    {
+      var lines = input.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+      numberOfCases = int.Parse(lines.First());
+      return lines.Skip(1);
+    }
+
+    public void WriteOutput(IEnumerable<string> lines)
+    {
+      Output = lines.ToList();
+    }
+  }
 
   [TestFixture]
   public class Tests
   {
+
+    [Test]
+    public void FullE2ETest()
+    {
+      var inputString = @"4
+2
+TARPOL
+PROL
+3
+TARPOR
+PROL
+TARPRO
+6
+CODEJAM
+JAM
+HAM
+NALAM
+HUM
+NOLOM
+4
+PI
+HI
+WI
+FI";
+      var io = new TestIOStub(inputString);
+      CaseSolver.Run(io);
+
+      io.Output.Should().BeEquivalentTo(
+        "Case #1: 2",
+        "Case #2: 0",
+        "Case #3: 6",
+        "Case #4: 2"
+      );
+    }
+
     [Test]
     [TestCase("5", "5 6 8 4 3", -1)]
     [TestCase("3", "8 9 7", 1)]

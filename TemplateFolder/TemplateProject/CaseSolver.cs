@@ -7,9 +7,10 @@
   public class CaseSolver
   {
     private static int numberOfCases;
-    private static IGoogleCodeJamCommunicator InOut = new GoogleCodeJam2018Communicator();
-    public static void Run()
+    private static IGoogleCodeJamCommunicator InOut;
+    public static void Run(IGoogleCodeJamCommunicator io = null)
     {
+      InOut = io ?? new GoogleCodeJam2018Communicator();
       var lines = InOut.ReadStringInput(out numberOfCases);
       var cases = new CaseSplitter().GetConstantMultiLineCases(lines, 2);
       var results = new List<string>();

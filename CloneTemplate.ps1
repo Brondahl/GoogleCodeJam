@@ -37,6 +37,7 @@ $programEntryPointFile = ".\EntryPoint\Program.cs"
 "namespace GoogleCodeJam"              | Set-Content $programEntryPointFile
 "{"                                    | Add-Content $programEntryPointFile
 "  using $newProjectName;"             | Add-Content $programEntryPointFile
+"  using Common;"                      | Add-Content $programEntryPointFile
 "  // See README.txt in sln root!!"    | Add-Content $programEntryPointFile
 "  class Program"                      | Add-Content $programEntryPointFile
 "  {"                                  | Add-Content $programEntryPointFile

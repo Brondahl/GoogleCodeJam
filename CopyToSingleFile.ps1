@@ -18,6 +18,7 @@ Write-Host "Writing initial entry point:"
 "namespace GoogleCodeJam"              | Set-Content $destinationFile
 "{"                                    | Add-Content $destinationFile
 "  using $targetProjectName;"          | Add-Content $destinationFile
+"  using Common;"                      | Add-Content $destinationFile
 "  // See README.txt in sln root!!"    | Add-Content $destinationFile
 "  class Program"                      | Add-Content $destinationFile
 "  {"                                  | Add-Content $destinationFile

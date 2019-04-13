@@ -66,9 +66,9 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\2019\Cryptopangrams\Cryptopangrams.csproj">
-      <Project>{5c63ca39-9360-4113-9568-8f6fb43e2dcd}</Project>
-      <Name>Cryptopangrams</Name>
+    <ProjectReference Include="..\2019\AlienRhyme\AlienRhyme.csproj">
+      <Project>{2f7c29ff-dac5-4048-a48d-819968f5b0e0}</Project>
+      <Name>AlienRhyme</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

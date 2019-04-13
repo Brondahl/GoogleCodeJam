@@ -1,6 +1,6 @@
 namespace GoogleCodeJam
 {
-  using Cryptopangrams;
+  using AlienRhyme;
   // See README.txt in sln root!!
   class Program
   {

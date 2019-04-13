@@ -8,7 +8,7 @@ while(($newProjectName -eq "") -Or ((Test-Path $targetDir -PathType Container)))
     $targetDir = ".\$year\$newProjectName"
 }
 
-$sourceDir = ".\TemplateProject"
+$sourceDir = ".\TemplateFolder\TemplateProject"
 
 #Clone the TemplateFolder
 robocopy $sourceDir $targetDir /E /XD dirs obj bin /NJH /NJS /NP /NS /NDL

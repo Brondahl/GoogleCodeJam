@@ -39,6 +39,10 @@ $programEntryPointFile = ".\EntryPoint\Program.cs"
 "  using $newProjectName;"             | Add-Content $programEntryPointFile
 "  using Common;"                      | Add-Content $programEntryPointFile
 "  // See README.txt in sln root!!"    | Add-Content $programEntryPointFile
+""                                     | Add-Content $programEntryPointFile
+"  // Remember to add the new csproj," | Add-Content $programEntryPointFile
+"  // and to add the proj ref and the" | Add-Content $programEntryPointFile
+"  // one-off fild to the EP project." | Add-Content $programEntryPointFile
 "  class Program"                      | Add-Content $programEntryPointFile
 "  {"                                  | Add-Content $programEntryPointFile
 "    static void Main(string[] args)"  | Add-Content $programEntryPointFile

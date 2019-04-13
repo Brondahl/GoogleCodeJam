@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -43,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="StandAloneFiles_2019\AlienRhyme.cs" />
     <Compile Include="StandAloneFiles_2019\Cryptopangrams.cs" />
     <Compile Include="StandAloneFiles_2019\YouCanGoYourOwnWay.cs" />
     <Compile Include="StandAloneFiles_2019\ForegoneSolution.cs" />
@@ -67,7 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\2019\AlienRhyme\AlienRhyme.csproj">
-      <Project>{2f7c29ff-dac5-4048-a48d-819968f5b0e0}</Project>
+      <Project>{642b3ff0-a3b3-4702-a07e-274db38fd955}</Project>
       <Name>AlienRhyme</Name>
     </ProjectReference>
   </ItemGroup>

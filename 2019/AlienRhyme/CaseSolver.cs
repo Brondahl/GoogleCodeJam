@@ -12,7 +12,7 @@ namespace AlienRhyme
     public static void Run()
     {
       var lines = InOut.ReadStringInput(out numberOfCases);
-      var cases = new CaseSplitter().GetCaseLines_TakingNFromFirstVal(lines);
+      var cases = new CaseSplitter().GetCaseLines_TakingNFromFirstValPlusOne(lines);
       var results = new List<string>();
       var caseNumber = 0;
 
@@ -41,7 +41,7 @@ namespace AlienRhyme
     internal CaseOutput Solve()
     {
       var dictionariesByTailLength = new Dictionary<int, Dictionary<string, List<string>>>();
-      var pairCount = 0;
+      var pairCount = new List<string>();
       for (int i = 1; i < input.LongestWord + 1; i++)
       {
         dictionariesByTailLength.Add(i, CreateDictionary(i));
@@ -55,20 +55,25 @@ namespace AlienRhyme
           continue;
         }
 
-        if (!dictionaryByTail.Any()) { continue;}
-        foreach (var tailGroup in dictionaryByTail.ToList())
+        if (!dictionaryByTail.Any()) { continue; }
+        foreach (var tailGroupContentsToConsider in dictionaryByTail.Values.ToList())
         {
-          var tailGroupContents = tailGroup.Value.ToList();
-          while (tailGroupContents.Count > 1)
+          while (tailGroupContentsToConsider.Count > 1)
           {
-            PurgeFirst(tailGroupContents[0], tailGroupContents, dictionariesByTailLength);
-            PurgeFirst(tailGroupContents[0], tailGroupContents, dictionariesByTailLength, rhymeLength);
+            var rhymeTail = new string(tailGroupContentsToConsider[0].ToCharArray().Take(rhymeLength).ToArray());
+            if (pairCount.Contains(rhymeTail))
+            {
+              tailGroupContentsToConsider.RemoveAt(0);
+              continue;
+            }
+            PurgeFirst(tailGroupContentsToConsider[0], tailGroupContentsToConsider, dictionariesByTailLength);
+            PurgeFirst(tailGroupContentsToConsider[0], tailGroupContentsToConsider, dictionariesByTailLength);
 
-            pairCount++;
+            pairCount.Add(rhymeTail);
           }
         }
       }
-      return new CaseOutput(pairCount*2);
+      return new CaseOutput(pairCount.Count*2);
     }
 
     private void PurgeFirst(string toRemove, List<string> currentIteration, Dictionary<int, Dictionary<string, List<string>>> dictionariesByTailLength , int? purgeMatchingRhymeLength = null)

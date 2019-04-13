@@ -41,6 +41,14 @@ FI",
 PI
 HI
 WI
+FI
+GI",
+      2)]
+    [TestCase(
+      @"4
+PI
+HI
+WI
 HIFI",
       2)]
     [TestCase(
@@ -49,6 +57,22 @@ PI
 HI
 WI
 HIWI",
+      4)]
+    [TestCase(
+      @"5
+ABCC
+ADCC
+CCB
+DCB
+EDCC",
+      4)]
+    [TestCase(
+      @"5
+ABCC
+ADCC
+CCB
+DCC
+EDCC",
       4)]
     public void Samples(string inputString1, int expectedOutput)
     {

@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="StandAloneFiles_2019\AlienRhyme.cs" />
     <Compile Include="StandAloneFiles_2019\Cryptopangrams.cs" />
+    <Compile Include="StandAloneFiles_2019\ManhattanCrepeCart.cs" />
     <Compile Include="StandAloneFiles_2019\YouCanGoYourOwnWay.cs" />
     <Compile Include="StandAloneFiles_2019\ForegoneSolution.cs" />
     <Compile Include="Program.cs" />
@@ -68,9 +69,9 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\2019\AlienRhyme\AlienRhyme.csproj">
-      <Project>{642b3ff0-a3b3-4702-a07e-274db38fd955}</Project>
-      <Name>AlienRhyme</Name>
+    <ProjectReference Include="..\2019\ManhattanCrepeCart\ManhattanCrepeCart.csproj">
+      <Project>{74aeb2a2-06e8-4db7-ae51-6827de42f9f2}</Project>
+      <Name>ManhattanCrepeCart</Name>
     </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{be560075-329b-44d9-85a8-88c0291db0cc}</Project>

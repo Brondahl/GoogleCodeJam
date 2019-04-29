@@ -61,6 +61,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TemplateFolder", "TemplateF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateProject", "TemplateFolder\TemplateProject\TemplateProject.csproj", "{8B890DF9-C849-4984-8E63-5300B1410D44}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManhattanCrepeCart", "2019\ManhattanCrepeCart\ManhattanCrepeCart.csproj", "{74AEB2A2-06E8-4DB7-AE51-6827DE42F9F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -167,6 +169,10 @@ Global
 		{8B890DF9-C849-4984-8E63-5300B1410D44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B890DF9-C849-4984-8E63-5300B1410D44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B890DF9-C849-4984-8E63-5300B1410D44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74AEB2A2-06E8-4DB7-AE51-6827DE42F9F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74AEB2A2-06E8-4DB7-AE51-6827DE42F9F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74AEB2A2-06E8-4DB7-AE51-6827DE42F9F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74AEB2A2-06E8-4DB7-AE51-6827DE42F9F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -195,6 +201,7 @@ Global
 		{5C63CA39-9360-4113-9568-8F6FB43E2DCD} = {1C5E4DB6-FEA7-4624-A261-F436DB0FB7C1}
 		{642B3FF0-A3B3-4702-A07E-274DB38FD955} = {1C5E4DB6-FEA7-4624-A261-F436DB0FB7C1}
 		{8B890DF9-C849-4984-8E63-5300B1410D44} = {EBD7B3B4-AB35-40B7-81AF-1DA6074119F5}
+		{74AEB2A2-06E8-4DB7-AE51-6827DE42F9F2} = {1C5E4DB6-FEA7-4624-A261-F436DB0FB7C1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4C85A7E6-82EF-4F14-9CD0-65A4B35B12C8}

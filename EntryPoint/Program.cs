@@ -39,7 +39,7 @@ namespace GoogleCodeJam
 
     private static char[] SolveFirst4()
     {
-      var letterDictionaryArray = new Dictionary<char, List<int>>[4]
+      var letterDictionaryArray = new Dictionary<char, List<int>>[3]
       {
         new Dictionary<char, List<int>>
         {
@@ -47,7 +47,6 @@ namespace GoogleCodeJam
           {'B', new List<int>()},
           {'C', new List<int>()},
           {'D', new List<int>()},
-          {'E', new List<int>()}
         },
         new Dictionary<char, List<int>>
         {
@@ -55,7 +54,6 @@ namespace GoogleCodeJam
           {'B', new List<int>()},
           {'C', new List<int>()},
           {'D', new List<int>()},
-          {'E', new List<int>()}
         },
 
         new Dictionary<char, List<int>>
@@ -64,16 +62,6 @@ namespace GoogleCodeJam
           {'B', new List<int>()},
           {'C', new List<int>()},
           {'D', new List<int>()},
-          {'E', new List<int>()}
-        },
-
-        new Dictionary<char, List<int>>
-        {
-          {'A', new List<int>()},
-          {'B', new List<int>()},
-          {'C', new List<int>()},
-          {'D', new List<int>()},
-          {'E', new List<int>()}
         },
       };
 

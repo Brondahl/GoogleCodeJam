@@ -77,7 +77,7 @@ namespace GoogleCodeJam
         },
       };
 
-      for (int setLocation = 0; setLocation < 120; setLocation++)
+      for (int setLocation = 0; setLocation < 119; setLocation++)
       {
         var answer = ReadSetLocationPlace(setLocation, 0);
         var dict = letterDictionaryArray[0];
@@ -97,7 +97,7 @@ namespace GoogleCodeJam
         dict[answer].Add(relevantSetLocation);
       }
 
-      var missingSecond = DetermineMissingPosition(letterDictionaryArray, 1);
+      var missingSecond = DetermineMissingPosition(letterDictionaryArray, 1, missingFirst);
       var relevantSetsToCheck_2 = letterDictionaryArray[1][missingSecond];
 
 
@@ -110,7 +110,7 @@ namespace GoogleCodeJam
         dict[answer].Add(relevantSetLocation);
       }
 
-      var missingThird = DetermineMissingPosition(letterDictionaryArray, 2);
+      var missingThird = DetermineMissingPosition(letterDictionaryArray, 2, missingFirst, missingSecond);
       var relevantSetToCheck_3 = letterDictionaryArray[2][missingThird];
 
 
@@ -123,16 +123,16 @@ namespace GoogleCodeJam
         dict[answer].Add(relevantSetLocation);
       }
 
-      var missingFourth = DetermineMissingPosition(letterDictionaryArray, 3);
+      var missingFourth = DetermineMissingPosition(letterDictionaryArray, 3, missingFirst, missingSecond, missingThird);
 
       return new []{ missingFirst, missingSecond, missingThird, missingFourth };
     }
 
-    private static char DetermineMissingPosition(Dictionary<char, List<int>>[] letterDictionaryArray, int i)
+    private static char DetermineMissingPosition(Dictionary<char, List<int>>[] letterDictionaryArray, int i, params char[] accountedFor)
     {
       var dict = letterDictionaryArray[i];
       var lengthsDict = dict.ToDictionary(kvp => kvp.Key, kvp => kvp.Value.Count);
-      return lengthsDict.OrderBy(kvp => kvp.Value).First().Key;
+      return lengthsDict.Where(kvp => !accountedFor.Contains(kvp.Key)).OrderBy(kvp => kvp.Value).First().Key;
     }
 
     private static char ReadSetLocationPlace(int setLocation, int i)

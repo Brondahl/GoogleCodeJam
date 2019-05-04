@@ -32,26 +32,34 @@ Write-Host
 
 Write-Host "Updating EntryPoint to target new Project"
 
-$programEntryPointFile = ".\EntryPoint\Program.cs"
+$programEntryPointFile = "C:\Users\Brondahl\My Files\Programming\C#\Puzzles_And_Toys\GoogleCodeJam\EntryPoint\Program.cs"
 
-"namespace GoogleCodeJam"              | Set-Content $programEntryPointFile
-"{"                                    | Add-Content $programEntryPointFile
-"  using $newProjectName;"             | Add-Content $programEntryPointFile
-"  using Common;"                      | Add-Content $programEntryPointFile
-"  // See README.txt in sln root!!"    | Add-Content $programEntryPointFile
-""                                     | Add-Content $programEntryPointFile
-"  // Remember to add the new csproj," | Add-Content $programEntryPointFile
-"  // and to add the proj ref and the" | Add-Content $programEntryPointFile
-"  // one-off fild to the EP project." | Add-Content $programEntryPointFile
-"  class Program"                      | Add-Content $programEntryPointFile
-"  {"                                  | Add-Content $programEntryPointFile
-"    static void Main(string[] args)"  | Add-Content $programEntryPointFile
-"    {"                                | Add-Content $programEntryPointFile
-"      CaseSolver.Run();"              | Add-Content $programEntryPointFile
-"    }"                                | Add-Content $programEntryPointFile
-"  }"                                  | Add-Content $programEntryPointFile
-"}"                                    | Add-Content $programEntryPointFile
-""                                     | Add-Content $programEntryPointFile
+$programEntryPointFile
+$here = Get-Location
+$here
+"Test"
+
+$contents = @"
+namespace GoogleCodeJam
+{
+  using $newProjectName;
+  using Common;
+  // See README.txt in sln root!!
+ 
+  // Remember to add the new csproj,
+  // and to add the proj ref and the
+  // one-off fild to the EP project.
+  class Program
+  {
+    static void Main(string[] args)
+    {
+      CaseSolver.Run();
+    }
+  }
+}
+"@
+
+[System.IO.File]::WriteAllText($programEntryPointFile, $contents)
 
 # Used for testing only!
 #Write-Host "Copy Complete. Press any key to delete."

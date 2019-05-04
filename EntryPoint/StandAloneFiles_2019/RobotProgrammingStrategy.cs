@@ -1,6 +1,6 @@
 //namespace GoogleCodeJam
 //{
-//  using ManhattanCrepeCart;
+//  using RobotProgrammingStrategy;
 //  using Common;
 //  // See README.txt in sln root!!
 
@@ -16,78 +16,59 @@
 //  }
 //}
 
-//namespace ManhattanCrepeCart
+//namespace RobotProgrammingStrategy
 //{
 //  using System;
 //  using System.Collections.Generic;
 //  using System.Linq;
+//  using Common;
 
 //  class CaseInput
 //  {
-//    internal CaseInput(List<string> lines)
+//    internal CaseInput(List<string> inputLines)
 //    {
-//      var line1 = lines[0].Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
-//      P = line1.First();
-//      Q = line1.Last();
+//      N = int.Parse(inputLines[0]);
 
-//      var people = lines.Skip(1).Select(person => person.Split(new []{' '}, StringSplitOptions.RemoveEmptyEntries).ToArray()).ToArray();
-
-//      foreach (var person in people)
-//      {
-//        switch (person[2].ToCharArray().Single())
-//        {
-//          case 'N':
-//            NPeople.Add(int.Parse(person[1]));
-//            break;
-//          case 'E':
-//            EPeople.Add(int.Parse(person[0]));
-//            break;
-//          case 'S':
-//            SPeople.Add(int.Parse(person[1]));
-//            break;
-//          case 'W':
-//            WPeople.Add(int.Parse(person[0]));
-//            break;
-//        }
-//      }
-//      NPeople = NPeople.OrderBy(x => x).ToList();
-//      EPeople = EPeople.OrderBy(x => x).ToList();
-//      SPeople = SPeople.OrderBy(x => x).ToList();
-//      WPeople = WPeople.OrderBy(x => x).ToList();
+//      Lines = inputLines.Skip(1).ToArray();
+//      LinesLengths = Lines.Select(line => line.Length).ToArray();
+//      MaxSingleLength = LinesLengths.Max();
 //    }
 
-//    internal int P;
-//    internal int Q;
-//    internal List<int> NPeople = new List<int>();
-//    internal List<int> EPeople = new List<int>();
-//    internal List<int> SPeople = new List<int>();
-//    internal List<int> WPeople = new List<int>();
+//    internal int N;
+//    internal string[] Lines;
+//    internal int[] LinesLengths;
+//    internal int MaxSingleLength;
 //  }
 
 //  class CaseOutput
 //  {
-//    internal CaseOutput(int x, int y)
+//    internal CaseOutput(bool possible)
 //    {
-//      X = x;
-//      Y = y;
+//      if (possible) { Thrower.TriggerMemLimit(); }
+//      IsPossible = possible;
 //    }
 
-//    internal int X;
-//    internal int Y;
+//    internal CaseOutput(string solution)
+//    {
+//      IsPossible = true;
+//      Solution = solution;
+//    }
 
+//    internal bool IsPossible;
+//    internal string Solution;
 
 //    public override string ToString()
 //    {
-//      return $"{X} {Y}";
+//      return !IsPossible ? "IMPOSSIBLE" : Solution;
 //    }
 //  }
 
 //}
-//namespace ManhattanCrepeCart
+//namespace RobotProgrammingStrategy
 //{
-//  using System;
 //  using System.Collections.Generic;
 //  using System.Linq;
+//  using System.Linq.Expressions;
 //  using Common;
 
 //  public class CaseSolver
@@ -126,93 +107,71 @@
 
 //    internal CaseOutput Solve()
 //    {
-//      var nCumulative = SetCumulative(input.NPeople, input.Q);
-//      var eCumulative = SetCumulative(input.EPeople, input.Q);
-//      var sCumulative = SetCumulative(input.SPeople, input.Q);
-//      var wCumulative = SetCumulative(input.WPeople, input.Q);
+//      long index = 0;
+//      var activeBots = input.Lines.ToList();
+//      var solution = "";
 
-//      var bestPopularity = 0;
-//      var bestLocation = Tuple.Create(0,0);
-
-//      for (int x = 0; x < input.Q+1; x++)
+//      while (true)
 //      {
-//        for (int y = 0; y < input.Q+1; y++)
+//        var pIsAvailable = true;
+//        var rIsAvailable = true;
+//        var sIsAvailable = true;
+
+//        var pKills = 0;
+//        var rKills = 0;
+//        var sKills = 0;
+
+//        var pBots = new List<string>();
+//        var rBots = new List<string>();
+//        var sBots = new List<string>();
+
+//        foreach (var activeBot in activeBots)
 //        {
-//          var pop = Popularity(nCumulative, sCumulative, eCumulative, wCumulative, x, y, input.Q);
-//          if (pop > bestPopularity)
+//          int moveIndex = (int)(index % activeBot.Length);
+//          var botMove = activeBot[moveIndex];
+//          switch (botMove)
 //          {
-//            bestLocation = Tuple.Create(x,y);
-//            bestPopularity = pop;
+//            case 'P': rIsAvailable = false; sKills++; pBots.Add(activeBot); break;
+//            case 'R': sIsAvailable = false; pKills++; rBots.Add(activeBot); break;
+//            case 'S': pIsAvailable = false; rKills++; sBots.Add(activeBot); break;
+//          }
+
+//          if (!rIsAvailable & !pIsAvailable & !sIsAvailable)
+//          {
+//            return new CaseOutput(false);
 //          }
 //        }
-//      }
-//      return new CaseOutput(bestLocation.Item1, bestLocation.Item2);
-//    }
 
-//    public static int Popularity(
-//      Dictionary<int, int> nPeopleDict,
-//      Dictionary<int, int> sPeopleDict,
-//      Dictionary<int, int> ePeopleDict,
-//      Dictionary<int, int> wPeopleDict,
-//      int x, int y,
-//      int q)
-//    {
-//      return Popularity(ePeopleDict, wPeopleDict, x, q) + Popularity(nPeopleDict, sPeopleDict, y, q);
-//    }
+//        char myMove = 'X';
 
-//    public static int Popularity(
-//      Dictionary<int, int> posPeopleDict,
-//      Dictionary<int, int> negPeopleDict,
-//      int coord,
-//      int q)
-//    {
-//      var totalPos = posPeopleDict[q];
-//      var totalNeg = negPeopleDict[q];
+//        if (rIsAvailable && !pIsAvailable && !sIsAvailable) { myMove = 'R'; }
+//        if (!rIsAvailable && pIsAvailable && !sIsAvailable) { myMove = 'P'; }
+//        if (!rIsAvailable && !pIsAvailable && sIsAvailable) { myMove = 'S'; }
 
-//      // set for 0;
-//      if (coord == 0)
-//      {
-//        return totalNeg;
-//      }
+//        if (rIsAvailable && pIsAvailable && !sIsAvailable) { myMove = rKills > pKills ? 'R' : 'P'; }
+//        if (rIsAvailable && !pIsAvailable && sIsAvailable) { myMove = rKills > sKills ? 'R' : 'S'; }
+//        if (!rIsAvailable && pIsAvailable && sIsAvailable) { myMove = pKills > sKills ? 'P' : 'S'; }
 
-//      // set for q;
-//      if (coord == q)
-//      {
-//        return totalPos;
-//      }
-
-//      //set for 1 ... q-1
-//      var posTowards = posPeopleDict[coord - 1];
-//      var negTowards = totalNeg - negPeopleDict[coord];
-//      return posTowards + negTowards;
-//    }
-
-//    public static Dictionary<int, int> SetCumulative(List<int> inputPeople, int max)
-//    {
-//      var cumDict = new Dictionary<int, int>();
-//      var cumCount = 0;
-//      foreach (var x in inputPeople)
-//      {
-//        cumCount++;
-//        cumDict[x] = cumCount;
-//      }
-//      FillDictionary(cumDict, max);
-//      return cumDict;
-//    }
-
-//    public static void FillDictionary(Dictionary<int, int> sparseDict, int max)
-//    {
-//      var dictLatest = 0;
-//      for (int i = 0; i < max+1; i++)
-//      {
-//        if (sparseDict.ContainsKey(i))
+//        solution += myMove;
+//        List<string> beatenBots = null;
+//        switch (myMove)
 //        {
-//          dictLatest = sparseDict[i];
+//          case 'P': beatenBots = rBots; break;
+//          case 'R': beatenBots = sBots; break;
+//          case 'S': beatenBots = pBots; break;
 //        }
-//        else
+
+//        foreach (var deadBot in beatenBots)
 //        {
-//          sparseDict[i] = dictLatest;
+//          activeBots.Remove(deadBot);
 //        }
+
+//        if (!activeBots.Any())
+//        {
+//          return new CaseOutput(solution);
+//        }
+
+//        index++;
 //      }
 //    }
 

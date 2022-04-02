@@ -1,6 +1,6 @@
 namespace GoogleCodeJam
 {
-  using ThreeDPrinting;
+  using DMillion;
   using Common;
   // See README.txt in sln root!!
  

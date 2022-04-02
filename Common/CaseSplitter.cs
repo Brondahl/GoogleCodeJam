@@ -10,6 +10,8 @@
     /// These assume that the first line of each case will be a sequence of longs,
     /// from which you can deduce the number of other lines in the case.
     /// In general the first line gets parsed, and those values are the passed to a function that calculates how many more lines to include in the Case.
+    ///
+    /// **N includes the first line, which provided N**, thus GetCaseLines_TakingNFromFirstValPlusOne is the most common variant.
     /// </summary>
     public IEnumerable<List<string>> GetCaseLines_TakingNFromFirstVal(IEnumerable<string> lines)
     {
@@ -43,44 +45,45 @@
     /// <summary> See summary comment above </summary>
     public IEnumerable<List<string>> GetConstantMultiLineCases(IEnumerable<string> lines, long numberOfLinesInACase)
     {
-      return GetCaseLines(lines, args => numberOfLinesInACase, false);
+      return GetCaseLines(lines, _ => numberOfLinesInACase, false);
     }
 
     /// <summary> See summary comment above </summary>
-    public IEnumerable<List<string>> GetCaseLines(IEnumerable<string> lines, Func<long[], long> totalNumberOfLinesInACase, bool parseArgsLineAsLongs = true)
+    public IEnumerable<List<string>> GetCaseLines(IEnumerable<string> lines, Func<long[], long> totalNumberOfLinesInACase, bool parseFirstLineAsLongs = true)
     {
-      var caseSet = new List<string>();
-      long[] continueTestArgs = null;
-      var currentLineCount = 0;
+      var linesInCurrentCase = new List<string>();
       long numberOfLinesToPutInCurrentCase = 0;
 
       foreach (var line in lines)
       {
-        caseSet.Add(line);
-        currentLineCount++;
+        linesInCurrentCase.Add(line);
 
-        if (continueTestArgs == null)
+        if (linesInCurrentCase.Count == 1)
         {
-          continueTestArgs = parseArgsLineAsLongs ? line.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToArray() : new long[0];
-          numberOfLinesToPutInCurrentCase = totalNumberOfLinesInACase(continueTestArgs);
+            if (parseFirstLineAsLongs)
+            {
+                var firstLineLongs = line.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToArray();
+                numberOfLinesToPutInCurrentCase = totalNumberOfLinesInACase(firstLineLongs);
+            }
+            else
+            {
+                numberOfLinesToPutInCurrentCase = totalNumberOfLinesInACase(new long[0]);
+            }
         }
 
-        if (currentLineCount < numberOfLinesToPutInCurrentCase)
+        if (linesInCurrentCase.Count < numberOfLinesToPutInCurrentCase)
         {
           continue;
         }
 
         // We've reached the end of the CaseSet.
         // Return this caseSet.
-        yield return caseSet.ToList();
+        yield return linesInCurrentCase.ToList();
 
         // And reset our counters
-        caseSet = new List<string>();
-        continueTestArgs = null;
-        currentLineCount = 0;
+        linesInCurrentCase = new List<string>();
         numberOfLinesToPutInCurrentCase = 0;
       }
-
     }
   }
 }

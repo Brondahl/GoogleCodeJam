@@ -10,25 +10,27 @@
     private static IGoogleCodeJamCommunicator InOut;
     public static void Run(IGoogleCodeJamCommunicator io = null)
     {
-      InOut = io ?? new GoogleCodeJam2018Communicator();
-      var lines = InOut.ReadStringInput(out numberOfCases);
-      var cases = new CaseSplitter().GetConstantMultiLineCases(lines, 2);
-      var results = new List<string>();
-      var caseNumber = 0;
+        InOut = io ?? new GoogleCodeJam2018Communicator();
+        var lines = InOut.ReadStringInput(out numberOfCases);
+        var cases = new CaseSplitter().GetConstantMultiLineCases(lines, 2);
+        var results = ProcessCases(cases);
+        InOut.WriteOutput(results);
+    }
 
-      foreach (var caseLines in cases)
-      {
-        caseNumber++; //1-indexed.
-        var parsedCase = new CaseInput(caseLines);
-        var solver = new CaseSolver(parsedCase);
-        var result = solver.Solve();
+    private static IEnumerable<string> ProcessCases(IEnumerable<List<string>> cases)
+    {
+        var currentCaseNumber = 0;
+        foreach (var caseLines in cases)
+        {
+            currentCaseNumber++; //1-indexed.
+            var parsedCase = new CaseInput(caseLines);
+            var solver = new CaseSolver(parsedCase);
+            var result = solver.Solve();
 
-        var resultText = result.ToString();
+            var resultText = result.ToString();
 
-        results.Add($"Case #{caseNumber}: {resultText}");
-      }
-
-      InOut.WriteOutput(results);
+            yield return $"Case #{currentCaseNumber}: {resultText}";
+        }
     }
 
     private CaseInput input;

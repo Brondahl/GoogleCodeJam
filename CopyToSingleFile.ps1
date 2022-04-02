@@ -1,3 +1,4 @@
+[Environment]::CurrentDirectory = (Get-Location -PSProvider FileSystem).ProviderPath
 $targetProjectName = ""
 $year = "2019"
 

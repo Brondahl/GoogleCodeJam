@@ -1,3 +1,4 @@
+[Environment]::CurrentDirectory = (Get-Location -PSProvider FileSystem).ProviderPath
 $newProjectName = ""
 $year = "2019"
 
@@ -32,12 +33,7 @@ Write-Host
 
 Write-Host "Updating EntryPoint to target new Project"
 
-$programEntryPointFile = "C:\Users\Brondahl\My Files\Programming\C#\Puzzles_And_Toys\GoogleCodeJam\EntryPoint\Program.cs"
-
-$programEntryPointFile
-$here = Get-Location
-$here
-"Test"
+$programEntryPointFile = ".\EntryPoint\Program.cs"
 
 $contents = @"
 namespace GoogleCodeJam

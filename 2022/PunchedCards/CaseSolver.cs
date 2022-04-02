@@ -1,7 +1,6 @@
-using System;
-
 namespace PunchedCards
 {
+  using System;
   using System.Collections.Generic;
   using System.Linq;
   using Common;
@@ -85,6 +84,7 @@ namespace PunchedCards
             text += Environment.NewLine;
         }
 
+        text = text.TrimEnd('\r', '\n');
         return new CaseOutput(text);
     }
 

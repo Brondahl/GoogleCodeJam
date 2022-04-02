@@ -76,9 +76,9 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\2019\RobotProgrammingStrategy\RobotProgrammingStrategy.csproj">
-      <Project>{5521fbae-f209-4d0f-9530-8ec6409a9fec}</Project>
-      <Name>RobotProgrammingStrategy</Name>
+    <ProjectReference Include="..\2022\PunchedCards\PunchedCards.csproj">
+      <Project>{df19e731-601b-44a3-9b85-f753f2e6a3dd}</Project>
+      <Name>PunchedCards</Name>
     </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{be560075-329b-44d9-85a8-88c0291db0cc}</Project>

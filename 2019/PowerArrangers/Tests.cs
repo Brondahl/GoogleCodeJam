@@ -28,7 +28,7 @@ namespace PowerArrangers
     }
   }
 
-  [TestFixture]
+  [TestFixture, Ignore("Obsolete")]
   public class Tests
   {
 

@@ -42,7 +42,7 @@
       caseInput.Signs[2].N.Should().Be(5);
     }
 
-    [Test]
+    [Test, Ignore("obsolete")]
     public void SetRule()
     {
       int x = 1;

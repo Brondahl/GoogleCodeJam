@@ -1,3 +1,5 @@
+using System;
+
 namespace PunchedCards
 {
   using System.Collections.Generic;
@@ -12,12 +14,12 @@ namespace PunchedCards
     {
         InOut = io ?? new GoogleCodeJam2018Communicator();
         var lines = InOut.ReadStringInput(out numberOfCases);
-        var cases = new CaseSplitter().GetConstantMultiLineCases(lines, 2);
+        var cases = new CaseSplitter().GetSingleLineCases(lines);
         var results = ProcessCases(cases);
         InOut.WriteOutput(results);
     }
 
-    private static IEnumerable<string> ProcessCases(IEnumerable<List<string>> cases)
+    private static IEnumerable<string> ProcessCases(IEnumerable<string> cases)
     {
         var currentCaseNumber = 0;
         foreach (var caseLines in cases)
@@ -29,7 +31,7 @@ namespace PunchedCards
 
             var resultText = result.ToString();
 
-            yield return $"Case #{currentCaseNumber}: {resultText}";
+            yield return $"Case #{currentCaseNumber}:{resultText}";
         }
     }
 
@@ -42,58 +44,48 @@ namespace PunchedCards
 
     internal CaseOutput Solve()
     {
-      if (input.N == 0) { return new CaseOutput(-1); }
-      if (input.N == 1) { return new CaseOutput(-1); }
+        var cells = new char[2*input.R + 1, 2 * input.C + 1];
+        for (int x = 0; x < 2 * input.R + 1; x++)
+        {
+            for (int y = 0; y < 2 * input.C + 1; y++)
+            {
+                if (x < 2 && y < 2)
+                {
+                    cells[x, y] = '.';
+                    continue;
+                }
 
-      //if (input.N == 2)
-      //{
-      //  var onlyEven = input.EvenV[0];
-      //  var onlyOdd = input.OddV[0];
-      //  if (onlyOdd < onlyEven)
-      //  {
-      //    return new CaseOutput(0);
-      //  }
-      //  else
-      //  {
-      //    return new CaseOutput(-1);
-      //  }
-      //}
+                if (x % 2 == 1 && y % 2 == 0)
+                {
+                    cells[x, y] = '|';
+                }
+                if (x % 2 == 1 && y % 2 == 1)
+                {
+                    cells[x, y] = '.';
+                }
+                if (x % 2 == 0 && y % 2 == 0)
+                {
+                    cells[x, y] = '+';
+                }
+                if (x % 2 == 0 && y % 2 == 1)
+                {
+                    cells[x, y] = '-';
+                }
+            }
+        }
 
-      //for (int i = 0; i < input.LongestSubList-1; i++)
-      //{
-      //  var evenV_i = input.EvenV[i];
-      //  var oddV_i = input.OddV[i];
-      //  var evenV_i_plus_one = input.EvenV[i+1];
+        var text = "";
+        for (int x = 0; x < 2 * input.R + 1; x++)
+        {
+            for (int y = 0; y < 2 * input.C + 1; y++)
+            {
+                text += cells[x, y];
+            }
 
-      //  // Even comes first, so Odd_i should be >= Even_i.
-      //  // If Odd_i is < Even_i we have a bug, starting at Odd_i
-      //  // Assume EvenV[i] is valid.
-      //  if (oddV_i < evenV_i)
-      //  {
-      //    return new CaseOutput(2 * i);
-      //  }
+            text += Environment.NewLine;
+        }
 
-      //  //Check Even_i+1 >= Odd_i
-      //  // If Even_i+1 is < Odd_i we have a bug, starting at Even_i+1
-      //  if (evenV_i_plus_one < oddV_i)
-      //  {
-      //    return new CaseOutput((2 * i) + 1);
-      //  }
-      //}
-
-      if (input.IsEven)
-      {
-        ////We checked up to Odd[Penultimate] v Even[Last]. Just one more check of Odd[last]
-        //if (input.OddV[input.LongestSubList-1] < input.EvenV[input.LongestSubList-1])
-        //{
-        //  return new CaseOutput(input.N-2);
-        //}
-      }
-      else
-      {
-        //We checked up to Odd[Penultimate] v Even[Last]. Nothing left to check.
-      }
-      return new CaseOutput(-1);
+        return new CaseOutput(text);
     }
 
   }

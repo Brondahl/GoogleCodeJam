@@ -6,30 +6,30 @@ namespace PunchedCards
 
   class CaseInput
   {
-    internal CaseInput(List<string> lines)
+    internal CaseInput(string line)
     {
-      N = int.Parse(lines[0]);
-      IsEven = (N % 2 == 0);
+      var values = line.Split(new []{' '}, StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToArray();
 
-      var V = lines[1].Split(new []{' '}, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+      R = values[0];
+      C = values[1];
     }
 
-    internal int N;
-    internal bool IsEven;
+    internal long R;
+    internal long C;
   }
 
   class CaseOutput
   {
-    internal CaseOutput(int errorIndex)
+    internal CaseOutput(string text)
     {
-      ErrorIndex = errorIndex;
+        Text = text;
     }
 
-    internal int ErrorIndex;
+    internal string Text;
 
     public override string ToString()
     {
-      return ErrorIndex == -1 ? "OK" : ErrorIndex.ToString();
+        return Environment.NewLine + Text;
     }
   }
 

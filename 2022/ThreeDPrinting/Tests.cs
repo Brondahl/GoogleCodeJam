@@ -31,54 +31,28 @@ namespace ThreeDPrinting
     [TestFixture]
     public class Tests
     {
-
         [Test]
-        public void Square()
+        public void Sample()
         {
-            var inputString = @"2
-2 2
-3 3";
+            var inputString = @"3
+300000 200000 300000 500000
+300000 200000 500000 300000
+300000 500000 300000 200000
+1000000 1000000 0 0
+0 1000000 1000000 1000000
+999999 999999 999999 999999
+768763 148041 178147 984173
+699508 515362 534729 714381
+949704 625054 946212 951187";
             var io = new TestIOStub(inputString);
             CaseSolver.Run(io);
 
             io.Output.Should().BeEquivalentTo(
-                @"Case #1:
-..+-+
-..|.|
-+-+-+
-|.|.|
-+-+-+",
-                @"Case #2:
-..+-+-+
-..|.|.|
-+-+-+-+
-|.|.|.|
-+-+-+-+
-|.|.|.|
-+-+-+-+"
-            );
+                @"Case #1: 300000 200000 300000 200000",
+                "Case #2: IMPOSSIBLE",
+                "Case #3: 699508 148041 152451 0");
         }
 
-
-        [Test]
-        public void OffSquare()
-        {
-            var inputString = @"1
-3 4";
-            var io = new TestIOStub(inputString);
-            CaseSolver.Run(io);
-
-            io.Output.Should().BeEquivalentTo(
-                @"Case #1:
-..+-+-+-+
-..|.|.|.|
-+-+-+-+-+
-|.|.|.|.|
-+-+-+-+-+
-|.|.|.|.|
-+-+-+-+-+"
-            );
-        }
 
     }
 }

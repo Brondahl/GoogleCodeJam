@@ -67,6 +67,7 @@
     <Compile Include="StandAloneFiles_2018\RoundingError.cs" />
     <Compile Include="StandAloneFiles_2018\SavingTheUniverseAgain.cs" />
     <Compile Include="StandAloneFiles_2018\TroubleSort.cs" />
+    <Compile Include="StandAloneFiles_2022\PunchedCards.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

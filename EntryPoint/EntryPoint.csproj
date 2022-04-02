@@ -77,9 +77,9 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\2022\PunchedCards\PunchedCards.csproj">
-      <Project>{df19e731-601b-44a3-9b85-f753f2e6a3dd}</Project>
-      <Name>PunchedCards</Name>
+    <ProjectReference Include="..\2022\ThreeDPrinting\ThreeDPrinting.csproj">
+      <Project>{c4c5c7ee-e197-4a03-b950-7263c5c7c0f8}</Project>
+      <Name>ThreeDPrinting</Name>
     </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{be560075-329b-44d9-85a8-88c0291db0cc}</Project>

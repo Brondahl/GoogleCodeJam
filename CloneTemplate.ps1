@@ -1,19 +1,21 @@
-$targetProjectName = ""
+$newProjectName = ""
+$year = "2019"
 
-while($targetProjectName -eq "") {
-    Write-Host "You must provide a non-empty Project Name!"
-    $targetProjectName = Read-Host -Prompt "Name of new Project?"
-    $targetDir = ".\2018\$targetProjectName"
+while(($newProjectName -eq "") -Or ((Test-Path $targetDir -PathType Container))) {
+    Write-Host "Cloning template to create project in $year folder"
+    Write-Host "You must provide a non-empty Project Name, which does not already exist!"
+    $newProjectName = Read-Host -Prompt "Name of new Project?"
+    $targetDir = ".\$year\$newProjectName"
 }
 
-$sourceDir = ".\2018\TemplateProject"
+$sourceDir = ".\TemplateFolder\TemplateProject"
 
 #Clone the TemplateFolder
 robocopy $sourceDir $targetDir /E /XD dirs obj bin /NJH /NJS /NP /NS /NDL
 
 Write-Host
     
-Get-ChildItem $targetDir -Filter * | Foreach-Object {
+Get-ChildItem $targetDir -Depth 9 -File | Foreach-Object {
     $filePath = $_.FullName
         
     "Replacing Contents of:  $filePath"
@@ -30,21 +32,34 @@ Write-Host
 
 Write-Host "Updating EntryPoint to target new Project"
 
-$programEntryPointFile = ".\EntryPoint\Program.cs"
+$programEntryPointFile = "C:\Users\Brondahl\My Files\Programming\C#\Puzzles_And_Toys\GoogleCodeJam\EntryPoint\Program.cs"
 
-"namespace GoogleCodeJam"              | Set-Content $programEntryPointFile
-"{"                                    | Add-Content $programEntryPointFile
-"  using $targetProjectName;"          | Add-Content $programEntryPointFile
-""                                     | Add-Content $programEntryPointFile
-"  class Program"                      | Add-Content $programEntryPointFile
-"  {"                                  | Add-Content $programEntryPointFile
-"    static void Main(string[] args)"  | Add-Content $programEntryPointFile
-"    {"                                | Add-Content $programEntryPointFile
-"      CaseSolver.Run();"              | Add-Content $programEntryPointFile
-"    }"                                | Add-Content $programEntryPointFile
-"  }"                                  | Add-Content $programEntryPointFile
-"}"                                    | Add-Content $programEntryPointFile
-""                                     | Add-Content $programEntryPointFile
+$programEntryPointFile
+$here = Get-Location
+$here
+"Test"
+
+$contents = @"
+namespace GoogleCodeJam
+{
+  using $newProjectName;
+  using Common;
+  // See README.txt in sln root!!
+ 
+  // Remember to add the new csproj,
+  // and to add the proj ref and the
+  // one-off fild to the EP project.
+  class Program
+  {
+    static void Main(string[] args)
+    {
+      CaseSolver.Run();
+    }
+  }
+}
+"@
+
+[System.IO.File]::WriteAllText($programEntryPointFile, $contents)
 
 # Used for testing only!
 #Write-Host "Copy Complete. Press any key to delete."

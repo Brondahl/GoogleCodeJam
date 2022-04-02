@@ -8,7 +8,7 @@
   [TestFixture]
   class CaseSplitterTests
   {
-    private static CaseSplitter splitter = new CaseSplitter();
+    private static readonly CaseSplitter splitter = new CaseSplitter();
 
     [Test]
     public static void CaseLinesFromSingleLines()
@@ -49,13 +49,13 @@ CA
 KE
 ZZ".Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList().Skip(1);
 
-      var output = splitter.GetCaseLines(inputFile, 4);
+      var output = splitter.GetConstantMultiLineCases(inputFile, 4).ToList();
 
-      output.Count().Should().Be(3);
+      output.Should().HaveCount(3);
 
-      output.First().Count().Should().Be(4);
-      output.Skip(1).First().Count().Should().Be(4);
-      output.Skip(2).First().Count().Should().Be(4);
+      output.First().Should().HaveCount(4);
+      output.Skip(1).First().Should().HaveCount(4);
+      output.Skip(2).First().Should().HaveCount(4);
 
       output.First().Skip(1).First().Should().Be("G??");
 
@@ -85,13 +85,13 @@ KE
 ";
       var inputLines = inputFile.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList().Skip(1);
 
-      var output = splitter.GetCaseLines_TakingNFromFirstValPlusOne(inputLines);
+      var output = splitter.GetCaseLines_TakingNFromFirstValPlusOne(inputLines).ToList();
 
-      output.Count().Should().Be(3);
+      output.Should().HaveCount(3);
 
-      output.First().Count().Should().Be(4);
-      output.Skip(1).First().Count().Should().Be(4);
-      output.Skip(2).First().Count().Should().Be(3);
+      output.First().Should().HaveCount(4);
+      output.Skip(1).First().Should().HaveCount(4);
+      output.Skip(2).First().Should().HaveCount(3);
 
       output.First().Skip(1).First().Should().Be("G??");
 
@@ -119,13 +119,13 @@ baz
 CA
 KE".Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList().Skip(1);
 
-      var output = splitter.GetCaseLines_TakingNFromFirstValPlusTwo(inputFile);
+      var output = splitter.GetCaseLines_TakingNFromFirstValPlusTwo(inputFile).ToList();
 
-      output.Count().Should().Be(3);
+      output.Should().HaveCount(3);
 
-      output.First().Count().Should().Be(5);
-      output.Skip(1).First().Count().Should().Be(5);
-      output.Skip(2).First().Count().Should().Be(4);
+      output.First().Should().HaveCount(5);
+      output.Skip(1).First().Should().HaveCount(5);
+      output.Skip(2).First().Should().HaveCount(4);
 
       output.First().First().Should().Be("3 3");
       output.First().Skip(1).First().Should().Be("foo");
@@ -155,13 +155,13 @@ CODE
 4 2
 CA".Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList().Skip(1);
 
-      var output = splitter.GetCaseLines_TakingNFromSecondVal(inputFile);
+      var output = splitter.GetCaseLines_TakingNFromSecondVal(inputFile).ToList();
 
-      output.Count().Should().Be(3);
+      output.Should().HaveCount(3);
 
-      output.First().Count().Should().Be(3);
-      output.Skip(1).First().Count().Should().Be(4);
-      output.Skip(2).First().Count().Should().Be(2);
+      output.First().Should().HaveCount(3);
+      output.Skip(1).First().Should().HaveCount(4);
+      output.Skip(2).First().Should().HaveCount(2);
 
       output.First().First().Should().Be("3 3");
       output.First().Skip(1).First().Should().Be("?C?");
@@ -204,13 +204,13 @@ CODE
 baz
 CA".Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList().Skip(1);
 
-      var output = splitter.GetCaseLines(inputFile, args => args[2] + args[1] + 1);
+      var output = splitter.GetCaseLines(inputFile, args => args[2] + args[1] + 1).ToList();
 
-      output.Count().Should().Be(3);
+      output.Should().HaveCount(3);
 
-      output.First().Count().Should().Be(7);
-      output.Skip(1).First().Count().Should().Be(8);
-      output.Skip(2).First().Count().Should().Be(7);
+      output.First().Should().HaveCount(7);
+      output.Skip(1).First().Should().HaveCount(8);
+      output.Skip(2).First().Should().HaveCount(7);
 
       output.First().First().Should().Be("1 3 3 7");
       output.First().Skip(1).First().Should().Be("foo");

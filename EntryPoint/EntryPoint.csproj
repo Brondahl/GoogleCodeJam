@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,8 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PreFetchFirstElementEnumerable, Version=0.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PreFetchFirstElementEnumerable.0.0.1\lib\net40\PreFetchFirstElementEnumerable.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,26 +48,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="StandAloneFiles_2019\AlienRhyme.cs" />
+    <Compile Include="StandAloneFiles_2019\Cryptopangrams.cs" />
+    <Compile Include="StandAloneFiles_2019\ManhattanCrepeCart.cs" />
+    <Compile Include="StandAloneFiles_2019\PowerArrangers.cs" />
+    <Compile Include="StandAloneFiles_2019\RobotProgrammingStrategy.cs" />
+    <Compile Include="StandAloneFiles_2019\YouCanGoYourOwnWay.cs" />
+    <Compile Include="StandAloneFiles_2019\ForegoneSolution.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StandAloneFiles\AWholeNewWord.cs" />
-    <Compile Include="StandAloneFiles\EdgyBaking.cs" />
-    <Compile Include="StandAloneFiles\CubicUFO.cs" />
-    <Compile Include="StandAloneFiles\GoGopher.cs" />
-    <Compile Include="StandAloneFiles\MysteriousRoadSigns.cs" />
-    <Compile Include="StandAloneFiles\LollipopShop.cs" />
-    <Compile Include="StandAloneFiles\AntStack.cs" />
-    <Compile Include="StandAloneFiles\RoundingError.cs" />
-    <Compile Include="StandAloneFiles\SavingTheUniverseAgain.cs" />
-    <Compile Include="StandAloneFiles\TroubleSort.cs" />
+    <Compile Include="StandAloneFiles_2018\AWholeNewWord.cs" />
+    <Compile Include="StandAloneFiles_2018\EdgyBaking.cs" />
+    <Compile Include="StandAloneFiles_2018\CubicUFO.cs" />
+    <Compile Include="StandAloneFiles_2018\GoGopher.cs" />
+    <Compile Include="StandAloneFiles_2018\MysteriousRoadSigns.cs" />
+    <Compile Include="StandAloneFiles_2018\LollipopShop.cs" />
+    <Compile Include="StandAloneFiles_2018\AntStack.cs" />
+    <Compile Include="StandAloneFiles_2018\RoundingError.cs" />
+    <Compile Include="StandAloneFiles_2018\SavingTheUniverseAgain.cs" />
+    <Compile Include="StandAloneFiles_2018\TroubleSort.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\2018\AWholeNewWord\AWholeNewWord.csproj">
-      <Project>{1e960c82-ca2c-459c-a417-3908e64c59f6}</Project>
-      <Name>AWholeNewWord</Name>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\2019\RobotProgrammingStrategy\RobotProgrammingStrategy.csproj">
+      <Project>{5521fbae-f209-4d0f-9530-8ec6409a9fec}</Project>
+      <Name>RobotProgrammingStrategy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{be560075-329b-44d9-85a8-88c0291db0cc}</Project>
+      <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

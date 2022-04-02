@@ -1,6 +1,6 @@
 [Environment]::CurrentDirectory = (Get-Location -PSProvider FileSystem).ProviderPath
 $targetProjectName = ""
-$year = "2019"
+$year = "2022"
 
 while(($targetProjectName -eq "") -Or (!(Test-Path $targetDir -PathType Container))) {
     Write-Host "You must provide a non-empty Project Name, whose folder exists!"

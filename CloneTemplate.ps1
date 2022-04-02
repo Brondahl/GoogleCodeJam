@@ -1,6 +1,6 @@
 [Environment]::CurrentDirectory = (Get-Location -PSProvider FileSystem).ProviderPath
 $newProjectName = ""
-$year = "2019"
+$year = "2022"
 
 while(($newProjectName -eq "") -Or ((Test-Path $targetDir -PathType Container))) {
     Write-Host "Cloning template to create project in $year folder"

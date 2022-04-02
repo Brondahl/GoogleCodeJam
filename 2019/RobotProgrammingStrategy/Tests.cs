@@ -35,7 +35,7 @@ namespace RobotProgrammingStrategy
     [Test]
     public void FullE2ETest()
     {
-      var inputString = @"3
+      var inputString = @"5
 1
 RS
 3
@@ -50,14 +50,27 @@ RS
 RS
 RS
 RS
-";
+3
+R
+P
+P
+7
+P
+P
+P
+R
+R
+R
+P";
       var io = new TestIOStub(inputString);
       CaseSolver.Run(io);
 
       var output =
 @"Case #1: P
 Case #2: IMPOSSIBLE
-Case #3: P";
+Case #3: P
+Case #4: PS
+Case #5: PS";
       io.Output.Should().BeEquivalentTo(output.Split(new []{Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries));
     }
 

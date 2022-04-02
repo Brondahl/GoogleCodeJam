@@ -13,12 +13,12 @@
         {
             InOut = io ?? new GoogleCodeJam2018Communicator();
             var lines = InOut.ReadStringInput(out numberOfCases);
-            var cases = new CaseSplitter().GetSingleLineCases(lines);
+            var cases = new CaseSplitter().Configure_ConstantMultiLineCases(1).GetCaseLines(lines);
             var results = ProcessCases(cases);
             InOut.WriteOutput(results);
         }
 
-        private static IEnumerable<string> ProcessCases(IEnumerable<string> cases)
+        private static IEnumerable<string> ProcessCases(IEnumerable<List<string>> cases)
         {
             var currentCaseNumber = 0;
             foreach (var caseLines in cases)

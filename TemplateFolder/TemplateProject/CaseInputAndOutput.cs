@@ -6,9 +6,9 @@
 
     class CaseInput
     {
-        internal CaseInput(string line)
+        internal CaseInput(List<string> lines)
         {
-            var values = line.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToArray();
+            var values = lines.Single().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToArray();
 
             R = values[0];
             C = values[1];

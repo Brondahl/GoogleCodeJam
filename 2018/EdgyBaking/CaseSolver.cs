@@ -13,7 +13,7 @@
     public static void Run()
     {
       var lines = InOut.ReadStringInput(out numberOfCases).ToList();
-      var cases = new CaseSplitter().GetCaseLines_TakingNFromFirstValPlusOne(lines).ToArray();
+      var cases = new CaseSplitter().Configure_TakingNFromFirstValPlusOne().GetCaseLines(lines).ToArray();
       var results = new List<string>();
 
       for (int ii = 0; ii < numberOfCases; ii++)

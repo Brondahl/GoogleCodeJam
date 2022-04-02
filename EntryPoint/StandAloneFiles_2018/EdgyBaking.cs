@@ -279,7 +279,7 @@
 //    public static void Run()
 //    {
 //      var lines = InOut.ReadStringInput(out numberOfCases).ToList();
-//      string[][] cases = new CaseSplitter().GetCaseLines_TakingNFromFirstValPlusOne(lines).Select(caseLineSet => caseLineSet.ToArray()).ToArray();
+//      string[][] cases = new CaseSplitter().Configure_TakingNFromFirstValPlusOne().GetCaseLines(lines).Select(caseLineSet => caseLineSet.ToArray()).ToArray();
 //      var results = new List<string>();
 
 //      for (int ii = 0; ii < numberOfCases - 1; ii++)

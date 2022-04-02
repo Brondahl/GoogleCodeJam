@@ -14,7 +14,7 @@
     public static void Run()
     {
       var lines = InOut.ReadStringInput(out numberOfCases).ToList();
-      var cases = new CaseSplitter().GetCaseLines(lines, args =>  2*args[0] + args[1]).ToArray();
+      var cases = new CaseSplitter().Configure_CustomMap(args =>  2*args[0] + args[1]).GetCaseLines(lines).ToArray();
       var results = new List<string>();
 
       for (int ii = 0; ii < numberOfCases; ii++)

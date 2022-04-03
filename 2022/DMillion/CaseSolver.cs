@@ -13,7 +13,7 @@ namespace DMillion
         {
             InOut = io ?? new GoogleCodeJam2018Communicator();
             var lines = InOut.ReadStringInput(out numberOfCases);
-            var cases = new CaseSplitter().Configure_ConstantMultiLineCases(1).GetCaseLines(lines);
+            var cases = new CaseSplitter().Configure_ConstantMultiLineCases(2).GetCaseLines(lines);
             var results = ProcessCases(cases);
             InOut.WriteOutput(results);
         }
@@ -30,7 +30,7 @@ namespace DMillion
 
                 var resultText = result.ToString();
 
-                yield return $"Case #{currentCaseNumber}:{resultText}";
+                yield return $"Case #{currentCaseNumber}: {resultText}";
             }
         }
 
@@ -43,49 +43,19 @@ namespace DMillion
 
         internal CaseOutput Solve()
         {
-            var cells = new char[2 * input.R + 1, 2 * input.C + 1];
-            for (int x = 0; x < 2 * input.R + 1; x++)
-            {
-                for (int y = 0; y < 2 * input.C + 1; y++)
-                {
-                    if (x < 2 && y < 2)
-                    {
-                        cells[x, y] = '.';
-                        continue;
-                    }
+            var orderedEnumerable = input.values.OrderBy(x => x).ToList();
+            var queue = new Queue<int>(orderedEnumerable);
 
-                    if (x % 2 == 1 && y % 2 == 0)
-                    {
-                        cells[x, y] = '|';
-                    }
-                    if (x % 2 == 1 && y % 2 == 1)
-                    {
-                        cells[x, y] = '.';
-                    }
-                    if (x % 2 == 0 && y % 2 == 0)
-                    {
-                        cells[x, y] = '+';
-                    }
-                    if (x % 2 == 0 && y % 2 == 1)
-                    {
-                        cells[x, y] = '-';
-                    }
+            var answer = 1;
+            while (queue.Any())
+            {
+                var next = queue.Dequeue();
+                if (next >= answer)
+                {
+                    answer++;
                 }
             }
-
-            var text = "";
-            for (int x = 0; x < 2 * input.R + 1; x++)
-            {
-                for (int y = 0; y < 2 * input.C + 1; y++)
-                {
-                    text += cells[x, y];
-                }
-
-                text += Environment.NewLine;
-            }
-
-            text = text.TrimEnd('\r', '\n');
-            return new CaseOutput(text);
+            return new CaseOutput(answer - 1);
         }
 
     }

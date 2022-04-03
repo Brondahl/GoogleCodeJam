@@ -33,52 +33,41 @@ namespace DMillion
     {
 
         [Test]
-        public void Square()
+        public void Sample()
         {
-            var inputString = @"2
-2 2
-3 3";
+            var inputString = @"4
+4
+6 10 12 8
+6
+5 4 5 4 4 4
+10
+10 10 7 6 7 4 4 5 7 4
+1
+10";
             var io = new TestIOStub(inputString);
             CaseSolver.Run(io);
 
             io.Output.Should().BeEquivalentTo(
-                @"Case #1:
-..+-+
-..|.|
-+-+-+
-|.|.|
-+-+-+",
-                @"Case #2:
-..+-+-+
-..|.|.|
-+-+-+-+
-|.|.|.|
-+-+-+-+
-|.|.|.|
-+-+-+-+"
+                @"Case #1: 4",
+                "Case #2: 5",
+                "Case #3: 9",
+                "Case #4: 1"
             );
         }
-
 
         [Test]
-        public void OffSquare()
+        public void Specifics()
         {
             var inputString = @"1
-3 4";
+6
+4 4 4 4 4 5 6
+";
             var io = new TestIOStub(inputString);
             CaseSolver.Run(io);
 
             io.Output.Should().BeEquivalentTo(
-                @"Case #1:
-..+-+-+-+
-..|.|.|.|
-+-+-+-+-+
-|.|.|.|.|
-+-+-+-+-+
-|.|.|.|.|
-+-+-+-+-+"
+                @"Case #1: 6"
             );
         }
-
     }
 }

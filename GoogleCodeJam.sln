@@ -73,6 +73,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PunchedCards", "2022\Punche
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreeDPrinting", "2022\ThreeDPrinting\ThreeDPrinting.csproj", "{C4C5C7EE-E197-4A03-B950-7263C5C7C0F8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMillion", "2022\DMillion\DMillion.csproj", "{1F90FA8C-80D6-467F-A7BC-BB5F84BE5610}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

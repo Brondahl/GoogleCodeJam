@@ -1,6 +1,6 @@
 namespace GoogleCodeJam
 {
-  using DMillion;
+  using ChainReaction;
   using Common;
   // See README.txt in sln root!!
  

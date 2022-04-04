@@ -4,7 +4,17 @@
 
   public interface IGoogleCodeJamCommunicator
   {
-     IEnumerable<string> ReadStringInput(out int numberOfCases);
-     void WriteOutput(IEnumerable<string> lines);
+      IEnumerable<string> ReadStringInput(out int numberOfCases);
+      void WriteOutput(IEnumerable<string> lines);
+  }
+
+  public interface IGoogleCodeJamInteractiveCommunicator
+  {
+      long ReadSingleLongInput();
+      List<long> ReadSingleLineOfLongsInput();
+      string ReadSingleStringInput();
+      List<string> ReadNextStringInputs(int linesToRead);
+      void WriteSingleInteractiveOutput(string line);
+      void WriteInteractiveOutput(List<string> lines);
   }
 }

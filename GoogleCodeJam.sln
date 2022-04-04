@@ -77,6 +77,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMillion", "2022\DMillion\D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChainReaction", "2022\ChainReaction\ChainReaction.csproj", "{D2BC7D2B-EBC9-4E2D-88A1-DAE166429100}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwistyPassages", "2022\TwistyPassages\TwistyPassages.csproj", "{574EE790-8460-4980-AEC4-1AA96FC1701A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -211,6 +213,10 @@ Global
 		{D2BC7D2B-EBC9-4E2D-88A1-DAE166429100}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2BC7D2B-EBC9-4E2D-88A1-DAE166429100}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2BC7D2B-EBC9-4E2D-88A1-DAE166429100}.Release|Any CPU.Build.0 = Release|Any CPU
+		{574EE790-8460-4980-AEC4-1AA96FC1701A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{574EE790-8460-4980-AEC4-1AA96FC1701A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{574EE790-8460-4980-AEC4-1AA96FC1701A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{574EE790-8460-4980-AEC4-1AA96FC1701A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -246,6 +252,7 @@ Global
 		{C4C5C7EE-E197-4A03-B950-7263C5C7C0F8} = {AB24E0E7-EA1B-4A85-A667-01A8E6D952F3}
 		{1F90FA8C-80D6-467F-A7BC-BB5F84BE5610} = {AB24E0E7-EA1B-4A85-A667-01A8E6D952F3}
 		{D2BC7D2B-EBC9-4E2D-88A1-DAE166429100} = {AB24E0E7-EA1B-4A85-A667-01A8E6D952F3}
+		{574EE790-8460-4980-AEC4-1AA96FC1701A} = {AB24E0E7-EA1B-4A85-A667-01A8E6D952F3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4C85A7E6-82EF-4F14-9CD0-65A4B35B12C8}

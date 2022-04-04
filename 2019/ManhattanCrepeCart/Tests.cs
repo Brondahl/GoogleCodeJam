@@ -62,7 +62,7 @@ namespace ManhattanCrepeCart
       );
     }
 
-    [Test]
+    [Test, Ignore("Obsolete")]
     [TestCase(
 @"1 10
 5 5 N",

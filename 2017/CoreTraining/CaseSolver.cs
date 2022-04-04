@@ -14,7 +14,7 @@
     public static void Run()
     {
       var lines = InOut.ReadStringInput(out numberOfCases).ToList();
-      var cases = new CaseSplitter().GetConstantMultiLineCases(lines, 3).ToArray();
+      var cases = new CaseSplitter().Configure_ConstantMultiLineCases(3).GetCaseLines(lines).ToArray();
       var results = new List<string>();
 
       for (int ii = 0; ii < numberOfCases; ii++)
@@ -294,7 +294,7 @@
         return (decimal)probOfInputSuccess_Log;
     }
 
-    private double?[] TValues;
+    private double?[] TValues = new double?[0];
     private double TValue(IEnumerable<Core> cores, int x)
     {
       if (TValues[x] == null)
@@ -309,7 +309,7 @@
       return cores.Sum(core => (Math.Pow((double) (core.Success/core.Failure), x)));
     }
 
-    private decimal?[] Probs;
+    private decimal?[] Probs = new decimal?[0];
     private decimal ProbNumOfSuccessesIsX(IEnumerable<Core> cores, int x)
     {
       if (Probs[x] == null)

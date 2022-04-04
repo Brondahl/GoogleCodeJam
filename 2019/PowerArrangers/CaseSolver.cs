@@ -12,7 +12,7 @@ namespace PowerArrangers
     {
       InOut = io ?? new GoogleCodeJam2018Communicator();
       var lines = InOut.ReadStringInput(out numberOfCases);
-      var cases = new CaseSplitter().GetConstantMultiLineCases(lines, 2);
+      var cases = new CaseSplitter().Configure_ConstantMultiLineCases(2).GetCaseLines(lines);
       var results = new List<string>();
       var caseNumber = 0;
 

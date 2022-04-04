@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="CaseSplitter.cs" />
     <Compile Include="GoogleCodeJam2017Communicator.cs" />
+    <Compile Include="GoogleCodeJam2022CommunicatorWithInteractivity.cs" />
     <Compile Include="GoogleCodeJam2018Communicator.cs" />
     <Compile Include="IGoogleCodeJamCommunicator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

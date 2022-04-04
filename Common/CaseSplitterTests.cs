@@ -49,7 +49,7 @@ CA
 KE
 ZZ".Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList().Skip(1);
 
-      var output = splitter.GetConstantMultiLineCases(inputFile, 4).ToList();
+      var output = splitter.Configure_ConstantMultiLineCases(4).GetCaseLines(inputFile).ToList();
 
       output.Should().HaveCount(3);
 
@@ -85,7 +85,7 @@ KE
 ";
       var inputLines = inputFile.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList().Skip(1);
 
-      var output = splitter.GetCaseLines_TakingNFromFirstValPlusOne(inputLines).ToList();
+      var output = splitter.Configure_TakingNFromFirstValPlusOne().GetCaseLines(inputLines).ToList();
 
       output.Should().HaveCount(3);
 
@@ -119,7 +119,7 @@ baz
 CA
 KE".Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList().Skip(1);
 
-      var output = splitter.GetCaseLines_TakingNFromFirstValPlusTwo(inputFile).ToList();
+      var output = splitter.Configure_TakingNFromFirstValPlusTwo().GetCaseLines(inputFile).ToList();
 
       output.Should().HaveCount(3);
 
@@ -155,7 +155,7 @@ CODE
 4 2
 CA".Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList().Skip(1);
 
-      var output = splitter.GetCaseLines_TakingNFromSecondVal(inputFile).ToList();
+      var output = splitter.Configure_TakingNFromSecondVal().GetCaseLines(inputFile).ToList();
 
       output.Should().HaveCount(3);
 
@@ -204,7 +204,7 @@ CODE
 baz
 CA".Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList().Skip(1);
 
-      var output = splitter.GetCaseLines(inputFile, args => args[2] + args[1] + 1).ToList();
+      var output = splitter.Configure_CustomMap(args => args[2] + args[1] + 1).GetCaseLines(inputFile).ToList();
 
       output.Should().HaveCount(3);
 

@@ -12,7 +12,7 @@ namespace AWholeNewWord
     public static void Run()
     {
       var lines = InOut.ReadStringInput(out numberOfCases);
-      var cases = new CaseSplitter().GetCaseLines_TakingNFromFirstValPlusOne(lines);
+      var cases = new CaseSplitter().Configure_TakingNFromFirstValPlusOne().GetCaseLines(lines);
       var results = new List<string>();
       var caseNumber = 0;
 

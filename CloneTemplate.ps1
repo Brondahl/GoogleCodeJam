@@ -1,5 +1,6 @@
+[Environment]::CurrentDirectory = (Get-Location -PSProvider FileSystem).ProviderPath
 $newProjectName = ""
-$year = "2019"
+$year = "2022"
 
 while(($newProjectName -eq "") -Or ((Test-Path $targetDir -PathType Container))) {
     Write-Host "Cloning template to create project in $year folder"
@@ -32,12 +33,7 @@ Write-Host
 
 Write-Host "Updating EntryPoint to target new Project"
 
-$programEntryPointFile = "C:\Users\Brondahl\My Files\Programming\C#\Puzzles_And_Toys\GoogleCodeJam\EntryPoint\Program.cs"
-
-$programEntryPointFile
-$here = Get-Location
-$here
-"Test"
+$programEntryPointFile = ".\EntryPoint\Program.cs"
 
 $contents = @"
 namespace GoogleCodeJam

@@ -81,6 +81,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwistyPassages", "2022\Twis
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoubleOrOneThing", "2022\DoubleOrOneThing\DoubleOrOneThing.csproj", "{81F46560-D74C-48FA-BFB2-DE66390BFE87}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqualSum", "2022\EqualSum\EqualSum.csproj", "{4D38A50F-DEF1-4B2F-863D-ACEEC286F63A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -223,6 +225,10 @@ Global
 		{81F46560-D74C-48FA-BFB2-DE66390BFE87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81F46560-D74C-48FA-BFB2-DE66390BFE87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81F46560-D74C-48FA-BFB2-DE66390BFE87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D38A50F-DEF1-4B2F-863D-ACEEC286F63A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D38A50F-DEF1-4B2F-863D-ACEEC286F63A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D38A50F-DEF1-4B2F-863D-ACEEC286F63A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D38A50F-DEF1-4B2F-863D-ACEEC286F63A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -260,6 +266,7 @@ Global
 		{D2BC7D2B-EBC9-4E2D-88A1-DAE166429100} = {AB24E0E7-EA1B-4A85-A667-01A8E6D952F3}
 		{574EE790-8460-4980-AEC4-1AA96FC1701A} = {AB24E0E7-EA1B-4A85-A667-01A8E6D952F3}
 		{81F46560-D74C-48FA-BFB2-DE66390BFE87} = {AB24E0E7-EA1B-4A85-A667-01A8E6D952F3}
+		{4D38A50F-DEF1-4B2F-863D-ACEEC286F63A} = {AB24E0E7-EA1B-4A85-A667-01A8E6D952F3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4C85A7E6-82EF-4F14-9CD0-65A4B35B12C8}

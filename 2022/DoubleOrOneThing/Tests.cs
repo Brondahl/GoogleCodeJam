@@ -35,48 +35,41 @@ namespace DoubleOrOneThing
         [Test]
         public void Square()
         {
-            var inputString = @"2
-2 2
-3 3";
+            var inputString = @"3
+PEEL
+AAAAAAAAAA
+CODEJAMDAY
+";
             var io = new TestIOStub(inputString);
             CaseSolver.Run(io);
 
             io.Output.Should().BeEquivalentTo(
-                @"Case #1:
-..+-+
-..|.|
-+-+-+
-|.|.|
-+-+-+",
-                @"Case #2:
-..+-+-+
-..|.|.|
-+-+-+-+
-|.|.|.|
-+-+-+-+
-|.|.|.|
-+-+-+-+"
+                @"Case #1: PEEEEL",
+                @"Case #2: AAAAAAAAAA",
+                @"Case #3: CCODDEEJAAMDAAY"
             );
         }
 
 
         [Test]
-        public void OffSquare()
+        public void LongStringPerf()
         {
-            var inputString = @"1
-3 4";
+            var inputString = @"5
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
             var io = new TestIOStub(inputString);
             CaseSolver.Run(io);
 
             io.Output.Should().BeEquivalentTo(
-                @"Case #1:
-..+-+-+-+
-..|.|.|.|
-+-+-+-+-+
-|.|.|.|.|
-+-+-+-+-+
-|.|.|.|.|
-+-+-+-+-+"
+                @"Case #1: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                @"Case #2: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                @"Case #3: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                @"Case #4: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                @"Case #5: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+
             );
         }
 

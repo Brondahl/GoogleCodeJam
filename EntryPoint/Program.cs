@@ -1,6 +1,6 @@
 namespace GoogleCodeJam
 {
-  using DoubleOrOneThing;
+  using Weightlifting;
   using Common;
   // See README.txt in sln root!!
  

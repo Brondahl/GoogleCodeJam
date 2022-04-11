@@ -8,28 +8,43 @@ namespace Weightlifting
     {
         internal CaseInput(List<string> lines)
         {
-            var values = lines.Single().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToArray();
+            var lineOne = lines.First().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToArray();
 
-            R = values[0];
-            C = values[1];
+            Exercises = lineOne[0];
+            MaxWeight = lineOne[1];
+
+            ExerciseWeightCounts = lines.Skip(1).Select(line => line.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToArray()).ToArray();
         }
 
-        internal long R;
-        internal long C;
+        internal long Exercises;
+        internal long MaxWeight;
+
+        internal long[][] ExerciseWeightCounts;
+    }
+
+    class CaseMidpoint
+    {
+        internal long Exercises;
+        internal long MaxWeight;
+
+        internal long[] WeightsPerExercise;
+        internal long[][] ExerciseWeightPositions;
+        internal long[] ExerciseStackLockPointInbound;
+        internal long[][] ExerciseInboundLockedStackContents;
     }
 
     class CaseOutput
     {
-        internal CaseOutput(string text)
+        internal CaseOutput(long number)
         {
-            Text = text;
+            Text = number.ToString();
         }
 
         internal string Text;
 
         public override string ToString()
         {
-            return Environment.NewLine + Text;
+            return Text;
         }
     }
 

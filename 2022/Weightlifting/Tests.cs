@@ -35,48 +35,26 @@ namespace Weightlifting
         [Test]
         public void Square()
         {
-            var inputString = @"2
-2 2
-3 3";
+            var inputString = @"3
+3 1
+1
+2
+1
+2 3
+1 2 1
+2 1 2
+3 3
+3 1 1
+3 3 3
+2 3 3
+";
             var io = new TestIOStub(inputString);
             CaseSolver.Run(io);
 
-            io.Output.Should().BeEquivalentTo(
-                @"Case #1:
-..+-+
-..|.|
-+-+-+
-|.|.|
-+-+-+",
-                @"Case #2:
-..+-+-+
-..|.|.|
-+-+-+-+
-|.|.|.|
-+-+-+-+
-|.|.|.|
-+-+-+-+"
-            );
-        }
-
-
-        [Test]
-        public void OffSquare()
-        {
-            var inputString = @"1
-3 4";
-            var io = new TestIOStub(inputString);
-            CaseSolver.Run(io);
-
-            io.Output.Should().BeEquivalentTo(
-                @"Case #1:
-..+-+-+-+
-..|.|.|.|
-+-+-+-+-+
-|.|.|.|.|
-+-+-+-+-+
-|.|.|.|.|
-+-+-+-+-+"
+            string.Join(Environment.NewLine,io.Output).Should().Be(
+                @"Case #1: 4
+Case #2: 12
+Case #3: 20"
             );
         }
 

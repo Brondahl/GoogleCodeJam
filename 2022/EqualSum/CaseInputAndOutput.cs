@@ -1,4 +1,4 @@
-﻿namespace TemplateProject
+namespace EqualSum
 {
     using System;
     using System.Collections.Generic;
@@ -29,7 +29,7 @@
 
         public override string ToString()
         {
-            return Text;
+            return Environment.NewLine + Text;
         }
     }
 

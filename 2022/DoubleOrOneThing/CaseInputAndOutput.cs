@@ -1,6 +1,5 @@
-﻿namespace TemplateProject
+namespace DoubleOrOneThing
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -8,14 +7,10 @@
     {
         internal CaseInput(List<string> lines)
         {
-            var values = lines.Single().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToArray();
-
-            R = values[0];
-            C = values[1];
+            text = lines.Single().ToCharArray();
         }
 
-        internal long R;
-        internal long C;
+        internal char[] text;
     }
 
     class CaseOutput

@@ -1,4 +1,4 @@
-﻿namespace TemplateProject
+namespace EqualSum
 {
     using System;
     using System.Collections.Generic;
@@ -30,7 +30,7 @@
 
                 var resultText = result.ToString();
 
-                yield return $"Case #{currentCaseNumber}: {resultText}";
+                yield return $"Case #{currentCaseNumber}:{resultText}";
             }
         }
 

@@ -1,6 +1,6 @@
 namespace GoogleCodeJam
 {
-  using TwistyPassages;
+  using Weightlifting;
   using Common;
   // See README.txt in sln root!!
  

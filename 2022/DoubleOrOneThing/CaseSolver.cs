@@ -1,4 +1,4 @@
-﻿namespace TemplateProject
+namespace DoubleOrOneThing
 {
     using System;
     using System.Collections.Generic;
@@ -43,50 +43,33 @@
 
         internal CaseOutput Solve()
         {
-            var cells = new char[2 * input.R + 1, 2 * input.C + 1];
-            for (int x = 0; x < 2 * input.R + 1; x++)
+            var output = "";
+            for (int i = 0; i < input.text.Length-1; i++)
             {
-                for (int y = 0; y < 2 * input.C + 1; y++)
+                var c = input.text[i];
+                var next = NextNotEqual(input.text, c, i);
+                output += c;
+                if (next > c)
                 {
-                    if (x < 2 && y < 2)
-                    {
-                        cells[x, y] = '.';
-                        continue;
-                    }
-
-                    if (x % 2 == 1 && y % 2 == 0)
-                    {
-                        cells[x, y] = '|';
-                    }
-                    if (x % 2 == 1 && y % 2 == 1)
-                    {
-                        cells[x, y] = '.';
-                    }
-                    if (x % 2 == 0 && y % 2 == 0)
-                    {
-                        cells[x, y] = '+';
-                    }
-                    if (x % 2 == 0 && y % 2 == 1)
-                    {
-                        cells[x, y] = '-';
-                    }
+                    output += c;
                 }
             }
 
-            var text = "";
-            for (int x = 0; x < 2 * input.R + 1; x++)
-            {
-                for (int y = 0; y < 2 * input.C + 1; y++)
-                {
-                    text += cells[x, y];
-                }
-
-                text += Environment.NewLine;
-            }
-
-            text = text.TrimEnd('\r', '\n');
-            return new CaseOutput(text);
+            output += input.text.Last();
+            return new CaseOutput(output);
         }
 
+        private char NextNotEqual(char[] array, char current, int index)
+        {
+            for (int i = index+1; i < array.Length; i++)
+            {
+                if (array[i] != current)
+                {
+                    return array[i];
+                }
+            }
+
+            return current;
+        }
     }
 }

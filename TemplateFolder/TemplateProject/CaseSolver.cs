@@ -30,7 +30,7 @@
 
                 var resultText = result.ToString();
 
-                yield return $"Case #{currentCaseNumber}:{resultText}";
+                yield return $"Case #{currentCaseNumber}: {resultText}";
             }
         }
 

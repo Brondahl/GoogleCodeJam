@@ -29,7 +29,7 @@
 
         public override string ToString()
         {
-            return Environment.NewLine + Text;
+            return Text;
         }
     }
 

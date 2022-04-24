@@ -1,6 +1,6 @@
 namespace GoogleCodeJam
 {
-  using Weightlifting;
+  using PancakeDeque;
   using Common;
   // See README.txt in sln root!!
  

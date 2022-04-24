@@ -80,9 +80,9 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\2022\PancakeDeque\PancakeDeque.csproj">
-      <Project>{f7b12e1f-16e7-46a2-8e52-76219b083ad4}</Project>
-      <Name>PancakeDeque</Name>
+    <ProjectReference Include="..\2022\ControlledInflation\ControlledInflation.csproj">
+      <Project>{786356e4-b7ae-4382-b9d7-fcbebc09d245}</Project>
+      <Name>ControlledInflation</Name>
     </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{be560075-329b-44d9-85a8-88c0291db0cc}</Project>

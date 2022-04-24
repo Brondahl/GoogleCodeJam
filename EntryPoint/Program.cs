@@ -1,6 +1,6 @@
 namespace GoogleCodeJam
 {
-  using PancakeDeque;
+  using ControlledInflation;
   using Common;
   // See README.txt in sln root!!
  

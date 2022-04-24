@@ -87,6 +87,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weightlifting", "2022\Weigh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PancakeDeque", "2022\PancakeDeque\PancakeDeque.csproj", "{F7B12E1F-16E7-46A2-8E52-76219B083AD4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlledInflation", "2022\ControlledInflation\ControlledInflation.csproj", "{786356E4-B7AE-4382-B9D7-FCBEBC09D245}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -241,6 +243,10 @@ Global
 		{F7B12E1F-16E7-46A2-8E52-76219B083AD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7B12E1F-16E7-46A2-8E52-76219B083AD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7B12E1F-16E7-46A2-8E52-76219B083AD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{786356E4-B7AE-4382-B9D7-FCBEBC09D245}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{786356E4-B7AE-4382-B9D7-FCBEBC09D245}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{786356E4-B7AE-4382-B9D7-FCBEBC09D245}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{786356E4-B7AE-4382-B9D7-FCBEBC09D245}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -281,6 +287,7 @@ Global
 		{4D38A50F-DEF1-4B2F-863D-ACEEC286F63A} = {AB24E0E7-EA1B-4A85-A667-01A8E6D952F3}
 		{CB9FFE49-A783-4738-9D6F-80C27F97FE15} = {AB24E0E7-EA1B-4A85-A667-01A8E6D952F3}
 		{F7B12E1F-16E7-46A2-8E52-76219B083AD4} = {AB24E0E7-EA1B-4A85-A667-01A8E6D952F3}
+		{786356E4-B7AE-4382-B9D7-FCBEBC09D245} = {AB24E0E7-EA1B-4A85-A667-01A8E6D952F3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4C85A7E6-82EF-4F14-9CD0-65A4B35B12C8}

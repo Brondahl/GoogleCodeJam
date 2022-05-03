@@ -49,9 +49,20 @@ namespace PancakeDeque
 
             io.Output.Should().BeEquivalentTo(
                 @"Case #1: 2",
-"Case #2: 3",
-"Case #3: 5",
-"Case #4: 2");
+                "Case #2: 3",
+                "Case #3: 5",
+                "Case #4: 2");
+        }
+
+
+        [Test]
+        public void ManualRandomTestSpecific()
+        {
+            var r = new Random();
+            var input = new CaseInput(new List<string>{@"2", "1 5"});
+            input.N = 100000;
+            input.Values = Enumerable.Repeat(1,(int)input.N).Select(x => (long)(r.Next(100))).ToList();
+            var output = new CaseSolver(input).Solve();
         }
 
 

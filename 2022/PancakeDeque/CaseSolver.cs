@@ -46,17 +46,19 @@ namespace PancakeDeque
         {
             var max = input.Values.Max();
             var maxLocationScores = new List<int>();
-            
+
             for (int i = 0; i < input.Values.Count; i++)
             {
                 if (input.Values[i] == max)
                 {
                     var score = EvaluateGivenCentrePointIndexWhichIsAMax(i);
-                    maxLocationScores.Add(score);
+                    return new CaseOutput(score);
                 }
             }
-            
-            return new CaseOutput(maxLocationScores.Max());
+
+            Thrower.TriggerMemLimit();
+            Thrower.TriggerTimeLimit();
+            return null;
         }
 
         internal Queue<long> SimplifyQueue(Queue<long> queueIn)

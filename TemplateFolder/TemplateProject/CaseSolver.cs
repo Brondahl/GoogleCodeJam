@@ -13,7 +13,7 @@
         {
             InOut = io ?? new GoogleCodeJam2018Communicator();
             var lines = InOut.ReadStringInput(out numberOfCases);
-            var cases = new CaseSplitter().Configure_ConstantMultiLineCases(1).GetCaseLines(lines);
+            var cases = CaseInput.ConfigureSplitter(new CaseSplitter()).GetCaseLines(lines);
             var results = ProcessCases(cases);
             InOut.WriteOutput(results);
         }

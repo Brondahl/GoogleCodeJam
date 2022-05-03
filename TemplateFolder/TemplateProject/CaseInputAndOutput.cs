@@ -1,4 +1,6 @@
-﻿namespace TemplateProject
+﻿using Common;
+
+namespace TemplateProject
 {
     using System;
     using System.Collections.Generic;
@@ -6,6 +8,9 @@
 
     class CaseInput
     {
+        internal static CaseSplitter ConfigureSplitter(CaseSplitter inputSplitter)
+            => inputSplitter.Configure_TakingNFromFirstValPlusOne();
+
         internal CaseInput(List<string> lines)
         {
             var values = lines.Single().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToArray();

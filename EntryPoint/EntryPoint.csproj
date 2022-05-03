@@ -80,9 +80,9 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\2022\TwistyPassages\TwistyPassages.csproj">
-      <Project>{574ee790-8460-4980-aec4-1aa96fc1701a}</Project>
-      <Name>TwistyPassages</Name>
+    <ProjectReference Include="..\2022\ASeDatAb\ASeDatAb.csproj">
+      <Project>{5a246888-8444-4c5a-a03d-ab60cf4c3a2d}</Project>
+      <Name>ASeDatAb</Name>
     </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{be560075-329b-44d9-85a8-88c0291db0cc}</Project>

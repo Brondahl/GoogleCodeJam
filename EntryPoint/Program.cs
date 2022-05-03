@@ -1,6 +1,6 @@
 namespace GoogleCodeJam
 {
-  using LetterBlocks;
+  using Squary;
   using Common;
   // See README.txt in sln root!!
  

@@ -80,9 +80,9 @@ namespace LetterBlocks
             input = inputCase;
         }
 
-        private Dictionary<char, List<Block>> startBlockIndexes = new Dictionary<char, List<Block>>();
-        private Dictionary<char, List<Block>> endBlockIndexes = new Dictionary<char, List<Block>>();
-        private Dictionary<char, List<Block>> uniformBlockIndexes = new Dictionary<char, List<Block>>();
+        private DictionaryOfLists<char, Block> startBlockIndexes = new DictionaryOfLists<char, Block>();
+        private DictionaryOfLists<char, Block> endBlockIndexes = new DictionaryOfLists<char, Block>();
+        private DictionaryOfLists<char, Block> uniformBlockIndexes = new DictionaryOfLists<char, Block>();
         private List<Block> blocks = new List<Block>();
 
         private List<Block> AllUniformBlocks => uniformBlockIndexes.Values.SelectMany(l => l).ToList();
@@ -101,25 +101,18 @@ namespace LetterBlocks
 
         internal CaseOutput SolveWithAssumptionOfValidity()
         {
-            foreach (var capChar in "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray())
-            {
-                startBlockIndexes[capChar] = new List<Block>();
-                endBlockIndexes[capChar] = new List<Block>();
-                uniformBlockIndexes[capChar] = new List<Block>();
-            }
-
             for (int i = 0; i < input.N; i++)
             {
                 var block = new Block(input.Texts[i]);
                 
                 if (block.Start == block.End)
                 {
-                    uniformBlockIndexes[block.Start].Add(block);
+                    uniformBlockIndexes.Add(block.Start, block);
                 }
                 else
                 {
-                    startBlockIndexes[block.Start].Add(block);
-                    endBlockIndexes[block.End].Add(block);
+                    startBlockIndexes.Add(block.Start, block);
+                    endBlockIndexes.Add(block.End, block);
                 }
 
                 blocks.Add(block);
@@ -155,14 +148,8 @@ namespace LetterBlocks
             if (blocks.Count == 1) { return false; }
 
 
-            foreach (var uniformBlockListForChar in uniformBlockIndexes.ToList())
+            foreach (var uniformBlockListForChar in uniformBlockIndexes)
             {
-                if (!uniformBlockListForChar.Value.Any())
-                {
-                    uniformBlockIndexes.Remove(uniformBlockListForChar.Key);
-                    continue;
-                }
-
                 var uniformBlocks = uniformBlockListForChar.Value;
                 if (uniformBlocks.Count > 1)
                 {
@@ -171,44 +158,36 @@ namespace LetterBlocks
                 }
             }
 
-            foreach (var uniformBlockListForChar in uniformBlockIndexes.ToList())
+            foreach (var uniformBlockListForChar in uniformBlockIndexes)
             {
-                if (!uniformBlockListForChar.Value.Any())
-                {
-                    uniformBlockIndexes.Remove(uniformBlockListForChar.Key);
-                    continue;
-                }
-
                 var uniformBlock = uniformBlockListForChar.Value.Single();
                 var uniChar = uniformBlockListForChar.Key;
-                if (startBlockIndexes[uniChar].Any())
+                if (startBlockIndexes.ContainsKey(uniChar))
                 {
                     JoinBlocks(uniformBlock, startBlockIndexes[uniChar][0]);
                     return true;
                 }
-                if (endBlockIndexes[uniChar].Any())
+                if (endBlockIndexes.ContainsKey(uniChar))
                 {
                     JoinBlocks(endBlockIndexes[uniChar][0], uniformBlock);
                     return true;
                 }
             }
 
-            foreach (var startBlockListForChar in startBlockIndexes.ToList())
+            foreach (var startBlockListForChar in startBlockIndexes)
             {
-                if(!startBlockListForChar.Value.Any()){continue;}
                 var startChar = startBlockListForChar.Key;
-                if (endBlockIndexes[startChar].Any())
+                if (endBlockIndexes.ContainsKey(startChar))
                 {
                     JoinBlocks(endBlockIndexes[startChar][0], startBlockListForChar.Value[0]);
                     return true;
                 }
             }
 
-            foreach (var endBlockListForChar in endBlockIndexes.ToList())
+            foreach (var endBlockListForChar in endBlockIndexes)
             {
-                if (!endBlockListForChar.Value.Any()) { continue; }
                 var endChar = endBlockListForChar.Key;
-                if (startBlockIndexes[endChar].Any())
+                if (startBlockIndexes.ContainsKey(endChar))
                 {
                     JoinBlocks(endBlockListForChar.Value[0], startBlockIndexes[endChar][0]);
                     return true;
@@ -224,24 +203,23 @@ namespace LetterBlocks
 
             blocks.Remove(left);
             blocks.Remove(right);
-            startBlockIndexes[left.Start].Remove(left);
-            startBlockIndexes[right.Start].Remove(right);
-            endBlockIndexes[left.End].Remove(left);
-            endBlockIndexes[right.End].Remove(right);
-            if (left.IsUniform) { uniformBlockIndexes[left.Start].Remove(left); }
-            if (right.IsUniform) { uniformBlockIndexes[right.Start].Remove(right); }
-
+            startBlockIndexes.Remove(left.Start, left);
+            startBlockIndexes.Remove(right.Start, right);
+            endBlockIndexes.Remove(left.End, left);
+            endBlockIndexes.Remove(right.End, right);
+            if (left.IsUniform) { uniformBlockIndexes.Remove(left.Start, left); }
+            if (right.IsUniform) { uniformBlockIndexes.Remove(right.Start, right); }
 
             blocks.Add(newBlock);
 
             if (newBlock.IsUniform)
             {
-                uniformBlockIndexes[newBlock.Start].Add(newBlock);
+                uniformBlockIndexes.Add(newBlock.Start, newBlock);
             }
             else
             {
-                startBlockIndexes[newBlock.Start].Add(newBlock);
-                endBlockIndexes[newBlock.End].Add(newBlock);
+                startBlockIndexes.Add(newBlock.Start, newBlock);
+                endBlockIndexes.Add(newBlock.End, newBlock);
             }
         }
 

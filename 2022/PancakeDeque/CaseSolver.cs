@@ -35,7 +35,6 @@ namespace PancakeDeque
         }
 
         private CaseInput input;
-        private long currentLimit = 0;
         
         internal CaseSolver(CaseInput inputCase)
         {

@@ -125,7 +125,7 @@ namespace Weightlifting
                 var thisExWeightCounts = input.ExerciseWeightCounts[ex];
                 var prevExWeightCounts = input.ExerciseWeightCounts[ex - 1];
                 var outboundLockPoint = isFirstLoop ? mid.WeightsPerExercise[ex] : mid.ExerciseStackLockPointInbound[ex + 1];
-                var thisExFlexibleWeights = 0;
+                //var thisExFlexibleWeights = 0;
                 var minWeightsCounts = Enumerable.Zip(thisExWeightCounts, prevExWeightCounts, Math.Min).ToArray();
                 var lockPoint = minWeightsCounts.Sum() - 1;
 

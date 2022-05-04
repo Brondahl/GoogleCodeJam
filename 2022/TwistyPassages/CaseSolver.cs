@@ -7,7 +7,6 @@ namespace TwistyPassages
 
     public class CaseSolver
     {
-        private static int numberOfCases;
         private static IGoogleCodeJamInteractiveCommunicator InOut;
         public static void Run(IGoogleCodeJamInteractiveCommunicator io = null)
         {

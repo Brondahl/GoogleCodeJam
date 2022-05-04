@@ -13,7 +13,7 @@
         {
             InOut = io ?? new GoogleCodeJam2018Communicator();
             var lines = InOut.ReadStringInput(out numberOfCases);
-            var cases = new CaseSplitter().Configure_ConstantMultiLineCases(1).GetCaseLines(lines);
+            var cases = CaseInput.ConfigureSplitter(new CaseSplitter()).GetCaseLines(lines);
             var results = ProcessCases(cases);
             InOut.WriteOutput(results);
         }
@@ -43,49 +43,8 @@
 
         internal CaseOutput Solve()
         {
-            var cells = new char[2 * input.R + 1, 2 * input.C + 1];
-            for (int x = 0; x < 2 * input.R + 1; x++)
-            {
-                for (int y = 0; y < 2 * input.C + 1; y++)
-                {
-                    if (x < 2 && y < 2)
-                    {
-                        cells[x, y] = '.';
-                        continue;
-                    }
-
-                    if (x % 2 == 1 && y % 2 == 0)
-                    {
-                        cells[x, y] = '|';
-                    }
-                    if (x % 2 == 1 && y % 2 == 1)
-                    {
-                        cells[x, y] = '.';
-                    }
-                    if (x % 2 == 0 && y % 2 == 0)
-                    {
-                        cells[x, y] = '+';
-                    }
-                    if (x % 2 == 0 && y % 2 == 1)
-                    {
-                        cells[x, y] = '-';
-                    }
-                }
-            }
-
-            var text = "";
-            for (int x = 0; x < 2 * input.R + 1; x++)
-            {
-                for (int y = 0; y < 2 * input.C + 1; y++)
-                {
-                    text += cells[x, y];
-                }
-
-                text += Environment.NewLine;
-            }
-
-            text = text.TrimEnd('\r', '\n');
-            return new CaseOutput(text);
+            //Implement all the solution logic, based on input object.
+            return new CaseOutput((int)input.R);
         }
 
     }

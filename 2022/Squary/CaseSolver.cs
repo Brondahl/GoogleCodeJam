@@ -50,6 +50,11 @@ namespace Squary
             }
             else
             {
+                if (input.K == 1)
+                {
+                    return CaseOutput.Impossible;
+                }
+
                 var twoOut = SolveWith2();
                 return twoOut;
             }
@@ -105,7 +110,7 @@ namespace Squary
             var answer = top / bottom;
             if (top.IsDivisibleBy(bottom))
             {
-                return new CaseOutput(new[] { answer, B });
+                return new CaseOutput(new[] { B, answer });
             }
             else
             {

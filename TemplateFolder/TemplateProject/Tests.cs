@@ -43,10 +43,10 @@
 0
 3 1
 2 -2 2";
-            var expectedOutputString = @"Case #1: 3
-Case #2: IMPOSSIBLE
-Case #3: 0
-Case #4: 2";
+            var expectedOutputString = @"Case #1: 2
+Case #2: 2
+Case #3: 1
+Case #4: 3";
 
             var outputStringsSeparated = expectedOutputString.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
             var io = new TestIOStub(inputString);
@@ -61,7 +61,7 @@ Case #4: 2";
             var inputString = @"1
 2 1
 -2 6";
-            var expectedOutputString = @"Case #1: 3";
+            var expectedOutputString = @"Case #1: 2";
 
             var outputStringsSeparated = expectedOutputString.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
             var io = new TestIOStub(inputString);

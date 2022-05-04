@@ -64,15 +64,15 @@ Case #4: 2".Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)
 -2 3 6
 6 2
 -2 2 1 -2 4 -1
-1 12
--5";
+2 12
+-5 1";
             var io = new TestIOStub(inputString);
             CaseSolver.Run(io);
 
             io.Output.Should().BeEquivalentTo(
                 @"Case #1: 0
 Case #2: -1 15
-Case #3: 1 1 1 1 1 1 1 1 1 1 1".Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)
+Case #3: 5 25".Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)
             );
         }
 

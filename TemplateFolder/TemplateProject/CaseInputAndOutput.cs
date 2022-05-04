@@ -8,7 +8,7 @@
     class CaseInput
     {
         internal static CaseSplitter ConfigureSplitter(CaseSplitter inputSplitter)
-            => inputSplitter.Configure_TakingNFromFirstValPlusOne();
+            => inputSplitter.Configure_ConstantMultiLineCases(2);
 
         internal CaseInput(List<string> lines)
         {

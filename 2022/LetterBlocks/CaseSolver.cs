@@ -93,7 +93,7 @@ namespace LetterBlocks
             {
                 return SolveWithAssumptionOfValidity();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return CaseOutput.Impossible;
             }

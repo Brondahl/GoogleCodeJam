@@ -1,6 +1,6 @@
 namespace GoogleCodeJam
 {
-  using Squary;
+  using ASeDatAb;
   using Common;
   // See README.txt in sln root!!
  

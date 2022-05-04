@@ -31,53 +31,67 @@
     [TestFixture]
     public class Tests
     {
-
         [Test]
-        public void Square()
+        public void BasicExample()
         {
-            var inputString = @"2
-2 2
-3 3";
+            var inputString = @"4
+2 1
+-2 6
+2 1
+-10 10
+1 1
+0
+3 1
+2 -2 2";
+            var expectedOutputString = @"Case #1: 3
+Case #2: IMPOSSIBLE
+Case #3: 0
+Case #4: 2";
+
+            var outputStringsSeparated = expectedOutputString.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
             var io = new TestIOStub(inputString);
             CaseSolver.Run(io);
 
-            io.Output.Should().BeEquivalentTo(
-                @"Case #1:
-..+-+
-..|.|
-+-+-+
-|.|.|
-+-+-+",
-                @"Case #2:
-..+-+-+
-..|.|.|
-+-+-+-+
-|.|.|.|
-+-+-+-+
-|.|.|.|
-+-+-+-+"
-            );
+            io.Output.Should().BeEquivalentTo(outputStringsSeparated);
         }
 
-
         [Test]
-        public void OffSquare()
+        public void SingleCase()
         {
             var inputString = @"1
-3 4";
+2 1
+-2 6";
+            var expectedOutputString = @"Case #1: 3";
+
+            var outputStringsSeparated = expectedOutputString.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
             var io = new TestIOStub(inputString);
             CaseSolver.Run(io);
 
-            io.Output.Should().BeEquivalentTo(
-                @"Case #1:
-..+-+-+-+
-..|.|.|.|
-+-+-+-+-+
-|.|.|.|.|
-+-+-+-+-+
-|.|.|.|.|
-+-+-+-+-+"
-            );
+            io.Output.Should().BeEquivalentTo(outputStringsSeparated);
+        }
+
+        [Test, Ignore("Not Used")]
+        public void HarderExample()
+        {
+            var inputString = @"4
+2 1
+-2 6
+2 1
+-10 10
+1 1
+0
+3 1
+2 -2 2";
+            var expectedOutputString = @"Case #1: 3
+Case #2: IMPOSSIBLE
+Case #3: 0
+Case #4: 2";
+
+            var outputStringsSeparated = expectedOutputString.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            var io = new TestIOStub(inputString);
+            CaseSolver.Run(io);
+
+            io.Output.Should().BeEquivalentTo(outputStringsSeparated);
         }
 
     }

@@ -5,11 +5,19 @@ VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntryPoint", "EntryPoint\EntryPoint.csproj", "{AE728E0E-2299-4042-87D9-26F69BFE6CF0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{BE560075-329B-44D9-85A8-88C0291DB0CC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TemplateFolder", "TemplateFolder", "{EBD7B3B4-AB35-40B7-81AF-1DA6074119F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateProject", "TemplateFolder\TemplateProject\TemplateProject.csproj", "{8B890DF9-C849-4984-8E63-5300B1410D44}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2017", "2017", "{55193E47-EDDD-4F29-99E4-04CAFE7A92AA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2018", "2018", "{2A07EC31-114E-4FA6-817E-8FBAD8D84868}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2019", "2019", "{1C5E4DB6-FEA7-4624-A261-F436DB0FB7C1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2022", "2022", "{AB24E0E7-EA1B-4A85-A667-01A8E6D952F3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitFlipping", "2017\BitFlipping\BitFlipping.csproj", "{CFC3386F-BBEB-43EF-999C-9DE1B9DDA7B9}"
 EndProject
@@ -30,8 +38,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TidyNumbers", "2017\TidyNumbers\TidyNumbers.csproj", "{814BD3AF-A657-4517-8B6D-4998D82A62F5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToiletStalls", "2017\ToiletStalls\ToiletStalls.csproj", "{022F4853-5E0B-449C-B3C3-262F157A0D52}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{BE560075-329B-44D9-85A8-88C0291DB0CC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CubicUFO", "2018\CubicUFO\CubicUFO.csproj", "{4544729A-8FB8-480E-ADB2-EC7D1F0EFF17}"
 EndProject
@@ -57,17 +63,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cryptopangrams", "2019\Cryp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlienRhyme", "2019\AlienRhyme\AlienRhyme.csproj", "{642B3FF0-A3B3-4702-A07E-274DB38FD955}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TemplateFolder", "TemplateFolder", "{EBD7B3B4-AB35-40B7-81AF-1DA6074119F5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateProject", "TemplateFolder\TemplateProject\TemplateProject.csproj", "{8B890DF9-C849-4984-8E63-5300B1410D44}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManhattanCrepeCart", "2019\ManhattanCrepeCart\ManhattanCrepeCart.csproj", "{74AEB2A2-06E8-4DB7-AE51-6827DE42F9F2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobotProgrammingStrategy", "2019\RobotProgrammingStrategy\RobotProgrammingStrategy.csproj", "{5521FBAE-F209-4D0F-9530-8EC6409A9FEC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerArrangers", "2019\PowerArrangers\PowerArrangers.csproj", "{4E379A05-F37E-4549-9DFC-565EFE253650}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2022", "2022", "{AB24E0E7-EA1B-4A85-A667-01A8E6D952F3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PunchedCards", "2022\PunchedCards\PunchedCards.csproj", "{DF19E731-601B-44A3-9B85-F753F2E6A3DD}"
 EndProject

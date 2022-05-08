@@ -31,7 +31,51 @@ Get-ChildItem $targetDir -Depth 9 -File | Foreach-Object {
 }
 Write-Host
 
-Write-Host "Updating EntryPoint to target new Project"
+Write-Host "Updating .sln to include new project."
+
+$slnFile = "GoogleCodeJam.sln"
+$slnFileContent = [io.file]::ReadAllText($slnFile)
+
+$newPrjGuid = (New-Guid).toString().toUpper()
+
+$projectDefintionLocatorRegex = "(?smi)EndProject\r\nGlobal"
+$newProjDefinition = 'Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "'+$newProjectName+'", "'+$year+'\'+$newProjectName+'\'+$newProjectName+'.csproj", "{'+$newPrjGuid+'}"'
+$newProjectDefinitionBlock = @"
+EndProject
+$newProjDefinition
+EndProject
+Global
+"@
+
+$projectBuildConfigLocatorRegex = "(?smi)\tEndGlobalSection\r\n\tGlobalSection\(SolutionProperties\) = preSolution"
+$newProjectBuildConfigBlock = @"
+		{$newPrjGuid}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{$newPrjGuid}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{$newPrjGuid}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{$newPrjGuid}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+"@
+
+$guidRegex = "[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}"
+$yearSolutionFolderLocatorRegex = '(?smi)Project\("\{2150E333-8FDC-42A3-9474-1A3956D46DE8\}"\) = "'+$year+'", "'+$year+'", "\{('+$guidRegex+')\}"'
+$currentYearSolutionFolder = [regex]::match($slnFileContent,$yearSolutionFolderLocatorRegex).Groups[1].Value
+
+$projectFolderConfigLocatorRegex = "(?smi)\tEndGlobalSection\r\n\tGlobalSection\(ExtensibilityGlobals\) = postSolution"
+$newProjectFolderConfigBlock = @"
+		{$newPrjGuid} = {$currentYearSolutionFolder}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+"@
+
+$slnFileContent `
+    -replace $projectDefintionLocatorRegex, $newProjectDefinitionBlock `
+    -replace $projectBuildConfigLocatorRegex, $newProjectBuildConfigBlock `
+    -replace $projectFolderConfigLocatorRegex, $newProjectFolderConfigBlock `
+    | Out-File -Encoding "UTF8" $slnFile
+
+
+Write-Host "Updating EntryPoint Program.cs to target new Project"
 
 $programEntryPointFile = ".\EntryPoint\Program.cs"
 
@@ -57,11 +101,33 @@ namespace GoogleCodeJam
 
 [System.IO.File]::WriteAllText($programEntryPointFile, $contents)
 
+Write-Host "Updating EntryPoint.csproj to reference new Project"
+
+$csprojFile = ".\EntryPoint\EntryPoint.csproj"
+$csprojFileContent = [io.file]::ReadAllText($csprojFile)
+
+$projectReferenceLocatorRegex = '(?smi)(^\s*<ProjectReference Include="\.\.\\20\d\d\\\w*\\\w*\.csproj">.+?</Name>)'
+$newProjectReferenceBlock = @"
+    <ProjectReference Include="..\$year\$newProjectName\$newProjectName.csproj">
+      <Project>{$newPrjGuid}</Project>
+      <Name>$newProjectName</Name>
+"@
+
+#    <ProjectReference Include="..\2022\ASeDatAb\ASeDatAb.csproj">
+#      <Project>{5a246888-8444-4c5a-a03d-ab60cf4c3a2d}</Project>
+#      <Name>ASeDatAb</Name>
+#    <ProjectReference Include="..\2022\FinalTest\FinalTest.csproj">
+#      <Project>{fa59ef71-f9eb-4944-aa08-4ebe1216ddde}</Project>
+#      <Name>FinalTest</Name>
+
+$csprojFileContent `
+    -replace $projectReferenceLocatorRegex, $newProjectReferenceBlock `
+    | Out-File -Encoding "UTF8" $csprojFile
+
+
 # Used for testing only!
 #Write-Host "Copy Complete. Press any key to delete."
 #[void][System.Console]::ReadKey($true)
 #del $targetDir -Recurse
 
-Write-Host "Complete. Press any key to close."
-[void][System.Console]::ReadKey($true)
-
+Write-Host "Complete."
